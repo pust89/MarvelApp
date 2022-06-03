@@ -1,0 +1,44 @@
+buildscript {
+    apply from: 'versions.gradle'
+
+    ext.kotlinVersion = "1.6.21"
+    ext.gradleVersion = "7.2.1"
+
+    ext {
+
+        applicationId = "com.pustovit.pdp.marvelapp"
+        compileSdkVersion = 32
+        buildToolsVersion = "30.0.3"
+        minSdkVersion = 24
+        targetSdkVersion = 32
+
+        versionMajor = 1
+        versionMinor = 0
+        versionPatch = 0
+        versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName = "$versionMajor.$versionMinor.$versionPatch"
+    }
+
+
+    repositories {
+        mavenCentral()
+        maven { url = uri("https://www.jitpack.io") }
+        google()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+
+}
+
+plugins {
+    id 'com.android.application' version '7.2.0' apply false
+    id 'com.android.library' version '7.2.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

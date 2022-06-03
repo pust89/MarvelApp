@@ -1,0 +1,40 @@
+ext {
+    /**
+     * Android
+     */
+    androidCoreKtxVersion = "1.7.0"
+    lifecycleVersion = "2.4.1"
+    materialVersion = "1.6.0"
+    appcompatVersion = "1.4.1"
+    mediaVersion = "1.5.0"
+    constraintlayoutVersopn = "2.1.4"
+    recyclerviewVersopn = "1.2.1"
+    viewbindingpropertydelegateVersion = "1.5.6"
+    multidexVersion = "2.0.1"
+    /**
+     * Navigation library
+     */
+    ciceroneVersion = "7.1"
+    /**
+     * DI library
+     */
+    daggerVersion = "2.42"
+    /**
+     * Logging library
+     */
+    timberVersion = "4.7.1"
+    /**
+     * Network libraries
+     */
+    retrofitVersion = "2.9.0" // Retrofit with Moshi Converter
+    moshiVersion = "1.12.0" // Moshi
+    loggingInterceptorVersion = "4.9.3"   // okhttp3 and logging-interceptor
+    /**
+     * Another
+     */
+    browserVersion = "1.4.0"
+    glideVersion = "4.12.0"
+    gsonVersion = "2.8.9"
+
+}
+
