@@ -1,48 +1,58 @@
 package com.pustovit.pdp.marvelapp.ui.characters
 
-import android.annotation.SuppressLint
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
+import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
+import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import java.lang.RuntimeException
+import io.reactivex.subjects.BehaviorSubject
+import timber.log.Timber
 import javax.inject.Inject
 
-@SuppressLint("LogNotTimber")
 class CharactersViewModel(
     private val charactersRepository: CharactersRepository
 ) : ViewModel() {
-    val TAG = "CharactersViewModel"
-
-    init {
-        Log.d(TAG, "CharactersViewModel = ${hashCode()}")
-    }
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Characters Fragment"
+    private val _viewState = BehaviorSubject.createDefault(CharactersViewState())
+
+    @MainThread
+    fun viewState(): Flowable<CharactersViewState> {
+        return _viewState.toFlowable(BackpressureStrategy.LATEST)
+            .observeOn(AndroidSchedulers.mainThread())
     }
-    val text: LiveData<String> = _text
 
     fun loadCharacters() {
         charactersRepository.getCharacters()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ result ->
-                Log.d(TAG, "loadCharacters: doOnNext result = $result")
+            .map {
+                val currentState = _viewState.value!!
+                 currentState.copy(characters = it)
+            }
+            .subscribe({
+                _viewState.onNext(it)
             }, { error ->
-                    Log.d(TAG, "loadCharacters: doOnError error = $error")
-
-                }
+                Timber.d("loadCharacters: doOnError error = $error")
+            }
             ).addTo(compositeDisposable)
+    }
+
+
+    fun handleUserInput(query: String?) {
+
+    }
+
+    fun clearSearchResult() {
+
     }
 
     override fun onCleared() {

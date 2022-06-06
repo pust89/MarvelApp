@@ -34,7 +34,7 @@ ext {
      * Another
      */
     browserVersion = "1.4.0"
-    glideVersion = "4.12.0"
+    coilVersion = "2.1.0"
     gsonVersion = "2.8.9"
 
 }

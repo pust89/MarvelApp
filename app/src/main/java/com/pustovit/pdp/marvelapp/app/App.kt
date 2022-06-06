@@ -3,8 +3,10 @@ package com.pustovit.pdp.marvelapp.app
 import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
+import com.pustovit.pdp.marvelapp.BuildConfig
 import com.pustovit.pdp.marvelapp.app.di.AppComponent
 import com.pustovit.pdp.marvelapp.app.di.DaggerAppComponent
+import timber.log.Timber
 
 /**
  * Created by Pustovit V.V.
@@ -21,7 +23,13 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initTimber()
+    }
 
+    private fun initTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
 

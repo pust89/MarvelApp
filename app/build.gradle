@@ -85,6 +85,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
+    /* Coil etc */
+    implementation "io.coil-kt:coil:$coilVersion"
+    implementation "io.coil-kt:coil-gif:$coilVersion"
+    implementation "io.coil-kt:coil-svg:$coilVersion"
+
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"

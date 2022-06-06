@@ -1,7 +1,9 @@
 package com.pustovit.pdp.marvelapp.app.di
 
 import android.content.Context
+import coil.ImageLoader
 import com.pustovit.pdp.marvelapp.app.MainActivity
+import com.pustovit.pdp.marvelapp.app.di.module.CoilModule
 import com.pustovit.pdp.marvelapp.data.repository.di.RepositoryModule
 import com.pustovit.pdp.marvelapp.data.source.remote.di.RemoteDataSourceModule
 import com.pustovit.pdp.marvelapp.data.source.remote.network.di.NetworkModule
@@ -23,6 +25,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        CoilModule::class,
         NetworkModule::class,
         ServiceModule::class,
         MapperModule::class,
@@ -39,6 +42,8 @@ interface AppComponent {
     fun inject(tabContainerFragment: TabContainerFragment)
 
     fun charactersRepository(): CharactersRepository
+
+    fun imageLoader(): ImageLoader
 
     @Component.Builder
     interface Builder {
