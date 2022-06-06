@@ -9,9 +9,9 @@ import java.security.MessageDigest
  * Time: 21:19
  */
 
-class QueryHelperImpl() : QueryHelper {
+class QueryHelper {
 
-    override fun getTsApiKeyMd5(): Triple<String, String, String> {
+    fun getTsApiKeyMd5(): Triple<String, String, String> {
         val timeStamp = (System.currentTimeMillis() / 1000).toString()
         val input = timeStamp + PRIVATE_API_KEY + PUBLIC_API_KEY
         val hash = md5(input)
@@ -28,9 +28,4 @@ class QueryHelperImpl() : QueryHelper {
         private const val PRIVATE_API_KEY = "0e4cb378b84d6363c97a2ea7326e8eb50027caa0"
     }
 
-}
-
-interface QueryHelper {
-
-    fun getTsApiKeyMd5(): Triple<String, String, String>
 }

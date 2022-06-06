@@ -23,7 +23,7 @@ data class CharacterDto(
     @Json(name = "comics")
     val comics: ComicsDto?,
     @Json(name = "series")
-    val series: Series?,
+    val series: SeriesDto?,
     @Json(name = "stories")
     val stories: StoriesDto?,
     @Json(name = "events")
@@ -65,7 +65,7 @@ data class ItemDto(
 
 @Keep
 @JsonClass(generateAdapter = true)
-data class Series(
+data class SeriesDto(
     @Json(name = "available")
     val available: Int?,
     @Json(name = "collectionURI")

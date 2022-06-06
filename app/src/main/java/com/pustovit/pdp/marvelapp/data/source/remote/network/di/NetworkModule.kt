@@ -1,9 +1,7 @@
 package com.pustovit.pdp.marvelapp.data.source.remote.network.di
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.pustovit.pdp.marvelapp.BuildConfig
 import com.pustovit.pdp.marvelapp.data.source.remote.network.QueryHelper
-import com.pustovit.pdp.marvelapp.data.source.remote.network.QueryHelperImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -13,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -54,7 +53,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideQueryHelper(): QueryHelper {
-        return QueryHelperImpl()
+        return QueryHelper()
     }
 
     @Provides

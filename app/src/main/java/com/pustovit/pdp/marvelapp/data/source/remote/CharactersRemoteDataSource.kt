@@ -1,11 +1,9 @@
 package com.pustovit.pdp.marvelapp.data.source.remote
 
-import com.pustovit.pdp.marvelapp.data.source.remote.model.CharacterDto
-import com.pustovit.pdp.marvelapp.data.source.remote.model.MarvelResponse
+import com.pustovit.pdp.marvelapp.data.source.remote.mapper.CharactersMapper
 import com.pustovit.pdp.marvelapp.data.source.remote.network.CharactersApi
-import com.pustovit.pdp.marvelapp.domain.model.Character
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
+import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -15,30 +13,19 @@ import javax.inject.Inject
  */
 
 class CharactersRemoteDataSourceImpl @Inject constructor(
-    private val charactersApi: CharactersApi
+    private val charactersApi: CharactersApi,
+    private val charactersMapper: CharactersMapper
 ) : CharactersRemoteDataSource {
 
-    override fun getCharacters(): Flowable<Result<List<Character>>> {
-        return charactersApi.getCharacters().map { response ->
-            mapResponse(response)
-        }
-    }
-
-    private fun mapResponse(response: MarvelResponse<CharacterDto>): Result<List<Character>> {
-        val characters: List<Character> = response.data?.results?.map { dto ->
-            Character(
-                id = dto.id ?: 0,
-                name = dto.name ?: "",
-                description = dto.description ?: ""
-            )
-        } ?: emptyList()
-        return Result.success(characters)
+    override fun getCharacters(): Single<List<Character>> {
+        return charactersApi.getCharacters().map(charactersMapper::mapResponse)
     }
 
 }
 
+
 interface CharactersRemoteDataSource {
 
-    fun getCharacters(): Flowable<Result<List<Character>>>
+    fun getCharacters(): Single<List<Character>>
 
 }

@@ -2,7 +2,9 @@ package com.pustovit.pdp.marvelapp.data.repository.di
 
 import com.pustovit.pdp.marvelapp.data.repository.CharactersRepositoryImpl
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSource
+import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSourceImpl
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,11 +15,9 @@ import javax.inject.Singleton
  * Time: 20:17
  */
 @Module
-class RepositoryModule {
+interface RepositoryModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideCharactersRepository(charactersRemoteDataSource: CharactersRemoteDataSource): CharactersRepository {
-        return CharactersRepositoryImpl(charactersRemoteDataSource)
-    }
+    fun provideCharactersRepository(repository: CharactersRepositoryImpl): CharactersRepository
 }

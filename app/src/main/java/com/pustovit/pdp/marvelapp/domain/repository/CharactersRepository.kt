@@ -1,7 +1,9 @@
 package com.pustovit.pdp.marvelapp.domain.repository
 
-import com.pustovit.pdp.marvelapp.domain.model.Character
+import com.pustovit.pdp.marvelapp.domain.model.characters.Character
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  * Created by Pustovit V.V.
@@ -10,6 +12,6 @@ import io.reactivex.Flowable
  */
 interface CharactersRepository {
 
-     fun getCharacters(): Flowable<Result<List<Character>>>
+     fun getCharacters(): Single<List<Character>>
 
 }

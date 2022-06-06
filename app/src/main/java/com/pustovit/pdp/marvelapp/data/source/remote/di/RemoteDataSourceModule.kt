@@ -3,6 +3,7 @@ package com.pustovit.pdp.marvelapp.data.source.remote.di
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSource
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSourceImpl
 import com.pustovit.pdp.marvelapp.data.source.remote.network.CharactersApi
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,11 +14,9 @@ import javax.inject.Singleton
  * Time: 20:08
  */
 @Module
-class RemoteDataSourceModule {
+interface RemoteDataSourceModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideCharactersRemoteDataSource(charactersApi: CharactersApi): CharactersRemoteDataSource {
-        return CharactersRemoteDataSourceImpl(charactersApi)
-    }
+    fun bindsCharactersRemoteDataSource(remoteDataSource: CharactersRemoteDataSourceImpl): CharactersRemoteDataSource
 }

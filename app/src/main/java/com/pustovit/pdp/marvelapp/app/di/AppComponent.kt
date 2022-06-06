@@ -8,8 +8,8 @@ import com.pustovit.pdp.marvelapp.data.source.remote.network.di.NetworkModule
 import com.pustovit.pdp.marvelapp.data.source.remote.network.di.ServiceModule
 import com.pustovit.pdp.marvelapp.app.di.module.LocalNavigationModule
 import com.pustovit.pdp.marvelapp.app.di.module.NavigationModule
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
-import com.pustovit.pdp.marvelapp.ui.di.ViewModelModule
+import com.pustovit.pdp.marvelapp.data.source.remote.mapper.di.MapperModule
+import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -25,9 +25,9 @@ import javax.inject.Singleton
     modules = [
         NetworkModule::class,
         ServiceModule::class,
+        MapperModule::class,
         RemoteDataSourceModule::class,
         RepositoryModule::class,
-        ViewModelModule::class,
         NavigationModule::class,
         LocalNavigationModule::class
     ]
@@ -38,7 +38,7 @@ interface AppComponent {
 
     fun inject(tabContainerFragment: TabContainerFragment)
 
-    fun inject(charactersFragment: CharactersFragment)
+    fun charactersRepository(): CharactersRepository
 
     @Component.Builder
     interface Builder {

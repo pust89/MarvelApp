@@ -1,6 +1,8 @@
-package com.pustovit.pdp.marvelapp.domain.model
+package com.pustovit.pdp.marvelapp.domain.model.characters
 
 import android.os.Parcelable
+import com.pustovit.pdp.marvelapp.domain.model.Thumbnail
+import com.pustovit.pdp.marvelapp.domain.model.UrlModel
 import kotlinx.parcelize.Parcelize
 
 /**
