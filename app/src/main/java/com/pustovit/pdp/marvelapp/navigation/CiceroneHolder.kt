@@ -10,10 +10,13 @@ import java.util.HashMap
  * Time: 13:44
  */
 class CiceroneHolder {
+
     private val containers = HashMap<String, Cicerone<Router>>()
 
-    fun getCicerone(containerTag: String): Cicerone<Router> =
-        containers.getOrPut(containerTag) {
+    fun getCicerone(tabNavigation: TabNavigation): Cicerone<Router> {
+        val containerTag = tabNavigation.tag
+        return containers.getOrPut(containerTag) {
             Cicerone.create()
         }
+    }
 }

@@ -1,6 +1,7 @@
 package com.pustovit.pdp.marvelapp.domain.model
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -12,7 +13,11 @@ import kotlinx.parcelize.Parcelize
 data class Thumbnail(
     val path: String = "",
     val extension: String = ""
-) : Parcelable
+) : Parcelable {
+
+    @IgnoredOnParcel
+    val url = "$path.$extension"
+}
 
 @Parcelize
 data class UrlModel(

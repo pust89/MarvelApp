@@ -8,6 +8,8 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.pustovit.pdp.marvelapp.R
+import com.pustovit.pdp.marvelapp.app.di.module.MainNavigatorHolder
+import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
 import com.pustovit.pdp.marvelapp.databinding.ActivityMainBinding
 import com.pustovit.pdp.marvelapp.navigation.RouterProvider
 import com.pustovit.pdp.marvelapp.navigation.Screens
@@ -19,9 +21,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
     private val binding by viewBinding(ActivityMainBinding::bind)
 
     @Inject
+    @MainRouter
     override lateinit var router: Router
 
     @Inject
+    @MainNavigatorHolder
     lateinit var navigatorHolder: NavigatorHolder
 
     private val navigator: AppNavigator = AppNavigator(this, R.id.mainContainerView)

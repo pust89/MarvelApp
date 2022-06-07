@@ -16,8 +16,8 @@ interface CharactersApi {
 
     @GET("/v1/public/characters")
     fun getCharacters(
-        @Query("orderBy") orderBy: String = "-name",
-        @Query("limit") limit: Int = 10
+        @Query("orderBy") orderBy: String = "-modified",
+        @Query("limit") limit: Int = 99
     ): Single<MarvelResponse<CharacterDto>>
 
 }

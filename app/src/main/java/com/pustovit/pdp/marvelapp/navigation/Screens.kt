@@ -7,7 +7,7 @@ import com.pustovit.pdp.marvelapp.ui.comics.ComicsFragment
 import com.pustovit.pdp.marvelapp.ui.event.EventFragment
 import com.pustovit.pdp.marvelapp.ui.events.EventsFragment
 import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
-
+import com.pustovit.pdp.marvelapp.domain.model.characters.Character
 /**
  * Created by Pustovit V.V.
  * Date: 29.05.2022
@@ -19,8 +19,8 @@ object Screens {
         CharactersFragment()
     }
 
-    fun characterScreen() = FragmentScreen {
-        CharacterFragment()
+    fun characterScreen(character: Character) = FragmentScreen {
+        CharacterFragment.newInstance(character)
     }
 
     fun comicsScreen() = FragmentScreen {

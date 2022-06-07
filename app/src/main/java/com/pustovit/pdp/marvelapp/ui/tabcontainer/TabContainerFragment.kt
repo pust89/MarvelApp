@@ -36,7 +36,7 @@ class TabContainerFragment : Fragment(R.layout.fragment_tab_container),
         get() = requireArguments().getParcelable<TabNavigation>(EXTRA_TAB)!!
 
     private val cicerone: Cicerone<Router>
-        get() = ciceroneHolder.getCicerone(tabNavigation.tag)
+        get() = ciceroneHolder.getCicerone(tabNavigation)
 
     override val router: Router
         get() = cicerone.router

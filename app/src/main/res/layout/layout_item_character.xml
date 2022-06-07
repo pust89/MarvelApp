@@ -25,6 +25,8 @@
                 android:layout_height="@dimen/dims_128dp" />
 
             <LinearLayout
+                android:layout_marginStart="@dimen/dims_8dp"
+                android:layout_marginEnd="@dimen/dims_8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -34,6 +36,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_20sp" />
+
+                <TextView
+                    android:id="@+id/modifiedTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_14sp" />
 
                 <TextView
                     android:id="@+id/descriptionsTextView"

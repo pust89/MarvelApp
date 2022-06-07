@@ -9,14 +9,18 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemCharacterBinding
 import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.ui.characters.di.CharactersScope
+import timber.log.Timber
+import javax.inject.Inject
 
-class CharactersListAdapter(
-    private val imageLoader: ImageLoader,
-    private val onItemClick: (item: Character) -> Unit
-) :
-    ListAdapter<Character, CharactersListAdapter.CharacterItemViewHolder>(
-        CharacterDiffUtilItemCallback()
-    ) {
+@CharactersScope
+class CharactersListAdapter @Inject constructor(
+    private val imageLoader: ImageLoader
+) : ListAdapter<Character, CharactersListAdapter.CharacterItemViewHolder>(
+    CharacterDiffUtilItemCallback()
+) {
+
+    var onItemClick: ((item: Character) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterItemViewHolder {
         val binding = LayoutItemCharacterBinding.inflate(
@@ -38,15 +42,15 @@ class CharactersListAdapter(
         fun bind(character: Character) {
 
             binding.containerView.setOnClickListener {
-                onItemClick(character)
+                onItemClick?.invoke(character)
             }
 
             val request = ImageRequest.Builder(binding.root.context)
-                .data(character.thumbnail.path+"."+character.thumbnail.extension)
+                .data(character.thumbnail.url)
                 .target(binding.photoImageView)
                 .build()
             imageLoader.enqueue(request)
-
+            binding.modifiedTextView.text = character.modified
             binding.nameTextView.text = character.name
             binding.descriptionsTextView.text = character.description
         }
