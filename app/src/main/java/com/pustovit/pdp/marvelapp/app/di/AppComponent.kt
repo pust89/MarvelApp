@@ -13,6 +13,7 @@ import com.pustovit.pdp.marvelapp.data.source.remote.mapper.di.MapperModule
 import com.pustovit.pdp.marvelapp.data.source.remote.network.di.NetworkModule
 import com.pustovit.pdp.marvelapp.data.source.remote.network.di.ServiceModule
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
+import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
@@ -45,6 +46,8 @@ interface AppComponent {
     fun inject(tabContainerFragment: TabContainerFragment)
 
     fun charactersRepository(): CharactersRepository
+
+    fun eventsRepository(): EventsRepository
 
     fun imageLoader(): ImageLoader
 

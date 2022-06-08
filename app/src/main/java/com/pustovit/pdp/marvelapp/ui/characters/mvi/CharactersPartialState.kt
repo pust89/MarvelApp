@@ -1,31 +1,24 @@
 package com.pustovit.pdp.marvelapp.ui.characters.mvi
 
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
-import io.reactivex.functions.Function
+import com.pustovit.pdp.marvelapp.ui.common.mvi.PartialState
 
-object CharactersPartialState {
+object CharactersPartialState : PartialState<CharactersViewState>() {
 
-    fun query(query: String): Function<CharactersViewState, CharactersViewState> {
-        return Function<CharactersViewState, CharactersViewState> { previousState ->
-            previousState.copy(query = query)
-        }
+    fun query(query: String) = transform { previousState ->
+        previousState.copy(query = query)
     }
 
-    fun characters(characters: List<Character>): Function<CharactersViewState, CharactersViewState> {
-        return Function<CharactersViewState, CharactersViewState> { previousState ->
-            previousState.copy(characters = characters)
-        }
+    fun characters(characters: List<Character>) = transform { previousState ->
+        previousState.copy(characters = characters)
     }
 
-    fun loading(loading: Boolean): Function<CharactersViewState, CharactersViewState> {
-        return Function<CharactersViewState, CharactersViewState> { previousState ->
-            previousState.copy(loading = loading)
-        }
+    fun loading(loading: Boolean) = transform { previousState ->
+        previousState.copy(loading = loading)
     }
 
-    fun error(error: Throwable?): Function<CharactersViewState, CharactersViewState> {
-        return Function<CharactersViewState, CharactersViewState> { previousState ->
-            previousState.copy(error = error)
-        }
+    fun error(error: Throwable?) = transform { previousState ->
+        previousState.copy(error = error)
     }
+
 }

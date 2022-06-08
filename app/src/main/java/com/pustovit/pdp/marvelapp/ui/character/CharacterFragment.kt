@@ -10,7 +10,7 @@ import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharacterBinding
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.ui.extensions.router
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 
 class CharacterFragment : Fragment(R.layout.fragment_character) {
 

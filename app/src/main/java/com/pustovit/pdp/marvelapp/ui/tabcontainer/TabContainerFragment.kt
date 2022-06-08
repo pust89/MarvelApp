@@ -14,7 +14,7 @@ import com.pustovit.pdp.marvelapp.navigation.CiceroneHolder
 import com.pustovit.pdp.marvelapp.navigation.RouterProvider
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.navigation.TabNavigation
-import com.pustovit.pdp.marvelapp.ui.extensions.mainRouter
+import com.pustovit.pdp.marvelapp.ui.common.extensions.mainRouter
 import javax.inject.Inject
 
 /**

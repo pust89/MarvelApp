@@ -9,7 +9,7 @@ import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.databinding.FragmentComicsBinding
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.ui.extensions.router
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 
 class ComicsFragment : Fragment(R.layout.fragment_comics) {
 

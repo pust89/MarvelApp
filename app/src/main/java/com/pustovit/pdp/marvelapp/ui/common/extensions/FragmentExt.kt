@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.ui.extensions
+package com.pustovit.pdp.marvelapp.ui.common.extensions
 
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Router
