@@ -10,7 +10,7 @@ data class SeriesDto(
     @Json(name = "collectionURI")
     val collectionURI: String?,
     @Json(name = "items")
-    val items: List<ItemDto>?,
+    val items: List<SummaryDto>?,
     @Json(name = "returned")
     val returned: Int?
 )

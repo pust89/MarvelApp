@@ -2,14 +2,7 @@ package com.pustovit.pdp.marvelapp.data.source.remote.mapper
 
 import com.pustovit.pdp.marvelapp.common.extension.orZero
 import com.pustovit.pdp.marvelapp.data.source.remote.model.common.*
-import com.pustovit.pdp.marvelapp.domain.model.common.Item
-import com.pustovit.pdp.marvelapp.domain.model.common.StoryItem
-import com.pustovit.pdp.marvelapp.domain.model.common.Thumbnail
-import com.pustovit.pdp.marvelapp.domain.model.common.UrlModel
-import com.pustovit.pdp.marvelapp.domain.model.common.Comics
-import com.pustovit.pdp.marvelapp.domain.model.common.Events
-import com.pustovit.pdp.marvelapp.domain.model.common.Series
-import com.pustovit.pdp.marvelapp.domain.model.common.Stories
+import com.pustovit.pdp.marvelapp.domain.model.common.*
 
 class CommonItemsMapper {
 
@@ -64,28 +57,70 @@ class CommonItemsMapper {
         } ?: Events()
     }
 
-    @JvmName("map1")
-    fun map(items: List<ItemDto>?): List<Item> {
-        return items?.map {
-            Item(
+    fun map(dto: CharactersDto?): Characters {
+        return dto?.let {
+            Characters(
+                available = it.available.orZero(),
+                collectionURI = it.collectionURI.orEmpty(),
+                items = map(it.items),
+                returned = it.returned.orZero()
+            )
+        } ?: Characters()
+    }
+
+    fun map(dto: CreatorsDto?): Creators {
+        return dto?.let {
+            Creators(
+                available = it.available.orZero(),
+                collectionURI = it.collectionURI.orEmpty(),
+                items = map(it.items),
+                returned = it.returned.orZero()
+            )
+        } ?: Creators()
+    }
+
+    fun map(dto: SummaryDto?): Summary {
+        return dto?.let {
+            Summary(
                 resourceURI = it.resourceURI.orEmpty(),
                 name = it.name.orEmpty()
             )
-        } ?: emptyList<Item>()
+        } ?: Summary()
     }
 
-    @JvmName("map2")
-    fun map(items: List<StoryItemDto>?): List<StoryItem> {
+    @JvmName("mapSummaryDto")
+    fun map(items: List<SummaryDto>?): List<Summary> {
         return items?.map {
-            StoryItem(
+            Summary(
+                resourceURI = it.resourceURI.orEmpty(),
+                name = it.name.orEmpty()
+            )
+        } ?: emptyList<Summary>()
+    }
+
+    @JvmName("mapStorySummaryDto")
+    fun map(items: List<StorySummaryDto>?): List<StorySummary> {
+        return items?.map {
+            StorySummary(
                 resourceURI = it.resourceURI.orEmpty(),
                 name = it.name.orEmpty(),
                 type = it.type.orEmpty()
             )
-        } ?: emptyList<StoryItem>()
+        } ?: emptyList<StorySummary>()
     }
 
-    @JvmName("map3")
+    @JvmName("mapCharacterSummaryDto")
+    fun map(items: List<CharacterSummaryDto>?): List<CharacterSummary> {
+        return items?.map {
+            CharacterSummary(
+                resourceURI = it.resourceURI.orEmpty(),
+                name = it.name.orEmpty(),
+                role = it.role.orEmpty()
+            )
+        } ?: emptyList<CharacterSummary>()
+    }
+
+    @JvmName("mapUrlDto")
     fun map(urls: List<UrlDto>?): List<UrlModel> {
         return urls?.map {
             UrlModel(
@@ -94,5 +129,6 @@ class CommonItemsMapper {
             )
         } ?: emptyList<UrlModel>()
     }
+
 
 }

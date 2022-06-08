@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Item(
+data class Summary(
     val resourceURI: String = "",
     val name: String = ""
 ) : Parcelable

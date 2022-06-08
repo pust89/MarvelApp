@@ -2,6 +2,7 @@ package com.pustovit.pdp.marvelapp.data.source.remote.network
 
 import com.pustovit.pdp.marvelapp.data.source.remote.model.character.CharacterDto
 import com.pustovit.pdp.marvelapp.data.source.remote.model.MarvelResponse
+import com.pustovit.pdp.marvelapp.data.source.remote.model.events.EventDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,5 +19,11 @@ interface MarvelService {
         @Query("orderBy") orderBy: String = "-modified",
         @Query("limit") limit: Int = 99
     ): Single<MarvelResponse<CharacterDto>>
+
+    @GET("/v1/public/events")
+    fun getEvents(
+        @Query("orderBy") orderBy: String = "startDate",
+        @Query("limit") limit: Int = 99
+    ): Single<MarvelResponse<EventDto>>
 
 }

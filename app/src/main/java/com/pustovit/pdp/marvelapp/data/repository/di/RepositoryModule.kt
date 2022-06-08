@@ -1,9 +1,11 @@
 package com.pustovit.pdp.marvelapp.data.repository.di
 
 import com.pustovit.pdp.marvelapp.data.repository.CharactersRepositoryImpl
+import com.pustovit.pdp.marvelapp.data.repository.EventsRepositoryImpl
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSource
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSourceImpl
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
+import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -19,5 +21,10 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun provideCharactersRepository(repository: CharactersRepositoryImpl): CharactersRepository
+    fun bindCharactersRepositoryImpl(repository: CharactersRepositoryImpl): CharactersRepository
+
+    @Binds
+    @Singleton
+    fun bindEventsRepositoryImpl(repository: EventsRepositoryImpl): EventsRepository
+
 }

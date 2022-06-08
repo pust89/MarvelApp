@@ -13,12 +13,12 @@ import javax.inject.Inject
  */
 
 class CharactersRemoteDataSourceImpl @Inject constructor(
-    private val charactersApi: MarvelService,
-    private val charactersMapper: CharactersMapper
+    private val service: MarvelService,
+    private val mapper: CharactersMapper
 ) : CharactersRemoteDataSource {
 
     override fun getCharacters(): Single<List<Character>> {
-        return charactersApi.getCharacters().map(charactersMapper::mapResponse)
+        return service.getCharacters().map(mapper::map)
     }
 
 }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class CharactersMapper @Inject constructor(private val commonMapper: CommonItemsMapper) {
 
-    fun mapResponse(response: MarvelResponse<CharacterDto>): List<Character> {
+    fun map(response: MarvelResponse<CharacterDto>): List<Character> {
         return response.data?.results?.map { dto ->
             Character(
                 id = dto.id.orZero(),

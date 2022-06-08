@@ -10,7 +10,17 @@ data class CharactersDto(
     @Json(name = "collectionURI")
     val collectionURI: String?,
     @Json(name = "items")
-    val items: List<ItemDto>?,
+    val items: List<CharacterSummaryDto>?,
     @Json(name = "returned")
     val returned: Int?
+)
+
+@JsonClass(generateAdapter = true)
+data class CharacterSummaryDto(
+    @Json(name = "resourceURI")
+    val resourceURI: String?,
+    @Json(name = "name")
+    val name: String?,
+    @Json(name = "role")
+    val role: String?
 )

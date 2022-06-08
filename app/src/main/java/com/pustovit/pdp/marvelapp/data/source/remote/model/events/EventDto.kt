@@ -22,9 +22,9 @@ data class EventDto(
     @Json(name = "modified")
     val modified: String?,
     @Json(name = "next")
-    val next: ItemDto?,
+    val next: SummaryDto?,
     @Json(name = "previous")
-    val previous: ItemDto?,
+    val previous: SummaryDto?,
     @Json(name = "resourceURI")
     val resourceURI: String?,
     @Json(name = "series")

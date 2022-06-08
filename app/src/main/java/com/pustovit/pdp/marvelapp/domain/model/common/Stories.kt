@@ -12,6 +12,13 @@ import kotlinx.parcelize.Parcelize
 data class Stories(
     val available: Int = 0,
     val collectionURI: String = "",
-    val items: List<StoryItem> = emptyList(),
+    val items: List<StorySummary> = emptyList(),
     val returned: Int = 0
+) : Parcelable
+
+@Parcelize
+data class StorySummary(
+    val resourceURI: String = "",
+    val name: String = "",
+    val type: String = ""
 ) : Parcelable

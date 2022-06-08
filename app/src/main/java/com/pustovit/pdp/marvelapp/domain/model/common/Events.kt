@@ -12,6 +12,6 @@ import kotlinx.parcelize.Parcelize
 data class Events(
     val available: Int = 0,
     val collectionURI: String = "",
-    val items: List<Item> = emptyList(),
+    val items: List<Summary> = emptyList(),
     val returned: Int = 0
 ) : Parcelable
