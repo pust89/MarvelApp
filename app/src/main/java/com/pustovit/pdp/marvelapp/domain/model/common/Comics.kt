@@ -1,16 +1,15 @@
-package com.pustovit.pdp.marvelapp.domain.model.characters
+package com.pustovit.pdp.marvelapp.domain.model.common
 
 import android.os.Parcelable
-import com.pustovit.pdp.marvelapp.domain.model.Item
 import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Pustovit V.V.
  * Date: 31.05.2022
- * Time: 20:44
+ * Time: 20:43
  */
 @Parcelize
-data class Events(
+data class Comics(
     val available: Int = 0,
     val collectionURI: String = "",
     val items: List<Item> = emptyList(),

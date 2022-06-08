@@ -1,6 +1,6 @@
 package com.pustovit.pdp.marvelapp.data.source.remote.network.di
 
-import com.pustovit.pdp.marvelapp.data.source.remote.network.CharactersApi
+import com.pustovit.pdp.marvelapp.data.source.remote.network.MarvelService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideCharactersApi(retrofit: Retrofit): CharactersApi {
-        return retrofit.create(CharactersApi::class.java)
+    fun provideCharactersApi(retrofit: Retrofit): MarvelService {
+        return retrofit.create(MarvelService::class.java)
     }
 }

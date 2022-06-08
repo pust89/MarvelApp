@@ -1,15 +1,15 @@
 package com.pustovit.pdp.marvelapp.data.source.remote.mapper
 
 import com.pustovit.pdp.marvelapp.common.extension.orZero
-import com.pustovit.pdp.marvelapp.data.source.remote.model.*
-import com.pustovit.pdp.marvelapp.domain.model.Item
-import com.pustovit.pdp.marvelapp.domain.model.StoryItem
-import com.pustovit.pdp.marvelapp.domain.model.Thumbnail
-import com.pustovit.pdp.marvelapp.domain.model.UrlModel
-import com.pustovit.pdp.marvelapp.domain.model.characters.Comics
-import com.pustovit.pdp.marvelapp.domain.model.characters.Events
-import com.pustovit.pdp.marvelapp.domain.model.characters.Series
-import com.pustovit.pdp.marvelapp.domain.model.characters.Stories
+import com.pustovit.pdp.marvelapp.data.source.remote.model.common.*
+import com.pustovit.pdp.marvelapp.domain.model.common.Item
+import com.pustovit.pdp.marvelapp.domain.model.common.StoryItem
+import com.pustovit.pdp.marvelapp.domain.model.common.Thumbnail
+import com.pustovit.pdp.marvelapp.domain.model.common.UrlModel
+import com.pustovit.pdp.marvelapp.domain.model.common.Comics
+import com.pustovit.pdp.marvelapp.domain.model.common.Events
+import com.pustovit.pdp.marvelapp.domain.model.common.Series
+import com.pustovit.pdp.marvelapp.domain.model.common.Stories
 
 class CommonItemsMapper {
 

@@ -1,6 +1,6 @@
 package com.pustovit.pdp.marvelapp.ui.characters.mvi
 
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import io.reactivex.functions.Function
 
 object CharactersPartialState {

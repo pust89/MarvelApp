@@ -1,9 +1,9 @@
 package com.pustovit.pdp.marvelapp.data.source.remote.mapper
 
 import com.pustovit.pdp.marvelapp.common.extension.orZero
-import com.pustovit.pdp.marvelapp.data.source.remote.model.CharacterDto
+import com.pustovit.pdp.marvelapp.data.source.remote.model.character.CharacterDto
 import com.pustovit.pdp.marvelapp.data.source.remote.model.MarvelResponse
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import javax.inject.Inject
 
 class CharactersMapper @Inject constructor(private val commonMapper: CommonItemsMapper) {

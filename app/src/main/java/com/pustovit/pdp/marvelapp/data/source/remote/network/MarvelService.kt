@@ -1,8 +1,7 @@
 package com.pustovit.pdp.marvelapp.data.source.remote.network
 
-import com.pustovit.pdp.marvelapp.data.source.remote.model.CharacterDto
+import com.pustovit.pdp.marvelapp.data.source.remote.model.character.CharacterDto
 import com.pustovit.pdp.marvelapp.data.source.remote.model.MarvelResponse
-import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,7 +11,7 @@ import retrofit2.http.Query
  * Date: 31.05.2022
  * Time: 18:55
  */
-interface CharactersApi {
+interface MarvelService {
 
     @GET("/v1/public/characters")
     fun getCharacters(

@@ -2,10 +2,8 @@ package com.pustovit.pdp.marvelapp.data.source.remote.di
 
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSource
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSourceImpl
-import com.pustovit.pdp.marvelapp.data.source.remote.network.CharactersApi
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import javax.inject.Singleton
 
 /**

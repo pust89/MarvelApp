@@ -1,8 +1,6 @@
 package com.pustovit.pdp.marvelapp.domain.repository
 
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
-import io.reactivex.Flowable
-import io.reactivex.Observable
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import io.reactivex.Single
 
 /**

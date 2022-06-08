@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemCharacterBinding
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.ui.characters.di.CharactersScope
-import timber.log.Timber
 import javax.inject.Inject
 
 @CharactersScope

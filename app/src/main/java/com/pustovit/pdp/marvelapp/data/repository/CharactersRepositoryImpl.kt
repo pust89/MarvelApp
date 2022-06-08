@@ -1,10 +1,8 @@
 package com.pustovit.pdp.marvelapp.data.repository
 
 import com.pustovit.pdp.marvelapp.data.source.remote.CharactersRemoteDataSource
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 

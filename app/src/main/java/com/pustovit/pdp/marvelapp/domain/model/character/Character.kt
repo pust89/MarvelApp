@@ -1,8 +1,7 @@
-package com.pustovit.pdp.marvelapp.domain.model.characters
+package com.pustovit.pdp.marvelapp.domain.model.character
 
 import android.os.Parcelable
-import com.pustovit.pdp.marvelapp.domain.model.Thumbnail
-import com.pustovit.pdp.marvelapp.domain.model.UrlModel
+import com.pustovit.pdp.marvelapp.domain.model.common.*
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -12,7 +11,7 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class Character(
-    val id: Int = -1,
+    val id: Int = 0,
     val name: String = "",
     val description: String = "",
     val modified: String = "",

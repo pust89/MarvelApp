@@ -1,7 +1,6 @@
-package com.pustovit.pdp.marvelapp.domain.model.characters
+package com.pustovit.pdp.marvelapp.domain.model.common
 
 import android.os.Parcelable
-import com.pustovit.pdp.marvelapp.domain.model.Item
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -10,9 +9,9 @@ import kotlinx.parcelize.Parcelize
  * Time: 20:43
  */
 @Parcelize
-data class Series(
+data class Stories(
     val available: Int = 0,
     val collectionURI: String = "",
-    val items: List<Item> = emptyList(),
+    val items: List<StoryItem> = emptyList(),
     val returned: Int = 0
 ) : Parcelable

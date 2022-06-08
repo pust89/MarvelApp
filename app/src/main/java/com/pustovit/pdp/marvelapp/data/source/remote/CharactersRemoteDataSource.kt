@@ -1,8 +1,8 @@
 package com.pustovit.pdp.marvelapp.data.source.remote
 
 import com.pustovit.pdp.marvelapp.data.source.remote.mapper.CharactersMapper
-import com.pustovit.pdp.marvelapp.data.source.remote.network.CharactersApi
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.data.source.remote.network.MarvelService
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 
 class CharactersRemoteDataSourceImpl @Inject constructor(
-    private val charactersApi: CharactersApi,
+    private val charactersApi: MarvelService,
     private val charactersMapper: CharactersMapper
 ) : CharactersRemoteDataSource {
 

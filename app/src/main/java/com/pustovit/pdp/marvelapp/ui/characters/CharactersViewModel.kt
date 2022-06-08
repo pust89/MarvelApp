@@ -6,14 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
-import com.pustovit.pdp.marvelapp.navigation.TabNavigation
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
 
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
-import dagger.multibindings.ClassKey
-import dagger.multibindings.StringKey
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,7 +19,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Qualifier
 
 class CharactersViewModel(
     private val charactersRepository: CharactersRepository,

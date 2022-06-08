@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharacterBinding
-import com.pustovit.pdp.marvelapp.domain.model.characters.Character
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.extensions.router
 
