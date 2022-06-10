@@ -3,6 +3,7 @@ package com.pustovit.pdp.marvelapp.ui.characters
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +16,7 @@ import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import io.reactivex.rxkotlin.addTo
+import timber.log.Timber
 import javax.inject.Inject
 
 class CharactersFragment : Fragment(R.layout.fragment_characters) {
@@ -33,26 +35,21 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
         DaggerCharactersComponent.builder()
             .appComponent(appComponent())
             .build().inject(this)
+        viewModel.onAttach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-
-        viewModel.loadCharacters()
-
-        viewModel.viewState()
-            .doOnNext(::handleViewState)
-            .subscribe().addTo(compositeDisposable)
+        observeViewState()
     }
 
     private fun initViews() {
         binding.recyclerView.adapter = adapter
-
         adapter.onItemClick = {
             viewModel.onCharacterClick(it)
         }
-
+        setSearchView()
     }
 
     private fun setSearchView() {
@@ -68,16 +65,26 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
                 return true
             }
         })
+    }
 
-        binding.searchView.setOnCloseListener {
-            viewModel.clearSearchResult()
-            true
-        }
+    private fun observeViewState() {
+        viewModel.viewState
+            .doOnNext(::handleViewState)
+            .subscribe().addTo(compositeDisposable)
     }
 
     private fun handleViewState(state: CharactersViewState) {
-        state.apply {
-            adapter.submitList(characters)
+        Timber.d("handleViewState $state")
+        Timber.d("handleViewState error ${state.viewStateError?.error}")
+
+        adapter.submitList(state.characters)
+        binding.progressBar.visibility = if (state.loading) View.VISIBLE else View.GONE
+
+        state.viewStateError?.let {
+            if (it.needHandle) {
+                it.handle()
+                Toast.makeText(requireContext(), it.error.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

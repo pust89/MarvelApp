@@ -4,6 +4,7 @@ import com.pustovit.pdp.marvelapp.data.source.remote.mapper.CharactersMapper
 import com.pustovit.pdp.marvelapp.data.source.remote.network.MarvelService
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import io.reactivex.Single
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 /**
@@ -17,8 +18,11 @@ class CharactersRemoteDataSourceImpl @Inject constructor(
     private val mapper: CharactersMapper
 ) : CharactersRemoteDataSource {
 
-    override fun getCharacters(): Single<List<Character>> {
-        return service.getCharacters().map(mapper::map)
+    override fun getCharacters(query: String): Single<List<Character>> {
+        val response = if (query.isEmpty()) {
+            service.getCharacters(limit = 20)
+        } else service.getCharacters(query = query, limit = 99)
+        return response.map(mapper::map)
     }
 
 }
@@ -26,6 +30,6 @@ class CharactersRemoteDataSourceImpl @Inject constructor(
 
 interface CharactersRemoteDataSource {
 
-    fun getCharacters(): Single<List<Character>>
+    fun getCharacters(query: String): Single<List<Character>>
 
 }

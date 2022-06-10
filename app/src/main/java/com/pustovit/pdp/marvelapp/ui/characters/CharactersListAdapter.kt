@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemCharacterBinding
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.ui.characters.di.CharactersScope
@@ -46,12 +47,11 @@ class CharactersListAdapter @Inject constructor(
 
             val request = ImageRequest.Builder(binding.root.context)
                 .data(character.thumbnail.url)
+                .transformations(CircleCropTransformation())
                 .target(binding.photoImageView)
                 .build()
             imageLoader.enqueue(request)
-            binding.modifiedTextView.text = character.modified
             binding.nameTextView.text = character.name
-            binding.descriptionsTextView.text = character.description
         }
     }
 }

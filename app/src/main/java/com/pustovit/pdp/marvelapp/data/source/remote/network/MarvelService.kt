@@ -6,6 +6,7 @@ import com.pustovit.pdp.marvelapp.data.source.remote.model.events.EventDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 /**
  * Created by Pustovit V.V.
@@ -16,14 +17,17 @@ interface MarvelService {
 
     @GET("/v1/public/characters")
     fun getCharacters(
-        @Query("orderBy") orderBy: String = "-modified",
+        @Query("nameStartsWith") query: String? = null,
+        @Query("orderBy") orderBy: String = "name",
         @Query("limit") limit: Int = 99
     ): Single<MarvelResponse<CharacterDto>>
+
+
 
     @GET("/v1/public/events")
     fun getEvents(
         @Query("orderBy") orderBy: String = "startDate",
-        @Query("limit") limit: Int = 50
+        @Query("limit") limit: Int = 25
     ): Single<MarvelResponse<EventDto>>
 
 }

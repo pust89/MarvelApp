@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/dims_8dp"
     android:paddingRight="@dimen/dims_8dp"
@@ -13,7 +14,7 @@
         android:padding="@dimen/dims_16dp"
         app:cardCornerRadius="@dimen/dims_8dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,33 +23,26 @@
             <ImageView
                 android:id="@+id/photoImageView"
                 android:layout_width="@dimen/dims_128dp"
-                android:layout_height="@dimen/dims_128dp" />
+                android:layout_height="@dimen/dims_128dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:src="@drawable/ic_characters_24" />
 
-            <LinearLayout
-                android:layout_marginStart="@dimen/dims_8dp"
-                android:layout_marginEnd="@dimen/dims_8dp"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/photoImageView"
+                app:layout_constraintStart_toStartOf="@+id/photoImageView"
+                app:layout_constraintTop_toBottomOf="@id/photoImageView"
+                tools:text="Superman" />
 
-                <TextView
-                    android:id="@+id/nameTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_20sp" />
-
-                <TextView
-                    android:id="@+id/modifiedTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_14sp" />
-
-                <TextView
-                    android:id="@+id/descriptionsTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_16sp" />
-            </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

@@ -15,7 +15,7 @@ class CharactersRepositoryImpl @Inject constructor(
     private val charactersRemoteDataSource: CharactersRemoteDataSource
 ) : CharactersRepository {
 
-    override fun getCharacters(): Single<List<Character>> {
-        return charactersRemoteDataSource.getCharacters()
+    override fun getCharacters(query: String): Single<List<Character>> {
+        return charactersRemoteDataSource.getCharacters(query)
     }
 }

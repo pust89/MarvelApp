@@ -1,68 +1,82 @@
 package com.pustovit.pdp.marvelapp.ui.characters
 
-import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
+import com.pustovit.pdp.marvelapp.common.extension.smartRetryWhen
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
-
+import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
+import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CharactersViewModel(
-    private val charactersRepository: CharactersRepository,
+    private val repository: CharactersRepository,
     private val router: Router
-) : ViewModel() {
+) : BaseViewModel<CharactersViewState>(CharactersViewState()) {
 
-    private val compositeDisposable = CompositeDisposable()
+    private val userInputSubject = BehaviorSubject.createDefault<String>("")
 
-    private val _viewState = BehaviorSubject.createDefault(CharactersViewState())
+    private val queryFlowable: Flowable<String> =
+        userInputSubject.toFlowable(BackpressureStrategy.LATEST)
+            .debounce(1, TimeUnit.SECONDS)
+            .distinctUntilChanged()
 
-    @MainThread
-    fun viewState(): Flowable<CharactersViewState> {
-        return _viewState.toFlowable(BackpressureStrategy.LATEST)
-            .observeOn(AndroidSchedulers.mainThread())
+    private val charactersFlowable: Flowable<List<Character>> =
+        queryFlowable.flatMap {
+            executeQuery(it)
+        }
+
+    private fun executeQuery(query: String): Flowable<List<Character>> {
+        return Flowable.fromPublisher<List<Character>> {
+            val singleRequest = Single.just(query)
+            singleRequest.flatMap {
+                repository.getCharacters(query)
+            }.subscribeOn(Schedulers.io())
+                .subscribe({ list ->
+                    it.onNext(list)
+                }, { ex ->
+                    onError(ex)
+                }).addTo(compositeDisposable)
+        }
     }
 
-    fun loadCharacters() {
-        charactersRepository.getCharacters()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map {
-                val currentState = _viewState.value!!
-                currentState.copy(characters = it)
-            }
-            .subscribe({
-                _viewState.onNext(it)
-            }, { error ->
-                Timber.d("loadCharacters: doOnError error = $error")
-            }
-            ).addTo(compositeDisposable)
+    override fun onFirstViewAttach() {
+        Timber.d("onFirstViewAttach called")
+        val queryPs = queryFlowable.map {
+            CharactersPartialState.query(it)
+        }
+
+        val charactersPs = charactersFlowable.map {
+            CharactersPartialState.characters(it)
+        }
+
+        Flowable.merge(queryPs, charactersPs)
+            .scan(initialViewState) { state, partial ->
+                partial.apply(state)
+            }.observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onSuccess, ::onError)
+            .addTo(compositeDisposable)
     }
 
-
-    fun handleUserInput(query: String?) {
-
-    }
-
-    fun clearSearchResult() {
-
-    }
-
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
+    fun handleUserInput(input: String?) {
+        Timber.d("handleUserInput input=${input}")
+        input?.let(userInputSubject::onNext)
     }
 
     fun onCharacterClick(character: Character) {
@@ -82,6 +96,6 @@ class CharactersViewModel(
                 throw RuntimeException("Unknown viewModel ${modelClass::class.java.canonicalName}")
             }
         }
-
     }
+
 }

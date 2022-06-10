@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemCharacterBinding
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemEventBinding
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
@@ -49,6 +51,7 @@ class EventsListAdapter @Inject constructor(
 
             val request = ImageRequest.Builder(binding.root.context)
                 .data(event.thumbnail.url)
+                .transformations(RoundedCornersTransformation())
                 .target(binding.photoImageView)
                 .build()
             imageLoader.enqueue(request)

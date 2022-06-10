@@ -10,6 +10,6 @@ import io.reactivex.Single
  */
 interface CharactersRepository {
 
-     fun getCharacters(): Single<List<Character>>
+     fun getCharacters(query: String): Single<List<Character>>
 
 }
