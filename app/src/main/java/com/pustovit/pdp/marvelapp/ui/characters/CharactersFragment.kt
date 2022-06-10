@@ -2,12 +2,15 @@ package com.pustovit.pdp.marvelapp.ui.characters
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import by.kirich1409.viewbindingdelegate.viewBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.android.hideKeyboard
@@ -16,10 +19,9 @@ import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import io.reactivex.rxkotlin.addTo
-import timber.log.Timber
 import javax.inject.Inject
 
-class CharactersFragment : Fragment(R.layout.fragment_characters) {
+class CharactersFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: CharactersViewModel.Factory
 
@@ -27,7 +29,8 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
     lateinit var adapter: CharactersListAdapter
 
     private val viewModel by viewModels<CharactersViewModel> { viewModelFactory }
-    private val binding by viewBinding(FragmentCharactersBinding::bind)
+    private var binding: FragmentCharactersBinding? = null
+
     private val compositeDisposable by CompositeDisposableDelegate()
 
     override fun onAttach(context: Context) {
@@ -38,21 +41,46 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
         viewModel.onAttach()
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = with(FragmentCharactersBinding.inflate(layoutInflater)) {
+        binding = this
+        this.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+
+        binding?.let {
+            initViews(it, savedInstanceState)
+        }
         observeViewState()
     }
 
-    private fun initViews() {
+    override fun onSaveInstanceState(outState: Bundle) {
+        binding?.recyclerView?.layoutManager?.onSaveInstanceState()?.let { state ->
+            outState.putParcelable(RV_STATE, state)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun initViews(binding: FragmentCharactersBinding, savedInstanceState: Bundle?) {
+        adapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
+        savedInstanceState?.getParcelable<Parcelable>(RV_STATE)?.let {
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(it)
+        }
         binding.recyclerView.adapter = adapter
         adapter.onItemClick = {
             viewModel.onCharacterClick(it)
         }
-        setSearchView()
+        setSearchView(binding)
     }
 
-    private fun setSearchView() {
+    private fun setSearchView(binding: FragmentCharactersBinding) {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.handleUserInput(query)
@@ -74,11 +102,8 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
     }
 
     private fun handleViewState(state: CharactersViewState) {
-        Timber.d("handleViewState $state")
-        Timber.d("handleViewState error ${state.viewStateError?.error}")
-
         adapter.submitList(state.characters)
-        binding.progressBar.visibility = if (state.loading) View.VISIBLE else View.GONE
+        binding?.progressBar?.visibility = if (state.loading) View.VISIBLE else View.GONE
 
         state.viewStateError?.let {
             if (it.needHandle) {
@@ -86,5 +111,9 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
                 Toast.makeText(requireContext(), it.error.message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    companion object {
+        const val RV_STATE = "charactersRvState"
     }
 }

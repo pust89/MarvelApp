@@ -3,7 +3,6 @@ package com.pustovit.pdp.marvelapp.ui.characters
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
-import com.pustovit.pdp.marvelapp.common.extension.smartRetryWhen
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
@@ -11,16 +10,13 @@ import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

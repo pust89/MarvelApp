@@ -1,18 +1,21 @@
 package com.pustovit.pdp.marvelapp.ui.events
 
-import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
+import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
+import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
+import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsPartialState
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
@@ -21,44 +24,55 @@ import javax.inject.Inject
 
 
 class EventsViewModel(
-    private val eventsRepository: EventsRepository,
+    private val repository: EventsRepository,
     private val router: Router
-) : ViewModel() {
+) : BaseViewModel<EventsViewState>(EventsViewState()) {
 
-    private val compositeDisposable = CompositeDisposable()
+    private val loadingSubject = BehaviorSubject.createDefault(Unit)
 
-    private val _viewState = BehaviorSubject.createDefault(EventsViewState())
+    private val loadingFlowable = loadingSubject.toFlowable(BackpressureStrategy.LATEST)
 
-    @MainThread
-    fun viewState(): Flowable<EventsViewState> {
-        return _viewState.toFlowable(BackpressureStrategy.LATEST)
-            .observeOn(AndroidSchedulers.mainThread())
+    private val eventsFlowable = loadingFlowable
+        .flatMap { getEventsFlowable() }
+
+    private fun getEventsFlowable(): Flowable<List<Event>> {
+        return Flowable.fromPublisher<List<Event>> {
+            val singleRequest = Single.just(Unit)
+            singleRequest.flatMap {
+                repository.getEvents()
+            }.subscribeOn(Schedulers.io())
+                .subscribe({ list ->
+                    it.onNext(list)
+                }, { ex ->
+                    onError(ex)
+                }).addTo(compositeDisposable)
+        }
     }
 
-    fun loadEvents() {
-        eventsRepository.getEvents()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map {
-                val currentState = _viewState.value!!
-                currentState.copy(events = it)
-            }
-            .subscribe({
-                _viewState.onNext(it)
-            }, { error ->
-                Timber.d("loadEvents: doOnError error = $error")
-            }
-            ).addTo(compositeDisposable)
-    }
+    override fun onFirstViewAttach() {
+        Timber.d("onFirstViewAttach called")
+        val loadingPs = loadingFlowable.map {
+            EventsPartialState.loading(true)
+        }
 
+        val eventsPs = eventsFlowable.map {
+            EventsPartialState.events(it)
+        }
 
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
+        Flowable.merge(loadingPs, eventsPs)
+            .scan(initialViewState) { state, partial ->
+                partial.apply(state)
+            }.observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onSuccess, ::onError)
+            .addTo(compositeDisposable)
     }
 
     fun onEventClick(event: Event) {
-       router.navigateTo(Screens.eventScreen(event))
+        router.navigateTo(Screens.eventScreen(event))
+    }
+
+    fun onRefresh() {
+        loadingSubject.onNext(Unit)
     }
 
     class Factory @Inject constructor(
