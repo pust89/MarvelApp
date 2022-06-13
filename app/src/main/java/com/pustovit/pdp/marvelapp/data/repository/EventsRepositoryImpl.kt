@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class EventsRepositoryImpl @Inject constructor(private val remoteDataSource: EventsRemoteDataSource) :
     EventsRepository {
+
     override fun getEvents(): Single<List<Event>> {
         return remoteDataSource.getEvents()
     }

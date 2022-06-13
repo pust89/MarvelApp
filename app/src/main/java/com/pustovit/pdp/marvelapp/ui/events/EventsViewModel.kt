@@ -3,12 +3,10 @@ package com.pustovit.pdp.marvelapp.ui.events
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
-import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsPartialState
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
@@ -28,7 +26,7 @@ class EventsViewModel(
     private val router: Router
 ) : BaseViewModel<EventsViewState>(EventsViewState()) {
 
-    private val loadingSubject = BehaviorSubject.createDefault(Unit)
+    private val loadingSubject = BehaviorSubject.createDefault(Any())
 
     private val loadingFlowable = loadingSubject.toFlowable(BackpressureStrategy.LATEST)
 
@@ -72,7 +70,8 @@ class EventsViewModel(
     }
 
     fun onRefresh() {
-        loadingSubject.onNext(Unit)
+        Timber.d("onRefresh called")
+        loadingSubject.onNext(Any())
     }
 
     class Factory @Inject constructor(

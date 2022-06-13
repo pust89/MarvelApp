@@ -20,7 +20,6 @@ open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : V
 
     val viewState: Flowable<VS> =
         _viewState.toFlowable(BackpressureStrategy.LATEST)
-            .distinctUntilChanged()
             .observeOn(AndroidSchedulers.mainThread())
 
     fun onAttach() {
@@ -40,10 +39,13 @@ open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : V
     protected open fun onError(ex: Throwable) {
         Timber.d("onError ex=${ex}")
         _viewState.value?.let { previousState ->
+            Timber.d("onError previousState=${previousState.hashCode()}")
+
             val viewStateError = ViewStateError(error = ex)
 
             previousState.viewStateError = viewStateError
             previousState.loading = false
+            Timber.d("onError after previousState=${previousState.hashCode()}")
 
             _viewState.onNext(previousState)
         }
