@@ -21,7 +21,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class EventsViewModel(
+class EventsViewModel @Inject constructor(
     private val repository: EventsRepository,
     private val router: Router
 ) : BaseViewModel<EventsViewState>(EventsViewState()) {
@@ -74,19 +74,19 @@ class EventsViewModel(
         loadingSubject.onNext(Any())
     }
 
-    class Factory @Inject constructor(
-        private val repository: EventsRepository,
-        @TabNavigationEvents private val router: Router
-    ) : ViewModelProvider.Factory {
-
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(EventsViewModel::class.java)) {
-                return EventsViewModel(repository, router) as T
-            } else {
-                throw RuntimeException("Unknown viewModel ${modelClass::class.java.canonicalName}")
-            }
-        }
-
-    }
+//    class Factory @Inject constructor(
+//        private val repository: EventsRepository,
+//        @TabNavigationEvents private val router: Router
+//    ) : ViewModelProvider.Factory {
+//
+//        @Suppress("UNCHECKED_CAST")
+//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//            if (modelClass.isAssignableFrom(EventsViewModel::class.java)) {
+//                return EventsViewModel(repository, router) as T
+//            } else {
+//                throw RuntimeException("Unknown viewModel ${modelClass::class.java.canonicalName}")
+//            }
+//        }
+//
+//    }
 }

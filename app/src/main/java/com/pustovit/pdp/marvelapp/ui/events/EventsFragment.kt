@@ -14,13 +14,14 @@ import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventsBinding
 import com.pustovit.pdp.marvelapp.ui.events.di.DaggerEventsComponent
+import com.pustovit.pdp.marvelapp.ui.events.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class EventsFragment : Fragment() {
     @Inject
-    lateinit var viewModelFactory: EventsViewModel.Factory
+    lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
     lateinit var adapter: EventsListAdapter

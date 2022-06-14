@@ -4,9 +4,7 @@ import android.content.Context
 import coil.ImageLoader
 import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.app.MainActivity
-import com.pustovit.pdp.marvelapp.app.di.module.CoilModule
-import com.pustovit.pdp.marvelapp.app.di.module.LocalNavigationModule
-import com.pustovit.pdp.marvelapp.app.di.module.NavigationModule
+import com.pustovit.pdp.marvelapp.app.di.module.*
 import com.pustovit.pdp.marvelapp.data.repository.di.RepositoryModule
 import com.pustovit.pdp.marvelapp.data.source.remote.di.RemoteDataSourceModule
 import com.pustovit.pdp.marvelapp.data.source.remote.mapper.di.MapperModule
@@ -19,6 +17,7 @@ import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**

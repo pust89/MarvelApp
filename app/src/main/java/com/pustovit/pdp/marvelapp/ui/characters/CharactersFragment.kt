@@ -11,24 +11,28 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.android.hideKeyboard
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
+import com.pustovit.pdp.marvelapp.ui.characters.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class CharactersFragment : Fragment() {
+
     @Inject
-    lateinit var viewModelFactory: CharactersViewModel.Factory
+    lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
     lateinit var adapter: CharactersListAdapter
 
-    private val viewModel by viewModels<CharactersViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CharactersViewModel> {
+        viewModelFactory
+    }
+
     private var binding: FragmentCharactersBinding? = null
 
     private val compositeDisposable by CompositeDisposableDelegate()

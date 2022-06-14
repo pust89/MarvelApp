@@ -1,18 +1,15 @@
 package com.pustovit.pdp.marvelapp.ui.characters.di
 
 import com.pustovit.pdp.marvelapp.app.di.AppComponent
-import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersViewModel
 import dagger.Component
-import dagger.Module
-import dagger.Provides
 import javax.inject.Scope
 
 
 @CharactersScope
 @Component(
     dependencies = [AppComponent::class],
+    modules = [ViewModelModule::class]
 )
 interface CharactersComponent {
 

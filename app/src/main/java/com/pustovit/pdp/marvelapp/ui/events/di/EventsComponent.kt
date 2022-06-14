@@ -6,7 +6,8 @@ import dagger.Component
 import javax.inject.Scope
 
 @EventsScope
-@Component(dependencies = [AppComponent::class])
+@Component(dependencies = [AppComponent::class],
+modules = [ViewModelModule::class])
 interface EventsComponent {
 
     fun inject(eventsFragment: EventsFragment)
@@ -24,3 +25,4 @@ interface EventsComponent {
 @Scope
 @Retention(value = AnnotationRetention.RUNTIME)
 annotation class EventsScope
+
