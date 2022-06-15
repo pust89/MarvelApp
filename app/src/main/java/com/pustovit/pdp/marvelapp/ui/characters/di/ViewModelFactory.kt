@@ -14,7 +14,6 @@ class ViewModelFactory @Inject constructor(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        Timber.d("create modelClass=${modelClass.canonicalName}")
         return viewModels[modelClass]?.get() as T
     }
 }

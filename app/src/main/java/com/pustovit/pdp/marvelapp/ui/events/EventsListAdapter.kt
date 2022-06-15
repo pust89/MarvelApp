@@ -7,13 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
-import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
-import com.pustovit.pdp.marvelapp.databinding.LayoutItemCharacterBinding
 import com.pustovit.pdp.marvelapp.databinding.LayoutItemEventBinding
-import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
-import com.pustovit.pdp.marvelapp.ui.characters.di.CharactersScope
 import com.pustovit.pdp.marvelapp.ui.events.di.EventsScope
 import javax.inject.Inject
 

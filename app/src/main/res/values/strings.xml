@@ -6,4 +6,6 @@
     <string name="characters">Characters</string>
     <string name="events">Events</string>
     <string name="comics">Comics</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
 </resources>

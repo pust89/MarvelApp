@@ -18,6 +18,7 @@ import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -52,6 +53,11 @@ class CharactersFragment : Fragment() {
     ): View? = with(FragmentCharactersBinding.inflate(layoutInflater)) {
         binding = this
         this.root
+    }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,14 +112,10 @@ class CharactersFragment : Fragment() {
     }
 
     private fun handleViewState(state: CharactersViewState) {
-        adapter.submitList(state.characters)
-        binding?.progressBar?.visibility = if (state.loading) View.VISIBLE else View.GONE
-
-        state.viewStateError?.let {
-            if (it.needHandle) {
-                it.handle()
-                Toast.makeText(requireContext(), it.error.message, Toast.LENGTH_SHORT).show()
-            }
+        state.apply {
+            adapter.submitList(characters)
+            binding?.progressBar?.visibility = if (loading) View.VISIBLE else View.GONE
+            handleViewStateError(viewStateError)
         }
     }
 

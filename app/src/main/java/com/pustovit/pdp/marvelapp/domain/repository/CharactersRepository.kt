@@ -12,4 +12,5 @@ interface CharactersRepository {
 
      fun getCharacters(query: String): Single<List<Character>>
 
+     fun getCharacter(characterId: Int): Single<Character>
 }

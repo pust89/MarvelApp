@@ -5,6 +5,7 @@ import com.pustovit.pdp.marvelapp.data.source.remote.model.MarvelResponse
 import com.pustovit.pdp.marvelapp.data.source.remote.model.events.EventDto
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
@@ -22,7 +23,8 @@ interface MarvelService {
         @Query("limit") limit: Int = 99
     ): Single<MarvelResponse<CharacterDto>>
 
-
+    @GET("/v1/public/characters/{characterId}")
+    fun getCharacter(@Path("characterId") characterId: Int): Single<MarvelResponse<CharacterDto>>
 
     @GET("/v1/public/events")
     fun getEvents(

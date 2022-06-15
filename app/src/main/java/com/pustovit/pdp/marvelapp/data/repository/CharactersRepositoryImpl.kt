@@ -18,4 +18,8 @@ class CharactersRepositoryImpl @Inject constructor(
     override fun getCharacters(query: String): Single<List<Character>> {
         return charactersRemoteDataSource.getCharacters(query)
     }
+
+    override fun getCharacter(characterId: Int): Single<Character> {
+        return charactersRemoteDataSource.getCharacter(characterId)
+    }
 }

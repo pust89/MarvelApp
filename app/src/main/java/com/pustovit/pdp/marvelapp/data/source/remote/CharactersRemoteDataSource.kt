@@ -18,11 +18,26 @@ class CharactersRemoteDataSourceImpl @Inject constructor(
     private val mapper: CharactersMapper
 ) : CharactersRemoteDataSource {
 
+    //    override fun getCharacters(query: String): Single<List<Character>> {
+//        val response = if (query.isEmpty()) {
+//            service.getCharacters(limit = 20)
+//        } else service.getCharacters(query = query, limit = 99)
+//        return response.map(mapper::map)
+//    }
+
     override fun getCharacters(query: String): Single<List<Character>> {
-        val response = if (query.isEmpty()) {
-            service.getCharacters(limit = 20)
-        } else service.getCharacters(query = query, limit = 99)
-        return response.map(mapper::map)
+        return run {
+            if (query.isEmpty()) {
+                service.getCharacters(limit = 20)
+            } else service.getCharacters(query = query, limit = 99)
+        }.map(mapper::map)
+    }
+
+    override fun getCharacter(characterId: Int): Single<Character> {
+        return service.getCharacter(characterId).map { response ->
+            val resultList = mapper.map(response)
+            resultList.first()
+        }
     }
 
 }
@@ -32,4 +47,5 @@ interface CharactersRemoteDataSource {
 
     fun getCharacters(query: String): Single<List<Character>>
 
+    fun getCharacter(characterId: Int): Single<Character>
 }

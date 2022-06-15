@@ -77,7 +77,7 @@ class CharactersViewModel @Inject constructor(
     }
 
     fun onCharacterClick(character: Character) {
-        router.navigateTo(Screens.characterScreen(character))
+        router.navigateTo(Screens.characterScreen(character.id))
     }
 
 //    class Factory @Inject constructor(

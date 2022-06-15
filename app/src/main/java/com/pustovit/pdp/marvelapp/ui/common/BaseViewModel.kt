@@ -18,6 +18,9 @@ open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : V
 
     private val _viewState = BehaviorSubject.createDefault(initialViewState)
 
+    protected val currentViewState: VS
+        get() = _viewState.value ?: initialViewState
+
     val viewState: Flowable<VS> =
         _viewState.toFlowable(BackpressureStrategy.LATEST)
             .observeOn(AndroidSchedulers.mainThread())

@@ -98,17 +98,6 @@ class CommonItemsMapper {
         } ?: emptyList<Summary>()
     }
 
-    @JvmName("mapStorySummaryDto")
-    fun map(items: List<StorySummaryDto>?): List<StorySummary> {
-        return items?.map {
-            StorySummary(
-                resourceURI = it.resourceURI.orEmpty(),
-                name = it.name.orEmpty(),
-                type = it.type.orEmpty()
-            )
-        } ?: emptyList<StorySummary>()
-    }
-
     @JvmName("mapCharacterSummaryDto")
     fun map(items: List<CharacterSummaryDto>?): List<CharacterSummary> {
         return items?.map {

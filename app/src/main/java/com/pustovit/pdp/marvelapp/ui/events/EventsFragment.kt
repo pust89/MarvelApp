@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventsBinding
+import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.events.di.DaggerEventsComponent
 import com.pustovit.pdp.marvelapp.ui.events.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
@@ -60,6 +61,11 @@ class EventsFragment : Fragment() {
             .subscribe().addTo(compositeDisposable)
     }
 
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
+
     private fun initViews(binding: FragmentEventsBinding, savedInstanceState: Bundle?) {
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
@@ -85,7 +91,10 @@ class EventsFragment : Fragment() {
     }
 
     private fun handleViewState(state: EventsViewState) {
-        adapter.submitList(state.events)
+        state.apply {
+            adapter.submitList(events)
+            handleViewStateError(viewStateError)
+        }
 
         binding?.let {
 
@@ -100,19 +109,12 @@ class EventsFragment : Fragment() {
             if (!isLoading && swrIsRefreshing) {
                 it.swipeRefreshLayout.isRefreshing = false
             }
-
         }
 
         if (binding?.swipeRefreshLayout?.isRefreshing == true) {
             binding?.swipeRefreshLayout?.isRefreshing = false
         }
 
-        state.viewStateError?.let {
-            if (it.needHandle) {
-                it.handle()
-                Toast.makeText(requireContext(), it.error.message, Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     companion object {
