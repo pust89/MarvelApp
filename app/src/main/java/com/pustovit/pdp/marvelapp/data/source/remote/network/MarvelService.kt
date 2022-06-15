@@ -32,4 +32,8 @@ interface MarvelService {
         @Query("limit") limit: Int = 25
     ): Single<MarvelResponse<EventDto>>
 
+    @GET("/v1/public/events/{eventId}")
+    fun getEvent(
+        @Path("eventId") eventId: Int
+    ): Single<MarvelResponse<EventDto>>
 }

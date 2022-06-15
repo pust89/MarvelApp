@@ -1,7 +1,6 @@
 package com.pustovit.pdp.marvelapp.ui.character
 
 import com.github.terrakok.cicerone.Router
-import com.github.terrakok.cicerone.Screen
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
@@ -15,7 +14,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import timber.log.Timber
 import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(
@@ -30,28 +28,28 @@ class CharacterViewModel @Inject constructor(
             .filter { it != 0 }
             .distinctUntilChanged()
 
+    private val characterFlowable: Flowable<Character> =
+        characterIdFlowable.flatMap {
+            getCharacter(it)
+        }
+
     override fun onFirstViewAttach() {
-        Timber.d("onFirstViewAttach called")
-        val characterIdPs = characterIdFlowable.map {
-            CharacterPartialState.characterId(it)
+
+        val loadingPs = characterIdFlowable.map {
+            CharacterPartialState.loading(loading = true)
         }
 
         val characterPs = characterFlowable.map {
             CharacterPartialState.character(it)
         }
 
-        Flowable.merge(characterIdPs, characterPs)
+        Flowable.merge(loadingPs, characterPs)
             .scan(initialViewState) { state, partial ->
                 partial.apply(state)
             }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
     }
-
-    private val characterFlowable: Flowable<Character> =
-        characterIdFlowable.flatMap {
-            getCharacter(it)
-        }
 
     private fun getCharacter(characterId: Int): Flowable<Character> {
         return Flowable.fromPublisher<Character> {
@@ -74,7 +72,6 @@ class CharacterViewModel @Inject constructor(
     fun onComicsButtonClick() {
         val comics = currentViewState.character.comics
         router.navigateTo(Screens.summaryScreen(comics))
-
     }
 
     fun onSeriesButtonClick() {

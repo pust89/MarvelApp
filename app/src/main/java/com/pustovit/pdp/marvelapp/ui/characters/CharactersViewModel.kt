@@ -80,19 +80,4 @@ class CharactersViewModel @Inject constructor(
         router.navigateTo(Screens.characterScreen(character.id))
     }
 
-//    class Factory @Inject constructor(
-//        private val charactersRepository: CharactersRepository,
-//        @TabNavigationCharacters private val router: Router
-//    ) : ViewModelProvider.Factory {
-//
-//        @Suppress("UNCHECKED_CAST")
-//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//            if (modelClass.isAssignableFrom(CharactersViewModel::class.java)) {
-//                return CharactersViewModel(charactersRepository, router) as T
-//            } else {
-//                throw RuntimeException("Unknown viewModel ${modelClass::class.java.canonicalName}")
-//            }
-//        }
-//    }
-
 }

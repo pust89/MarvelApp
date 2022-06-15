@@ -7,23 +7,11 @@ import io.reactivex.Single
 import java.lang.RuntimeException
 import javax.inject.Inject
 
-/**
- * Created by Pustovit V.V.
- * Date: 31.05.2022
- * Time: 18:48
- */
 
 class CharactersRemoteDataSourceImpl @Inject constructor(
     private val service: MarvelService,
     private val mapper: CharactersMapper
 ) : CharactersRemoteDataSource {
-
-    //    override fun getCharacters(query: String): Single<List<Character>> {
-//        val response = if (query.isEmpty()) {
-//            service.getCharacters(limit = 20)
-//        } else service.getCharacters(query = query, limit = 99)
-//        return response.map(mapper::map)
-//    }
 
     override fun getCharacters(query: String): Single<List<Character>> {
         return run {

@@ -1,12 +1,9 @@
 package com.pustovit.pdp.marvelapp.ui.events
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsPartialState
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
@@ -66,7 +63,7 @@ class EventsViewModel @Inject constructor(
     }
 
     fun onEventClick(event: Event) {
-        router.navigateTo(Screens.eventScreen(event))
+        router.navigateTo(Screens.eventScreen(event.id))
     }
 
     fun onRefresh() {
@@ -74,19 +71,4 @@ class EventsViewModel @Inject constructor(
         loadingSubject.onNext(Any())
     }
 
-//    class Factory @Inject constructor(
-//        private val repository: EventsRepository,
-//        @TabNavigationEvents private val router: Router
-//    ) : ViewModelProvider.Factory {
-//
-//        @Suppress("UNCHECKED_CAST")
-//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//            if (modelClass.isAssignableFrom(EventsViewModel::class.java)) {
-//                return EventsViewModel(repository, router) as T
-//            } else {
-//                throw RuntimeException("Unknown viewModel ${modelClass::class.java.canonicalName}")
-//            }
-//        }
-//
-//    }
 }

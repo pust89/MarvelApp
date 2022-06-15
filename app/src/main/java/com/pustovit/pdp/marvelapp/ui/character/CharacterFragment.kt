@@ -101,13 +101,13 @@ class CharacterFragment : Fragment() {
             binding?.let {
                 it.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
 
-                if (character.thumbnail.url.isNotEmpty()) {
+                if (character.thumbnail.isValid) {
 
                     val request = ImageRequest.Builder(requireContext())
                         .data(character.thumbnail.url)
                         .transformations(CircleCropTransformation())
                         .target(it.characterImageView)
-                        .error(R.drawable.ic_characters_24)
+                        .error(R.drawable.ic_person_24)
                         .build()
                     imageLoader.enqueue(request)
                 }

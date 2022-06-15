@@ -37,8 +37,8 @@ object Screens {
         EventsFragment()
     }
 
-    fun eventScreen(event: Event) = FragmentScreen {
-        EventFragment.newInstance(event)
+    fun eventScreen(eventId: Int) = FragmentScreen {
+        EventFragment.newInstance(eventId)
     }
 
     fun tabScreen(tab: TabNavigation) = FragmentScreen {

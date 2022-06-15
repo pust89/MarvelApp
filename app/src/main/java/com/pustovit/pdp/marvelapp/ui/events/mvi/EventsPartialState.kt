@@ -11,12 +11,5 @@ object EventsPartialState : PartialState<EventsViewState>() {
             viewStateError = null)
     }
 
-    fun loading(loading: Boolean) = transform { previousState ->
-        previousState.copy(
-            loading = loading,
-            viewStateError = null
-        )
-    }
-
 }
 

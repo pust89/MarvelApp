@@ -17,4 +17,7 @@ data class Thumbnail(
 
     @IgnoredOnParcel
     val url = "$path.$extension"
+
+    @IgnoredOnParcel
+    val isValid = path.isNotEmpty() && path.isNotEmpty()
 }

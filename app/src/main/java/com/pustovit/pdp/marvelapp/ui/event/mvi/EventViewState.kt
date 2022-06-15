@@ -1,11 +1,11 @@
-package com.pustovit.pdp.marvelapp.ui.character.mvi
+package com.pustovit.pdp.marvelapp.ui.event.mvi
 
-import com.pustovit.pdp.marvelapp.domain.model.character.Character
+import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewState
 import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
 
-data class CharacterViewState(
-    val character: Character = Character(),
+data class EventViewState(
+    val event: Event = Event(),
     override var loading: Boolean = true,
     override var viewStateError: ViewStateError? = null
 ) : ViewState

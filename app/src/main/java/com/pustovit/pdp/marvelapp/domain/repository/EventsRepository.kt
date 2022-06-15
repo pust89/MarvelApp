@@ -6,4 +6,7 @@ import io.reactivex.Single
 interface EventsRepository {
 
     fun getEvents(): Single<List<Event>>
+
+    fun getEvent(eventId: Int): Single<Event>
+
 }

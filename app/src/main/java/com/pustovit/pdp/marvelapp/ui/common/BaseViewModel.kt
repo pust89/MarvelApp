@@ -1,7 +1,6 @@
 package com.pustovit.pdp.marvelapp.ui.common
 
 import androidx.lifecycle.ViewModel
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewState
 import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
 import io.reactivex.BackpressureStrategy
@@ -42,13 +41,11 @@ open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : V
     protected open fun onError(ex: Throwable) {
         Timber.d("onError ex=${ex}")
         _viewState.value?.let { previousState ->
-            Timber.d("onError previousState=${previousState.hashCode()}")
 
             val viewStateError = ViewStateError(error = ex)
 
             previousState.viewStateError = viewStateError
             previousState.loading = false
-            Timber.d("onError after previousState=${previousState.hashCode()}")
 
             _viewState.onNext(previousState)
         }
