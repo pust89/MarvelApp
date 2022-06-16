@@ -1,21 +1,17 @@
 package com.pustovit.pdp.marvelapp.ui.character.summary
 
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
 import com.pustovit.pdp.marvelapp.ui.character.summary.model.SummaryItem
 import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryPartialState
-import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryViewState
+import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
-class SummaryViewModel @Inject constructor(
-    private val router: Router
-) : BaseViewModel<SummaryViewState>(SummaryViewState()) {
+class SummaryViewModel @Inject constructor() : BaseViewModel<SummaryViewState>(SummaryViewState()) {
 
     private val summariesBehaviorSubject =
         BehaviorSubject.createDefault<List<SummaryItem>>(emptyList())

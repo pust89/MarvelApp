@@ -4,7 +4,10 @@ import android.content.Context
 import coil.ImageLoader
 import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.app.MainActivity
-import com.pustovit.pdp.marvelapp.app.di.module.*
+import com.pustovit.pdp.marvelapp.app.di.module.CoilModule
+import com.pustovit.pdp.marvelapp.app.di.module.LocalNavigationModule
+import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
+import com.pustovit.pdp.marvelapp.app.di.module.NavigationModule
 import com.pustovit.pdp.marvelapp.data.repository.di.RepositoryModule
 import com.pustovit.pdp.marvelapp.data.source.remote.di.RemoteDataSourceModule
 import com.pustovit.pdp.marvelapp.data.source.remote.mapper.di.MapperModule
@@ -17,14 +20,8 @@ import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Provider
 import javax.inject.Singleton
 
-/**
- * Created by Pustovit V.V.
- * Date: 29.05.2022
- * Time: 13:28
- */
 @Singleton
 @Component(
     modules = [
@@ -51,10 +48,10 @@ interface AppComponent {
     fun imageLoader(): ImageLoader
 
     @TabNavigationCharacters
-    fun tabCharacters(): Router
+    fun tabCharactersRouter(): Router
 
     @TabNavigationEvents
-    fun tabEvents(): Router
+    fun tabEventsRouter(): Router
 
     @Component.Builder
     interface Builder {

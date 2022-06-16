@@ -17,7 +17,7 @@ class EventsRemoteDataSourceImpl @Inject constructor(
     }
 
     override fun getEvent(eventId: Int): Single<Event> {
-        return service.getEvents().map { response ->
+        return service.getEvent(eventId).map { response ->
             val resultList = mapper.map(response)
             resultList.first()
         }

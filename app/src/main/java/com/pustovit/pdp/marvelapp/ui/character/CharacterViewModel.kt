@@ -14,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(
@@ -71,6 +72,7 @@ class CharacterViewModel @Inject constructor(
 
     fun onComicsButtonClick() {
         val comics = currentViewState.character.comics
+        Timber.d("router=$router")
         router.navigateTo(Screens.summaryScreen(comics))
     }
 

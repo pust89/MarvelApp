@@ -5,6 +5,7 @@ import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
+import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import com.pustovit.pdp.marvelapp.ui.event.mvi.EventPartialState
 import com.pustovit.pdp.marvelapp.ui.event.mvi.EventViewState
@@ -91,6 +92,14 @@ class EventViewModel @Inject constructor(
     fun loadEvent(eventId: Int) {
         Timber.d("eventId=$eventId")
         eventIdIdSubject.onNext(eventId)
+    }
+
+    fun onCharacterClick(character: Character) {
+        router.navigateTo(
+            Screens.characterScreen(
+                characterId = character.id
+            )
+        )
     }
 
 }

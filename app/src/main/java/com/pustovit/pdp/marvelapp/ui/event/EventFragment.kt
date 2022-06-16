@@ -97,7 +97,7 @@ class EventFragment : Fragment() {
         }
         binding.recyclerView.adapter = adapter
         adapter.onItemClick = {
-            Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
+            viewModel.onCharacterClick(it)
         }
     }
 
@@ -132,8 +132,10 @@ class EventFragment : Fragment() {
     }
 
     companion object {
+
         private const val ARG_KEY = "event"
         private const val RV_STATE = "charactersEventsRvState"
+
         fun newInstance(eventId: Int): EventFragment {
             return EventFragment().apply {
                 arguments = bundleOf(ARG_KEY to eventId)

@@ -7,3 +7,4 @@ package com.pustovit.pdp.marvelapp.app
 //  с предыдущего фрагмента?
 // 3) CharactersListAdapter в каком модуле его хранить, если он используется в нескольких?
 //  Core module?
+// 4) Рассказать про навигацию (навигироваться лучше из фрагмента, показать на примере CharacterFragment)

@@ -13,15 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
+import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharacterBinding
+import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.character.di.DaggerCharacterComponent
 import com.pustovit.pdp.marvelapp.ui.character.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.character.mvi.CharacterViewState
 import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
@@ -37,6 +40,8 @@ class CharacterFragment : Fragment() {
     private val viewModel by viewModels<CharacterViewModel> {
         viewModelFactory
     }
+
+    private val router: Router by lazy { router() }
 
     private var binding: FragmentCharacterBinding? = null
 
@@ -87,6 +92,19 @@ class CharacterFragment : Fragment() {
         binding.storiesButton.setOnClickListener {
             viewModel.onStoriesButtonClick()
         }
+
+//        binding.comicsButton.setOnClickListener {
+//            val comics = viewModel.currentViewState.character.comics
+//            router.navigateTo(Screens.summaryScreen(comics))
+//        }
+//        binding.seriesButton.setOnClickListener {
+//            val series = viewModel.currentViewState.character.series
+//            router.navigateTo(Screens.summaryScreen(series))
+//        }
+//        binding.storiesButton.setOnClickListener {
+//            val stories = viewModel.currentViewState.character.stories
+//            router.navigateTo(Screens.summaryScreen(stories))
+//        }
     }
 
     private fun observeViewState() {
