@@ -5,6 +5,7 @@
     <dimen name="text_18sp">18sp</dimen>
     <dimen name="text_20sp">20sp</dimen>
     <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_26sp">26sp</dimen>
 
     <dimen name="dims_1dp">1dp</dimen>
     <dimen name="dims_2dp">2dp</dimen>

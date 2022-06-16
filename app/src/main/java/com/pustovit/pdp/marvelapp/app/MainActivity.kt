@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.di.module.MainNavigatorHolder
 import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
 
-    private val binding by viewBinding(ActivityMainBinding::bind)
+    private var binding: ActivityMainBinding? = null
 
     @Inject
     @MainRouter
@@ -32,30 +33,37 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ActivityMainBinding.inflate(layoutInflater).apply {
+            binding = this
+            setContentView(this.root)
+        }
         appComponent().inject(this)
-        setupBottomNavigation(savedInstanceState)
+        binding?.bottomNavigationView?.let {
+            setupBottomNavigation(it, savedInstanceState)
+        }
 
     }
 
-    private fun setupBottomNavigation(savedInstanceState: Bundle?) {
-
-        binding.bottomNavigationView.apply {
-            setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.navigation_characters -> {
-                        onTabNavigationSelect(TabNavigation.CHARACTERS)
-                        true
-                    }
-                    R.id.navigation_events -> {
-                        onTabNavigationSelect(TabNavigation.EVENTS)
-                        true
-                    }
-                    else -> false
+    private fun setupBottomNavigation(
+        bottomNavigationView: BottomNavigationView,
+        savedInstanceState: Bundle?
+    ) {
+        bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_characters -> {
+                    onTabNavigationSelect(TabNavigation.CHARACTERS)
+                    true
                 }
+                R.id.navigation_events -> {
+                    onTabNavigationSelect(TabNavigation.EVENTS)
+                    true
+                }
+                else -> false
             }
-            if (savedInstanceState == null) {
-                selectedItemId = R.id.navigation_events
-            }
+        }
+
+        if (savedInstanceState == null) {
+            bottomNavigationView.selectedItemId = R.id.navigation_events
         }
     }
 
@@ -96,7 +104,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
         transaction.commitNow()
     }
 
-
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
@@ -107,4 +114,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
         super.onPause()
     }
 
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
+    }
 }

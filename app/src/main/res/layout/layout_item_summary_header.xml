@@ -11,26 +11,17 @@
     app:strokeColor="@color/black"
     app:strokeWidth="@dimen/dims_1dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerView"
+    <TextView
+        android:id="@+id/headerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/dims_8dp"
-        android:paddingTop="@dimen/dims_8dp"
-        android:paddingRight="@dimen/dims_8dp">
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Superman" />
 
-        <TextView
-            android:id="@+id/headerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Superman" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
