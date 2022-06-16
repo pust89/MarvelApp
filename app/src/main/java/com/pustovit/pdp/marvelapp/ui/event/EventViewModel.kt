@@ -1,7 +1,9 @@
 package com.pustovit.pdp.marvelapp.ui.event
 
 import com.github.terrakok.cicerone.Router
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
+import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import com.pustovit.pdp.marvelapp.ui.event.mvi.EventPartialState
@@ -13,10 +15,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import javax.inject.Inject
 
 class EventViewModel @Inject constructor(
-    private val repository: EventsRepository,
+    private val eventsRepository: EventsRepository,
+    private val charactersRepository: CharactersRepository,
     private val router: Router
 ) : BaseViewModel<EventViewState>(EventViewState()) {
 
@@ -31,6 +35,11 @@ class EventViewModel @Inject constructor(
             getEvent(id)
         }
 
+    private val charactersFlowable: Flowable<List<Character>> =
+        eventIdIdFlowable.flatMap { id ->
+            getCharactersByEventId(id)
+        }
+
     override fun onFirstViewAttach() {
 
         val loadingPs = eventIdIdFlowable.map {
@@ -40,8 +49,11 @@ class EventViewModel @Inject constructor(
         val eventPs = eventFlowable.map { event ->
             EventPartialState.event(event)
         }
+        val charactersPs = charactersFlowable.map { event ->
+            EventPartialState.characters(event)
+        }
 
-        Flowable.merge(loadingPs, eventPs).scan(initialViewState) { state, partial ->
+        Flowable.merge(loadingPs, eventPs, charactersPs).scan(initialViewState) { state, partial ->
             partial.apply(state)
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
@@ -52,7 +64,21 @@ class EventViewModel @Inject constructor(
         return Flowable.fromPublisher {
             val singleRequest = Single.just(eventId)
             singleRequest.flatMap { id ->
-                repository.getEvent(id)
+                eventsRepository.getEvent(id)
+            }.subscribeOn(Schedulers.io())
+                .subscribe({ list ->
+                    it.onNext(list)
+                }, { ex ->
+                    onError(ex)
+                }).addTo(compositeDisposable)
+        }
+    }
+
+    private fun getCharactersByEventId(eventId: Int): Flowable<List<Character>> {
+        return Flowable.fromPublisher {
+            val singleRequest = Single.just(eventId)
+            singleRequest.flatMap { id ->
+                charactersRepository.getCharactersByEvent(id)
             }.subscribeOn(Schedulers.io())
                 .subscribe({ list ->
                     it.onNext(list)
@@ -63,6 +89,7 @@ class EventViewModel @Inject constructor(
     }
 
     fun loadEvent(eventId: Int) {
+        Timber.d("eventId=$eventId")
         eventIdIdSubject.onNext(eventId)
     }
 

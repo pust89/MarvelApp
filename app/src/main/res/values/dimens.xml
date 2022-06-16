@@ -22,7 +22,7 @@
     <dimen name="dims_102dp">102dp</dimen>
     <dimen name="dims_128dp">128dp</dimen>
     <dimen name="dims_160dp">160dp</dimen>
-
+    <dimen name="dims_200dp">200dp</dimen>
     <dimen name="dims_250dp">250dp</dimen>
 
     <dimen name="dims_368dp">368dp</dimen>

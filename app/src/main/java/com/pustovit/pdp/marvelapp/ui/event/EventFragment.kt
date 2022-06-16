@@ -2,19 +2,25 @@ package com.pustovit.pdp.marvelapp.ui.event
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
+import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventBinding
+import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
+import com.pustovit.pdp.marvelapp.ui.characters.CharactersListAdapter
 import com.pustovit.pdp.marvelapp.ui.event.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.event.di.DaggerEventComponent
@@ -33,6 +39,10 @@ class EventFragment : Fragment() {
 
     @Inject
     lateinit var imageLoader: ImageLoader
+
+    private val adapter: CharactersListAdapter by lazy {
+        CharactersListAdapter(imageLoader)
+    }
 
     private val viewModel: EventViewModel by viewModels<EventViewModel> {
         viewModelFactory
@@ -62,9 +72,32 @@ class EventFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.let {
+            initViews(it, savedInstanceState)
+        }
         arguments?.getInt(ARG_KEY)?.let {
             viewModel.loadEvent(it)
-            observeViewState()
+        }
+        observeViewState()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        binding?.recyclerView?.layoutManager?.onSaveInstanceState()?.let { state ->
+            outState.putParcelable(RV_STATE, state)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun initViews(binding: FragmentEventBinding, savedInstanceState: Bundle?) {
+        adapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
+        savedInstanceState?.getParcelable<Parcelable>(RV_STATE)?.let {
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(it)
+        }
+        binding.recyclerView.adapter = adapter
+        adapter.onItemClick = {
+            Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -77,6 +110,7 @@ class EventFragment : Fragment() {
     private fun handleViewState(state: EventViewState) {
         state.apply {
             handleViewStateError(viewStateError)
+            adapter.submitList(characters)
             binding?.let {
                 it.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
 
@@ -99,7 +133,7 @@ class EventFragment : Fragment() {
 
     companion object {
         private const val ARG_KEY = "event"
-
+        private const val RV_STATE = "charactersEventsRvState"
         fun newInstance(eventId: Int): EventFragment {
             return EventFragment().apply {
                 arguments = bundleOf(ARG_KEY to eventId)

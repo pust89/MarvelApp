@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
                 }
             }
             if (savedInstanceState == null) {
-                selectedItemId = R.id.navigation_characters
+                selectedItemId = R.id.navigation_events
             }
         }
     }

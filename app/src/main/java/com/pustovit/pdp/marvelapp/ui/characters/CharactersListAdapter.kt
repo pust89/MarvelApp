@@ -13,8 +13,7 @@ import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.ui.characters.di.CharactersScope
 import javax.inject.Inject
 
-@CharactersScope
-class CharactersListAdapter @Inject constructor(
+class CharactersListAdapter(
     private val imageLoader: ImageLoader
 ) : ListAdapter<Character, CharactersListAdapter.CharacterItemViewHolder>(
     CharacterDiffUtilItemCallback()
@@ -47,7 +46,7 @@ class CharactersListAdapter @Inject constructor(
 
             val request = ImageRequest.Builder(binding.root.context)
                 .data(character.thumbnail.url)
-                .transformations(CircleCropTransformation())
+                .transformations(CircleCropTransformation(),)
                 .target(binding.photoImageView)
                 .build()
             imageLoader.enqueue(request)

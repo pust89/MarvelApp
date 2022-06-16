@@ -36,4 +36,9 @@ interface MarvelService {
     fun getEvent(
         @Path("eventId") eventId: Int
     ): Single<MarvelResponse<EventDto>>
+
+    @GET("/v1/public/events/{eventId}/characters")
+    fun getCharactersByEvent(
+        @Path("eventId") eventId: Int
+    ): Single<MarvelResponse<CharacterDto>>
 }

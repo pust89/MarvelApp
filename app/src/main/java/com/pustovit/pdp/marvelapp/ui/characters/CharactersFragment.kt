@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.android.hideKeyboard
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
@@ -28,7 +30,11 @@ class CharactersFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
-    lateinit var adapter: CharactersListAdapter
+    lateinit var imageLoader: ImageLoader
+
+    private val adapter: CharactersListAdapter by lazy {
+        CharactersListAdapter(imageLoader)
+    }
 
     private val viewModel by viewModels<CharactersViewModel> {
         viewModelFactory
@@ -62,7 +68,6 @@ class CharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding?.let {
             initViews(it, savedInstanceState)
         }
@@ -79,10 +84,13 @@ class CharactersFragment : Fragment() {
     private fun initViews(binding: FragmentCharactersBinding, savedInstanceState: Bundle?) {
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        val gridLm = GridLayoutManager(requireContext(), 2)
+        binding.recyclerView.layoutManager = gridLm
 
-        savedInstanceState?.getParcelable<Parcelable>(RV_STATE)?.let {
-            binding.recyclerView.layoutManager?.onRestoreInstanceState(it)
+        savedInstanceState?.getParcelable<Parcelable>(RV_STATE)?.let { state ->
+            gridLm.onRestoreInstanceState(state)
         }
+
         binding.recyclerView.adapter = adapter
         adapter.onItemClick = {
             viewModel.onCharacterClick(it)
@@ -120,6 +128,6 @@ class CharactersFragment : Fragment() {
     }
 
     companion object {
-        const val RV_STATE = "charactersRvState"
+        private const val RV_STATE = "charactersRvState"
     }
 }

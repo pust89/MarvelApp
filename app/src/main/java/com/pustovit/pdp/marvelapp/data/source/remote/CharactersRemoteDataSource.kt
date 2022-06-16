@@ -16,7 +16,7 @@ class CharactersRemoteDataSourceImpl @Inject constructor(
     override fun getCharacters(query: String): Single<List<Character>> {
         return run {
             if (query.isEmpty()) {
-                service.getCharacters(limit = 20)
+                service.getCharacters(limit = 50)
             } else service.getCharacters(query = query, limit = 99)
         }.map(mapper::map)
     }
@@ -28,6 +28,9 @@ class CharactersRemoteDataSourceImpl @Inject constructor(
         }
     }
 
+    override fun getCharactersByEvent(eventId: Int): Single<List<Character>> {
+        return service.getCharactersByEvent(eventId).map(mapper::map)
+    }
 }
 
 
@@ -36,4 +39,6 @@ interface CharactersRemoteDataSource {
     fun getCharacters(query: String): Single<List<Character>>
 
     fun getCharacter(characterId: Int): Single<Character>
+
+    fun getCharactersByEvent(eventId: Int): Single<List<Character>>
 }

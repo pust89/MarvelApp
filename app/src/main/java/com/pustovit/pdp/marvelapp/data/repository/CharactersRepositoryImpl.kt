@@ -17,4 +17,8 @@ class CharactersRepositoryImpl @Inject constructor(
     override fun getCharacter(characterId: Int): Single<Character> {
         return charactersRemoteDataSource.getCharacter(characterId)
     }
+
+    override fun getCharactersByEvent(eventId: Int): Single<List<Character>> {
+        return charactersRemoteDataSource.getCharactersByEvent(eventId)
+    }
 }
