@@ -1,16 +1,18 @@
 package com.pustovit.pdp.marvelapp.ui.common
 
 import androidx.lifecycle.ViewModel
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewState
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
+import com.pustovit.pdp.marvelapp.common.mvi.ViewState
+import com.pustovit.pdp.marvelapp.common.mvi.ViewStateError
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function
 import io.reactivex.subjects.BehaviorSubject
 import timber.log.Timber
 
-open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : ViewModel() {
+open class BaseViewModel<VS : ViewState>(public val initialViewState: VS) : ViewModel() {
 
     private var isFirstLaunch = true
     protected val compositeDisposable = CompositeDisposable()
@@ -54,6 +56,13 @@ open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : V
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
+    }
+
+    fun <T : Function<VS, VS>> Flowable<T>.scanPartialViewStates()
+            : Flowable<VS> {
+        return this.scan(initialViewState, BiFunction { state, partial ->
+            partial.apply(state)
+        })
     }
 
 }

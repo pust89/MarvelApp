@@ -18,10 +18,13 @@ import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventBinding
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
+import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
 import com.pustovit.pdp.marvelapp.ui.characters.CharactersListAdapter
 import com.pustovit.pdp.marvelapp.ui.event.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import com.pustovit.pdp.marvelapp.ui.event.di.DaggerEventComponent
 import com.pustovit.pdp.marvelapp.ui.event.mvi.EventViewState
 import io.reactivex.rxkotlin.addTo
@@ -95,9 +98,7 @@ class EventFragment : Fragment() {
             binding.recyclerView.layoutManager?.onRestoreInstanceState(it)
         }
         binding.recyclerView.adapter = adapter
-        adapter.onItemClick = {
-            viewModel.onCharacterClick(it)
-        }
+        adapter.onItemClick = (::onCharacterClick)
     }
 
     private fun observeViewState() {
@@ -128,6 +129,14 @@ class EventFragment : Fragment() {
                 it.descriptionsTextView.text = event.description
             }
         }
+    }
+
+    private fun onCharacterClick(character: Character) {
+        router().navigateTo(
+            Screens.characterScreen(
+                characterId = character.id
+            )
+        )
     }
 
     companion object {

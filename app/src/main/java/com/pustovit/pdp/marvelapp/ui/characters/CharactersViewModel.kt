@@ -1,14 +1,8 @@
 package com.pustovit.pdp.marvelapp.ui.characters
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
-import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialState
+import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialViewState
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
@@ -23,8 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CharactersViewModel @Inject constructor(
-    private val repository: CharactersRepository,
-    private val router: Router
+    private val repository: CharactersRepository
 ) : BaseViewModel<CharactersViewState>(CharactersViewState()) {
 
     private val userInputSubject = BehaviorSubject.createDefault<String>("")
@@ -56,28 +49,24 @@ class CharactersViewModel @Inject constructor(
     override fun onFirstViewAttach() {
         Timber.d("onFirstViewAttach called")
         val queryPs = queryFlowable.map {
-            CharactersPartialState.query(it)
+            CharactersPartialViewState.query(it)
         }
 
         val charactersPs = charactersFlowable.map {
-            CharactersPartialState.characters(it)
+            CharactersPartialViewState.characters(it)
         }
 
         Flowable.merge(queryPs, charactersPs)
-            .scan(initialViewState) { state, partial ->
-                partial.apply(state)
-            }.observeOn(AndroidSchedulers.mainThread())
+            .scanPartialViewStates()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
     }
 
+
     fun handleUserInput(input: String?) {
         Timber.d("handleUserInput input=${input}")
         input?.let(userInputSubject::onNext)
-    }
-
-    fun onCharacterClick(character: Character) {
-        router.navigateTo(Screens.characterScreen(character.id))
     }
 
 }

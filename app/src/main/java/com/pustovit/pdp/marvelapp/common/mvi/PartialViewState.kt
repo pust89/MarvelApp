@@ -1,8 +1,9 @@
-package com.pustovit.pdp.marvelapp.ui.common.mvi
+package com.pustovit.pdp.marvelapp.common.mvi
 
+import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
 
-abstract class PartialState<VS> where VS : ViewState {
+abstract class PartialViewState<VS : ViewState> {
 
     fun transform(transformation: (previousState: VS) -> VS): Function<VS, VS> {
         return Function<VS, VS> { previousState ->
@@ -15,6 +16,14 @@ abstract class PartialState<VS> where VS : ViewState {
             vs.loading = loading
             vs.viewStateError = null
             vs
+        }
+    }
+
+    companion object {
+        fun <VS : ViewState> apply(): BiFunction<VS, Function<VS, VS>, VS> {
+            return BiFunction { state, partial ->
+                partial.apply(state)
+            }
         }
     }
 }

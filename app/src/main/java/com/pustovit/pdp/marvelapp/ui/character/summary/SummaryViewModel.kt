@@ -2,7 +2,7 @@ package com.pustovit.pdp.marvelapp.ui.character.summary
 
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
 import com.pustovit.pdp.marvelapp.ui.character.summary.model.SummaryItem
-import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryPartialState
+import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryPartialViewState
 import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
@@ -21,12 +21,11 @@ class SummaryViewModel @Inject constructor() : BaseViewModel<SummaryViewState>(S
         val summariesPs = summariesBehaviorSubject.toFlowable(BackpressureStrategy.LATEST)
             .distinctUntilChanged()
             .map {
-                SummaryPartialState.summaries(summaries = it)
+                SummaryPartialViewState.summaries(summaries = it)
             }
 
-        summariesPs.scan(initialViewState) { state, partial ->
-            partial.apply(state)
-        }.observeOn(AndroidSchedulers.mainThread())
+        summariesPs.scanPartialViewStates()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
     }

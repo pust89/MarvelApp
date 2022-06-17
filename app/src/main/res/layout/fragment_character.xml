@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dims_8dp"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="@dimen/text_20sp"
         tools:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,13 +40,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seriesButton">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/descriptionTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@string/descriptions"
+                android:textSize="@dimen/text_20sp"
+                tools:text="Description" />
         <TextView
             android:id="@+id/descriptionsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_18sp"
+            android:textSize="@dimen/text_20sp"
             tools:text="Description" />
+        </LinearLayout>
     </ScrollView>
 
 
@@ -53,7 +68,6 @@
         android:id="@+id/storiesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stories"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -76,7 +90,6 @@
         android:id="@+id/seriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/series"
         app:layout_constraintBottom_toBottomOf="@+id/storiesButton"
         app:layout_constraintEnd_toStartOf="@+id/storiesButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +100,6 @@
         android:id="@+id/comicsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/comics"
         app:layout_constraintBottom_toBottomOf="@+id/seriesButton"
         app:layout_constraintEnd_toStartOf="@+id/seriesButton"
         app:layout_constraintHorizontal_bias="0.5"

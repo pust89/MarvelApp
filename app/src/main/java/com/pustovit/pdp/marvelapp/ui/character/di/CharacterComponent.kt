@@ -1,10 +1,8 @@
 package com.pustovit.pdp.marvelapp.ui.character.di
 
 import androidx.lifecycle.ViewModel
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.app.di.AppComponent
 import com.pustovit.pdp.marvelapp.app.di.module.ViewModelKey
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
 import com.pustovit.pdp.marvelapp.ui.character.CharacterFragment
 import com.pustovit.pdp.marvelapp.ui.character.CharacterViewModel
 import com.pustovit.pdp.marvelapp.ui.character.summary.SummaryFragment
@@ -54,6 +52,4 @@ interface ViewModelModule {
     @ViewModelKey(SummaryViewModel::class)
     fun bindSummaryViewModel(viewModel: SummaryViewModel): ViewModel
 
-    @Binds
-    fun bindRouter(@TabNavigationCharacters router: Router): Router
 }

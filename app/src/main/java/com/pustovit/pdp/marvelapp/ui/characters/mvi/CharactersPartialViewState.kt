@@ -1,9 +1,9 @@
 package com.pustovit.pdp.marvelapp.ui.characters.mvi
 
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
-import com.pustovit.pdp.marvelapp.ui.common.mvi.PartialState
+import com.pustovit.pdp.marvelapp.common.mvi.PartialViewState
 
-object CharactersPartialState : PartialState<CharactersViewState>() {
+object CharactersPartialViewState : PartialViewState<CharactersViewState>() {
 
     fun query(query: String) = transform { previousState ->
         previousState.copy(

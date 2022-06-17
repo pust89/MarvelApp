@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:background="@color/white"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dims_2dp"
         android:layout_marginStart="@dimen/dims_8dp"
         android:layout_marginEnd="@dimen/dims_8dp"
         app:layout_constraintEnd_toEndOf="parent"

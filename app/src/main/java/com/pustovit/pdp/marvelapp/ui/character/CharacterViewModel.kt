@@ -1,10 +1,8 @@
 package com.pustovit.pdp.marvelapp.ui.character
 
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
-import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.ui.character.mvi.CharacterPartialState
+import com.pustovit.pdp.marvelapp.ui.character.mvi.CharacterPartialViewState
 import com.pustovit.pdp.marvelapp.ui.character.mvi.CharacterViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
@@ -14,12 +12,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import timber.log.Timber
 import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(
-    private val repository: CharactersRepository,
-    private val router: Router
+    private val repository: CharactersRepository
 ) : BaseViewModel<CharacterViewState>(CharacterViewState()) {
 
     private val characterIdSubject = PublishSubject.create<Int>()
@@ -37,17 +33,15 @@ class CharacterViewModel @Inject constructor(
     override fun onFirstViewAttach() {
 
         val loadingPs = characterIdFlowable.map {
-            CharacterPartialState.loading(loading = true)
+            CharacterPartialViewState.loading(loading = true)
         }
 
         val characterPs = characterFlowable.map {
-            CharacterPartialState.character(it)
+            CharacterPartialViewState.character(it)
         }
-
         Flowable.merge(loadingPs, characterPs)
-            .scan(initialViewState) { state, partial ->
-                partial.apply(state)
-            }.observeOn(AndroidSchedulers.mainThread())
+            .scanPartialViewStates()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
     }
@@ -70,20 +64,5 @@ class CharacterViewModel @Inject constructor(
         characterIdSubject.onNext(characterId)
     }
 
-    fun onComicsButtonClick() {
-        val comics = currentViewState.character.comics
-        Timber.d("router=$router")
-        router.navigateTo(Screens.summaryScreen(comics))
-    }
-
-    fun onSeriesButtonClick() {
-        val series = currentViewState.character.series
-        router.navigateTo(Screens.summaryScreen(series))
-    }
-
-    fun onStoriesButtonClick() {
-        val stories = currentViewState.character.stories
-        router.navigateTo(Screens.summaryScreen(stories))
-    }
 
 }

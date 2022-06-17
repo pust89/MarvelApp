@@ -51,7 +51,7 @@ class EventsListAdapter @Inject constructor(
                 .target(binding.photoImageView)
                 .build()
             imageLoader.enqueue(request)
-            binding.modifiedTextView.text = event.modified
+            binding.modifiedTextView.text = event.modified.take(10)
             binding.nameTextView.text = event.title
             binding.descriptionsTextView.text = event.description
         }

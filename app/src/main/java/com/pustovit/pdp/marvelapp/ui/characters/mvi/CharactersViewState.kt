@@ -1,8 +1,8 @@
 package com.pustovit.pdp.marvelapp.ui.characters.mvi
 
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewState
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
+import com.pustovit.pdp.marvelapp.common.mvi.ViewState
+import com.pustovit.pdp.marvelapp.common.mvi.ViewStateError
 
 data class CharactersViewState(
     val query: String = "",

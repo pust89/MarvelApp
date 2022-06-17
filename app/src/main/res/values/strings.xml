@@ -5,7 +5,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="characters">Characters</string>
     <string name="events">Events</string>
-    <string name="comics">Comics</string>
-    <string name="series">Series</string>
-    <string name="stories">Stories</string>
+    <string name="comics">%d Comics</string>
+    <string name="series">%d Series</string>
+    <string name="stories">%d Stories</string>
+    <string name="descriptions">Descriptions</string>
 </resources>

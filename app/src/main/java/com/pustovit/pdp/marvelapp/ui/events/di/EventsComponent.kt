@@ -42,8 +42,5 @@ interface ViewModelModule {
     @ViewModelKey(EventsViewModel::class)
     fun bindEventsViewModel(viewModel: EventsViewModel): ViewModel
 
-    @Binds
-    fun bindRouter(@TabNavigationEvents router: Router): Router
-
 }
 

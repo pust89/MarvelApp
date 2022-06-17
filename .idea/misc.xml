@@ -19,7 +19,7 @@
         <entry key="..\:/PdpMarvel/MarvelApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/drawable/ic_characters_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17135416666666667" />
-        <entry key="app/src/main/res/layout/fragment_character.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/layout/fragment_character.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_characters.xml" value="0.21296296296296297" />
         <entry key="app/src/main/res/layout/fragment_comics.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/fragment_event.xml" value="0.2968299711815562" />

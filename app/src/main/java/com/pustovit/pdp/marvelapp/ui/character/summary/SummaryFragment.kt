@@ -108,7 +108,6 @@ class SummaryFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         adapter.onItemClick = {
             Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
-            // viewModel.onCharacterClick(it)
         }
     }
 

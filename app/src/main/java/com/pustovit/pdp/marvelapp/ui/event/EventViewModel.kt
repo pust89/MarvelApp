@@ -1,13 +1,11 @@
 package com.pustovit.pdp.marvelapp.ui.event
 
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
-import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
-import com.pustovit.pdp.marvelapp.ui.event.mvi.EventPartialState
+import com.pustovit.pdp.marvelapp.ui.event.mvi.EventPartialViewState
 import com.pustovit.pdp.marvelapp.ui.event.mvi.EventViewState
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -21,8 +19,7 @@ import javax.inject.Inject
 
 class EventViewModel @Inject constructor(
     private val eventsRepository: EventsRepository,
-    private val charactersRepository: CharactersRepository,
-    private val router: Router
+    private val charactersRepository: CharactersRepository
 ) : BaseViewModel<EventViewState>(EventViewState()) {
 
     private val eventIdIdSubject = PublishSubject.create<Int>()
@@ -44,19 +41,19 @@ class EventViewModel @Inject constructor(
     override fun onFirstViewAttach() {
 
         val loadingPs = eventIdIdFlowable.map {
-            EventPartialState.loading(loading = true)
+            EventPartialViewState.loading(loading = true)
         }
 
         val eventPs = eventFlowable.map { event ->
-            EventPartialState.event(event)
+            EventPartialViewState.event(event)
         }
         val charactersPs = charactersFlowable.map { event ->
-            EventPartialState.characters(event)
+            EventPartialViewState.characters(event)
         }
 
-        Flowable.merge(loadingPs, eventPs, charactersPs).scan(initialViewState) { state, partial ->
-            partial.apply(state)
-        }.observeOn(AndroidSchedulers.mainThread())
+        Flowable.merge(loadingPs, eventPs, charactersPs)
+            .scanPartialViewStates()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
     }
@@ -94,12 +91,6 @@ class EventViewModel @Inject constructor(
         eventIdIdSubject.onNext(eventId)
     }
 
-    fun onCharacterClick(character: Character) {
-        router.navigateTo(
-            Screens.characterScreen(
-                characterId = character.id
-            )
-        )
-    }
+
 
 }

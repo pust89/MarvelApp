@@ -45,6 +45,4 @@ interface ViewModelModule {
     @ViewModelKey(CharactersViewModel::class)
     fun bindCharactersViewModel(viewModel: CharactersViewModel): ViewModel
 
-    @Binds
-    fun bindRouter(@TabNavigationCharacters router: Router): Router
 }

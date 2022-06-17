@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.ui.common.mvi
+package com.pustovit.pdp.marvelapp.common.mvi
 
 interface Handleable {
     var needHandle: Boolean

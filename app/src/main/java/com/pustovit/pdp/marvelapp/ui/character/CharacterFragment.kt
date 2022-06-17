@@ -41,8 +41,6 @@ class CharacterFragment : Fragment() {
         viewModelFactory
     }
 
-    private val router: Router by lazy { router() }
-
     private var binding: FragmentCharacterBinding? = null
 
     private val compositeDisposable by CompositeDisposableDelegate()
@@ -83,28 +81,9 @@ class CharacterFragment : Fragment() {
 
 
     private fun initViews(binding: FragmentCharacterBinding, savedInstanceState: Bundle?) {
-        binding.comicsButton.setOnClickListener {
-            viewModel.onComicsButtonClick()
-        }
-        binding.seriesButton.setOnClickListener {
-            viewModel.onSeriesButtonClick()
-        }
-        binding.storiesButton.setOnClickListener {
-            viewModel.onStoriesButtonClick()
-        }
-
-//        binding.comicsButton.setOnClickListener {
-//            val comics = viewModel.currentViewState.character.comics
-//            router.navigateTo(Screens.summaryScreen(comics))
-//        }
-//        binding.seriesButton.setOnClickListener {
-//            val series = viewModel.currentViewState.character.series
-//            router.navigateTo(Screens.summaryScreen(series))
-//        }
-//        binding.storiesButton.setOnClickListener {
-//            val stories = viewModel.currentViewState.character.stories
-//            router.navigateTo(Screens.summaryScreen(stories))
-//        }
+        binding.comicsButton.setOnClickListener { onComicsButtonClick() }
+        binding.seriesButton.setOnClickListener { onSeriesButtonClick() }
+        binding.storiesButton.setOnClickListener { onStoriesButtonClick() }
     }
 
     private fun observeViewState() {
@@ -129,11 +108,30 @@ class CharacterFragment : Fragment() {
                         .build()
                     imageLoader.enqueue(request)
                 }
-
                 it.nameTextView.text = character.name
                 it.descriptionsTextView.text = character.description
+
+                it.comicsButton.text = getString(R.string.comics, comicsCount)
+                it.seriesButton.text = getString(R.string.series, seriesCount)
+                it.storiesButton.text = getString(R.string.stories, storiesCount)
             }
+
         }
+    }
+
+    private fun onComicsButtonClick() {
+        val comics = viewModel.currentViewState.character.comics
+        router().navigateTo(Screens.summaryScreen(comics))
+    }
+
+    private fun onSeriesButtonClick() {
+        val series = viewModel.currentViewState.character.series
+        router().navigateTo(Screens.summaryScreen(series))
+    }
+
+    private fun onStoriesButtonClick() {
+        val stories = viewModel.currentViewState.character.stories
+        router().navigateTo(Screens.summaryScreen(stories))
     }
 
     companion object {

@@ -35,6 +35,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/dims_8dp"
             android:orientation="vertical"
+            android:layout_marginEnd="@dimen/dims_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/photoImageView"
@@ -44,22 +45,27 @@
                 android:id="@+id/nameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_20sp"
+                android:textStyle="bold"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
                 android:id="@+id/modifiedTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_14sp"
+                android:textSize="@dimen/text_18sp"
+                android:gravity="end"
+                android:textColor="@color/black"
                 tools:text="@tools:sample/date/ddmmyy" />
 
             <TextView
                 android:id="@+id/descriptionsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_16sp"
-                android:maxLines="5"
+                android:textSize="@dimen/text_18sp"
+                android:textColor="@color/black"
+                android:maxLines="3"
                 android:ellipsize="end"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>

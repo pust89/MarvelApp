@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventsBinding
+import com.pustovit.pdp.marvelapp.domain.model.event.Event
+import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import com.pustovit.pdp.marvelapp.ui.events.di.DaggerEventsComponent
 import com.pustovit.pdp.marvelapp.ui.events.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
@@ -75,9 +78,8 @@ class EventsFragment : Fragment() {
         }
         binding.recyclerView.adapter = adapter
 
-        adapter.onItemClick = {
-            viewModel.onEventClick(it)
-        }
+        adapter.onItemClick = (::onEventClick)
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.onRefresh()
         }
@@ -115,6 +117,10 @@ class EventsFragment : Fragment() {
             binding?.swipeRefreshLayout?.isRefreshing = false
         }
 
+    }
+
+    private fun onEventClick(event: Event) {
+        router().navigateTo(Screens.eventScreen(event.id))
     }
 
     companion object {

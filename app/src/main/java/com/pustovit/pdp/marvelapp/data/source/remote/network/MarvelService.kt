@@ -28,7 +28,7 @@ interface MarvelService {
 
     @GET("/v1/public/events")
     fun getEvents(
-        @Query("orderBy") orderBy: String = "startDate",
+        @Query("orderBy") orderBy: String = "-modified",
         @Query("limit") limit: Int = 25
     ): Single<MarvelResponse<EventDto>>
 

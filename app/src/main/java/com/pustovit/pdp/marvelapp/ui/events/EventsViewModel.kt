@@ -1,11 +1,9 @@
 package com.pustovit.pdp.marvelapp.ui.events
 
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.domain.repository.EventsRepository
-import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
-import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsPartialState
+import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsPartialViewState
 import com.pustovit.pdp.marvelapp.ui.events.mvi.EventsViewState
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -19,9 +17,7 @@ import javax.inject.Inject
 
 
 class EventsViewModel @Inject constructor(
-    private val repository: EventsRepository,
-    private val router: Router
-) : BaseViewModel<EventsViewState>(EventsViewState()) {
+    private val repository: EventsRepository) : BaseViewModel<EventsViewState>(EventsViewState()) {
 
     private val loadingSubject = BehaviorSubject.createDefault(Any())
 
@@ -47,23 +43,18 @@ class EventsViewModel @Inject constructor(
     override fun onFirstViewAttach() {
         Timber.d("onFirstViewAttach called")
         val loadingPs = loadingFlowable.map {
-            EventsPartialState.loading(true)
+            EventsPartialViewState.loading(true)
         }
 
         val eventsPs = eventsFlowable.map {
-            EventsPartialState.events(it)
+            EventsPartialViewState.events(it)
         }
 
         Flowable.merge(loadingPs, eventsPs)
-            .scan(initialViewState) { state, partial ->
-                partial.apply(state)
-            }.observeOn(AndroidSchedulers.mainThread())
+            .scanPartialViewStates()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable)
-    }
-
-    fun onEventClick(event: Event) {
-        router.navigateTo(Screens.eventScreen(event.id))
     }
 
     fun onRefresh() {

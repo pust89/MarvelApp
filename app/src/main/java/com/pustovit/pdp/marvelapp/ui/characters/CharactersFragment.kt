@@ -17,10 +17,13 @@ import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.android.hideKeyboard
 import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
+import com.pustovit.pdp.marvelapp.domain.model.character.Character
+import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
+import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -92,9 +95,7 @@ class CharactersFragment : Fragment() {
         }
 
         binding.recyclerView.adapter = adapter
-        adapter.onItemClick = {
-            viewModel.onCharacterClick(it)
-        }
+        adapter.onItemClick = (::onCharacterClick)
         setSearchView(binding)
     }
 
@@ -125,6 +126,10 @@ class CharactersFragment : Fragment() {
             binding?.progressBar?.visibility = if (loading) View.VISIBLE else View.GONE
             handleViewStateError(viewStateError)
         }
+    }
+
+    private fun onCharacterClick(character: Character) {
+        router().navigateTo(Screens.characterScreen(character.id))
     }
 
     companion object {

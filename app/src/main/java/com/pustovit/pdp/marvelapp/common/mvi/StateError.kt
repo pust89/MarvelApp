@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.ui.common.mvi
+package com.pustovit.pdp.marvelapp.common.mvi
 
 class ViewStateError(
     val error: Throwable,

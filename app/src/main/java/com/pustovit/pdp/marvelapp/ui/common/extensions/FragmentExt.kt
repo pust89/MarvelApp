@@ -4,7 +4,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.navigation.RouterProvider
-import com.pustovit.pdp.marvelapp.ui.common.mvi.ViewStateError
+import com.pustovit.pdp.marvelapp.common.mvi.ViewStateError
 
 /**
  * Created by Pustovit V.V.
