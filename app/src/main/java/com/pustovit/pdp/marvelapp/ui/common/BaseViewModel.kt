@@ -12,7 +12,7 @@ import io.reactivex.functions.Function
 import io.reactivex.subjects.BehaviorSubject
 import timber.log.Timber
 
-open class BaseViewModel<VS : ViewState>(public val initialViewState: VS) : ViewModel() {
+open class BaseViewModel<VS : ViewState>(protected val initialViewState: VS) : ViewModel() {
 
     private var isFirstLaunch = true
     protected val compositeDisposable = CompositeDisposable()

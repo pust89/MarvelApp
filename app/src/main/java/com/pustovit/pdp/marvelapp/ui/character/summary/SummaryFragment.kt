@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.app.appComponent
-import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentSummaryBinding
 import com.pustovit.pdp.marvelapp.domain.model.common.Comics
 import com.pustovit.pdp.marvelapp.domain.model.common.Series
@@ -21,6 +19,8 @@ import com.pustovit.pdp.marvelapp.domain.model.common.Summary
 import com.pustovit.pdp.marvelapp.ui.character.di.DaggerCharacterComponent
 import com.pustovit.pdp.marvelapp.ui.character.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryViewState
+import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
+import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import io.reactivex.rxkotlin.addTo
 import kotlinx.parcelize.Parcelize
@@ -39,7 +39,7 @@ class SummaryFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by viewModels<SummaryViewModel> {
+    private val viewModel by baseViewModels<SummaryViewModel> {
         viewModelFactory
     }
 
@@ -56,7 +56,6 @@ class SummaryFragment : Fragment() {
         DaggerCharacterComponent.builder()
             .appComponent(appComponent())
             .build().inject(this)
-        viewModel.onAttach()
     }
 
     override fun onCreateView(

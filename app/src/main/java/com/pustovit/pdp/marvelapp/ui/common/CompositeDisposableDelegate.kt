@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.common.delegate
+package com.pustovit.pdp.marvelapp.ui.common
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver

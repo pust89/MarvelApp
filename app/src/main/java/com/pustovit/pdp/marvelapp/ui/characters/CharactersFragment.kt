@@ -6,22 +6,21 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.common.android.hideKeyboard
-import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
+import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import io.reactivex.rxkotlin.addTo
@@ -39,7 +38,7 @@ class CharactersFragment : Fragment() {
         CharactersListAdapter(imageLoader)
     }
 
-    private val viewModel by viewModels<CharactersViewModel> {
+    private val viewModel by baseViewModels<CharactersViewModel> {
         viewModelFactory
     }
 
@@ -52,7 +51,6 @@ class CharactersFragment : Fragment() {
         DaggerCharactersComponent.builder()
             .appComponent(appComponent())
             .build().inject(this)
-        viewModel.onAttach()
     }
 
     override fun onCreateView(

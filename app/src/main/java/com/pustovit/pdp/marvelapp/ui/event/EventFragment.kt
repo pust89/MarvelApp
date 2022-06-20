@@ -15,13 +15,12 @@ import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
-import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
-import com.pustovit.pdp.marvelapp.databinding.FragmentCharactersBinding
+import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventBinding
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
 import com.pustovit.pdp.marvelapp.ui.characters.CharactersListAdapter
+import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.event.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.common.extensions.router
@@ -46,7 +45,7 @@ class EventFragment : Fragment() {
         CharactersListAdapter(imageLoader)
     }
 
-    private val viewModel: EventViewModel by viewModels<EventViewModel> {
+    private val viewModel: EventViewModel by baseViewModels<EventViewModel> {
         viewModelFactory
     }
 
@@ -55,7 +54,6 @@ class EventFragment : Fragment() {
         DaggerEventComponent.builder()
             .appComponent(appComponent())
             .build().inject(this)
-        viewModel.onAttach()
     }
 
     override fun onCreateView(

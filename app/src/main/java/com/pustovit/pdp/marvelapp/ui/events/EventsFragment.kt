@@ -6,15 +6,15 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.app.appComponent
-import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
+import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentEventsBinding
 import com.pustovit.pdp.marvelapp.domain.model.event.Event
 import com.pustovit.pdp.marvelapp.navigation.Screens
+import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import com.pustovit.pdp.marvelapp.ui.events.di.DaggerEventsComponent
@@ -30,7 +30,7 @@ class EventsFragment : Fragment() {
     @Inject
     lateinit var adapter: EventsListAdapter
 
-    private val viewModel: EventsViewModel by viewModels { viewModelFactory }
+    private val viewModel: EventsViewModel by baseViewModels { viewModelFactory }
 
     private var binding: FragmentEventsBinding? = null
 
@@ -42,7 +42,6 @@ class EventsFragment : Fragment() {
             .appComponent(appComponent())
             .build()
             .inject(this@EventsFragment)
-        viewModel.onAttach()
     }
 
     override fun onCreateView(

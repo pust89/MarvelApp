@@ -19,7 +19,9 @@ import javax.inject.Inject
 class CharactersViewModel @Inject constructor(
     private val repository: CharactersRepository
 ) : BaseViewModel<CharactersViewState>(CharactersViewState()) {
-
+    init {
+        Timber.d("init CharactersViewModel ${hashCode()}")
+    }
     private val userInputSubject = BehaviorSubject.createDefault<String>("")
 
     private val queryFlowable: Flowable<String> =

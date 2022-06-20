@@ -2,27 +2,24 @@ package com.pustovit.pdp.marvelapp.ui.character
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.github.terrakok.cicerone.Router
 import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.appComponent
-import com.pustovit.pdp.marvelapp.common.delegate.CompositeDisposableDelegate
+import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.databinding.FragmentCharacterBinding
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.character.di.DaggerCharacterComponent
 import com.pustovit.pdp.marvelapp.ui.character.di.ViewModelFactory
 import com.pustovit.pdp.marvelapp.ui.character.mvi.CharacterViewState
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
+import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.common.extensions.router
 import io.reactivex.rxkotlin.addTo
@@ -37,7 +34,7 @@ class CharacterFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    private val viewModel by viewModels<CharacterViewModel> {
+    private val viewModel by baseViewModels<CharacterViewModel> {
         viewModelFactory
     }
 
@@ -51,7 +48,6 @@ class CharacterFragment : Fragment() {
         DaggerCharacterComponent.builder()
             .appComponent(appComponent())
             .build().inject(this)
-        viewModel.onAttach()
     }
 
     override fun onCreateView(
