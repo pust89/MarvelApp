@@ -15,3 +15,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MarvelApp"
 include ':app'
+include ':core-network-api'
+include ':core-network-impl'
+include ':feature-characters-api'
+
