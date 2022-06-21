@@ -1,6 +1,7 @@
 package com.pustovit.pdp.marvelapp.ui.character.summary.model
 
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
+import com.pustovit.pdp.summary.model.SummaryItem
 
 sealed class SummaryItem {
     abstract val uid: String

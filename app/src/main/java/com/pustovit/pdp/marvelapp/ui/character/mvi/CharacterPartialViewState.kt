@@ -1,5 +1,6 @@
 package com.pustovit.pdp.marvelapp.ui.character.mvi
 
+import com.pustovit.pdp.character.mvi.CharacterViewState
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.common.mvi.PartialViewState
 

@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/core-network-impl" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/core-utils" />
+            <option value="$PROJECT_DIR$/feature-character-api" />
+            <option value="$PROJECT_DIR$/feature-character-impl" />
             <option value="$PROJECT_DIR$/feature-characters-api" />
             <option value="$PROJECT_DIR$/feature-characters-impl" />
             <option value="$PROJECT_DIR$/feature-events-api" />

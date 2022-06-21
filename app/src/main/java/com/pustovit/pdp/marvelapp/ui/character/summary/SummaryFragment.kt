@@ -15,11 +15,13 @@ import com.pustovit.pdp.marvelapp.databinding.FragmentSummaryBinding
 import com.pustovit.pdp.marvelapp.domain.model.common.Items
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
 import com.pustovit.pdp.marvelapp.ui.character.di.DaggerCharacterComponent
-import com.pustovit.pdp.marvelapp.ui.character.di.ViewModelFactory
-import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryViewState
+import com.pustovit.pdp.character.di.ViewModelFactory
+import com.pustovit.pdp.summary.mvi.SummaryViewState
 import com.pustovit.pdp.marvelapp.ui.common.CompositeDisposableDelegate
 import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
+import com.pustovit.pdp.summary.SummaryFragment
+import com.pustovit.pdp.summary.SummaryViewModel
 import io.reactivex.rxkotlin.addTo
 import kotlinx.parcelize.Parcelize
 import timber.log.Timber

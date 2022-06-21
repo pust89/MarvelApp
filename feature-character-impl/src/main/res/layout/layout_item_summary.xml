@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dims_8dp"
+    android:padding="@dimen/dims_16dp"
+    app:cardBackgroundColor="@color/grey1"
+    app:cardCornerRadius="@dimen/dims_8dp"
+    app:cardElevation="@dimen/dims_8dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="@dimen/dims_1dp">
+
+        <TextView
+            android:id="@+id/summaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Superman" />
+
+</com.google.android.material.card.MaterialCardView>

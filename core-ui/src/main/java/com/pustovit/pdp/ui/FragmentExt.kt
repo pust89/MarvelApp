@@ -14,6 +14,7 @@ fun Fragment.mainRouter(): Router {
 }
 
 fun Fragment.router(): Router {
+
     return (parentFragment as RouterProvider).router
 }
 

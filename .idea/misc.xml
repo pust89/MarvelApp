@@ -31,6 +31,9 @@
         <entry key="app/src/main/res/layout/layout_item_summary_header.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.27794871794871795" />
         <entry key="core-ui/src/main/res/drawable/ic_events_24.xml" value="0.1" />
+        <entry key="feature-character-impl/src/main/res/layout/fragment_character.xml" value="0.11671654553227875" />
+        <entry key="feature-character-impl/src/main/res/layout/fragment_summary.xml" value="0.11671654553227875" />
+        <entry key="feature-character-impl/src/main/res/layout/layout_item_summary.xml" value="0.11671654553227875" />
         <entry key="feature-characters-api/src/main/res/layout/layout_item_character.xml" value="0.22878851836217814" />
         <entry key="feature-characters-impl/src/main/res/layout/fragment_characters.xml" value="0.1" />
         <entry key="feature-characters-impl/src/main/res/layout/layout_item_character.xml" value="0.22878851836217814" />

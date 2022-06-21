@@ -1,9 +1,9 @@
 package com.pustovit.pdp.marvelapp.ui.character.summary
 
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
-import com.pustovit.pdp.marvelapp.ui.character.summary.model.SummaryItem
-import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryPartialViewState
-import com.pustovit.pdp.marvelapp.ui.character.summary.mvi.SummaryViewState
+import com.pustovit.pdp.summary.model.SummaryItem
+import com.pustovit.pdp.summary.mvi.SummaryPartialViewState
+import com.pustovit.pdp.summary.mvi.SummaryViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers

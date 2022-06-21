@@ -107,6 +107,9 @@ dependencies {
     implementation project(":feature-characters-api")
     implementation project(":feature-characters-impl")
 
+    implementation project(":feature-character-api")
+    implementation project(":feature-character-impl")
+
     implementation project(":feature-events-api")
     implementation project(":feature-events-impl")
 }
