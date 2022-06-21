@@ -15,15 +15,22 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MarvelApp"
 include ':app'
-include ':core-network-api'
-include ':core-network-impl'
-include ':feature-characters-api'
-
 include ':core-ui'
 include ':core-utils'
-include ':feature-characters-impl'
+
+include ':core-network-api'
+include ':core-network-impl'
+
 include ':core-common-models'
-include ':feature-events-api'
-include ':feature-events-impl'
+
+include ':feature-characters-api'
+include ':feature-characters-impl'
+
 include ':feature-character-api'
 include ':feature-character-impl'
+
+include ':feature-events-api'
+include ':feature-events-impl'
+
+include ':feature-event-api'
+include ':feature-event-impl'

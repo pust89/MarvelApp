@@ -47,8 +47,10 @@ android {
 }
 
 dependencies {
+    implementation project(":core-ui")
     implementation project(":core-utils")
     implementation project(":feature-character-api")
+    implementation project(":feature-characters-api")
 
     /* Dagger2 */
     implementation "com.google.dagger:dagger:$daggerVersion"

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
+import com.pustovit.pdp.characters.api.CharactersListAdapter
 import com.pustovit.pdp.characters.api.model.Character
 import com.pustovit.pdp.characters.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.characters.di.ViewModelFactory
@@ -25,11 +26,7 @@ class CharactersFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
-    lateinit var imageLoader: ImageLoader
-
-    private val adapter: CharactersListAdapter by lazy {
-        CharactersListAdapter(imageLoader)
-    }
+    lateinit var adapter: CharactersListAdapter
 
     private val viewModel by baseViewModels<CharactersViewModel> {
         viewModelFactory
@@ -121,7 +118,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun onCharacterClick(character: Character) {
-       // TODO navigation point 1
+        // TODO navigation point 1
 //        router().navigateTo(
 //            Screens.characterScreen(character.id)
 //        )

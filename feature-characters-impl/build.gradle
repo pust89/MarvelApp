@@ -50,6 +50,7 @@ dependencies {
     implementation project(":core-utils")
     implementation project(":feature-characters-api")
     implementation project(":core-network-api")
+    implementation project(":core-ui")
 
     /* Dagger2 */
     implementation "com.google.dagger:dagger:$daggerVersion"

@@ -21,6 +21,8 @@
             <option value="$PROJECT_DIR$/feature-character-impl" />
             <option value="$PROJECT_DIR$/feature-characters-api" />
             <option value="$PROJECT_DIR$/feature-characters-impl" />
+            <option value="$PROJECT_DIR$/feature-event-api" />
+            <option value="$PROJECT_DIR$/feature-event-impl" />
             <option value="$PROJECT_DIR$/feature-events-api" />
             <option value="$PROJECT_DIR$/feature-events-impl" />
           </set>
