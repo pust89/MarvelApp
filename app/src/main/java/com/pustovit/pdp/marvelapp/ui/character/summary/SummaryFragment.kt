@@ -82,10 +82,10 @@ class SummaryFragment : Fragment() {
                 arguments?.getParcelable<Items>(ARG_KEY_CONTENT)?.items
             }
             SummaryTitle.Series -> {
-                arguments?.getParcelable<Series>(ARG_KEY_CONTENT)?.items
+                arguments?.getParcelable<Items>(ARG_KEY_CONTENT)?.items
             }
             SummaryTitle.Stories -> {
-                arguments?.getParcelable<Stories>(ARG_KEY_CONTENT)?.items
+                arguments?.getParcelable<Items>(ARG_KEY_CONTENT)?.items
             }
             else -> {
                 emptyList<Summary>()
@@ -153,7 +153,7 @@ class SummaryFragment : Fragment() {
             }
         }
 
-        fun newInstance(series: Series): SummaryFragment {
+        fun newInstance(series: Items): SummaryFragment {
             return SummaryFragment().apply {
                 arguments = bundleOf(
                     ARG_KEY_TITLE to SummaryTitle.Series,
@@ -162,7 +162,7 @@ class SummaryFragment : Fragment() {
             }
         }
 
-        fun newInstance(stories: Stories): SummaryFragment {
+        fun newInstance(stories: Items): SummaryFragment {
             return SummaryFragment().apply {
                 arguments = bundleOf(
                     ARG_KEY_TITLE to SummaryTitle.Stories,

@@ -22,11 +22,11 @@ object Screens {
     fun summaryScreen(comics: Items) = FragmentScreen {
         SummaryFragment.newInstance(comics)
     }
-    fun summaryScreen(stories: Stories) = FragmentScreen {
+    fun summaryScreen(stories: Items) = FragmentScreen {
         SummaryFragment.newInstance(stories)
     }
 
-    fun summaryScreen(series: Series) = FragmentScreen {
+    fun summaryScreen(series: Items) = FragmentScreen {
         SummaryFragment.newInstance(series)
     }
 

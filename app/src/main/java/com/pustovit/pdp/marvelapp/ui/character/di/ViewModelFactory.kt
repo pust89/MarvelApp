@@ -6,7 +6,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 
-@CharacterScope
+//@CharacterScope
 class ViewModelFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>,
             @JvmSuppressWildcards Provider<ViewModel>>

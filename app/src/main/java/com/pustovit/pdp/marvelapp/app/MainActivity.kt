@@ -12,9 +12,9 @@ import com.pustovit.pdp.marvelapp.R
 import com.pustovit.pdp.marvelapp.app.di.module.MainNavigatorHolder
 import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
 import com.pustovit.pdp.marvelapp.databinding.ActivityMainBinding
-import com.pustovit.pdp.marvelapp.navigation.RouterProvider
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.navigation.TabNavigation
+import com.pustovit.pdp.ui.RouterProvider
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {

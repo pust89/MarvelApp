@@ -45,9 +45,9 @@ class CharacterFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Timber.d("onAttach called CharacterFragment")
-        DaggerCharacterComponent.builder()
-            .appComponent(appComponent())
-            .build().inject(this)
+//        DaggerCharacterComponent.builder()
+//            .appComponent(appComponent())
+//            .build().inject(this)
     }
 
     override fun onCreateView(

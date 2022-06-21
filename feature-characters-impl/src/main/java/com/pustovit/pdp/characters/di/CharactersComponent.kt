@@ -1,13 +1,9 @@
 package com.pustovit.pdp.characters.di
 
 import androidx.lifecycle.ViewModel
-import com.github.terrakok.cicerone.Router
+import com.pustovit.pdp.characters.ui.CharactersFragment
+import com.pustovit.pdp.characters.ui.CharactersViewModel
 import com.pustovit.pdp.di.ViewModelKey
-import com.pustovit.pdp.marvelapp.app.di.AppComponent
-import com.pustovit.pdp.marvelapp.app.di.module.ViewModelKey
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersViewModel
 import dagger.Binds
 import dagger.Component
 import dagger.Module
@@ -17,7 +13,7 @@ import javax.inject.Scope
 
 @CharactersScope
 @Component(
-    dependencies = [AppComponent::class],
+    dependencies = [CharactersFeatureDependencies::class],
     modules = [ViewModelModule::class]
 )
 interface CharactersComponent {
@@ -27,7 +23,7 @@ interface CharactersComponent {
     @Component.Builder
     interface Builder {
 
-        fun appComponent(appComponent: AppComponent): Builder
+        fun dependencies(dependencies: CharactersFeatureDependencies): Builder
 
         fun build(): CharactersComponent
     }

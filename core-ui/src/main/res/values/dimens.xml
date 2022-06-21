@@ -1,0 +1,32 @@
+<resources>
+
+    <dimen name="text_14sp">14sp</dimen>
+    <dimen name="text_16sp">16sp</dimen>
+    <dimen name="text_18sp">18sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_26sp">26sp</dimen>
+
+    <dimen name="dims_1dp">1dp</dimen>
+    <dimen name="dims_2dp">2dp</dimen>
+    <dimen name="dims_4dp">4dp</dimen>
+    <dimen name="dims_6dp">6dp</dimen>
+    <dimen name="dims_8dp">8dp</dimen>
+    <dimen name="dims_10dp">10dp</dimen>
+    <dimen name="dims_12dp">12dp</dimen>
+    <dimen name="dims_16dp">16dp</dimen>
+    <dimen name="dims_24dp">24dp</dimen>
+    <dimen name="dims_32dp">32dp</dimen>
+    <dimen name="dims_40dp">40dp</dimen>
+    <dimen name="dims_48dp">48dp</dimen>
+    <dimen name="dims_56dp">56dp</dimen>
+    <dimen name="dims_102dp">102dp</dimen>
+    <dimen name="dims_128dp">128dp</dimen>
+    <dimen name="dims_160dp">160dp</dimen>
+    <dimen name="dims_200dp">200dp</dimen>
+    <dimen name="dims_250dp">250dp</dimen>
+
+    <dimen name="dims_368dp">368dp</dimen>
+    <dimen name="dims_400dp">400dp</dimen>
+    <dimen name="dims_520dp">520dp</dimen>
+</resources>

@@ -19,6 +19,8 @@
             <option value="$PROJECT_DIR$/core-utils" />
             <option value="$PROJECT_DIR$/feature-characters-api" />
             <option value="$PROJECT_DIR$/feature-characters-impl" />
+            <option value="$PROJECT_DIR$/feature-events-api" />
+            <option value="$PROJECT_DIR$/feature-events-impl" />
           </set>
         </option>
       </GradleProjectSettings>
