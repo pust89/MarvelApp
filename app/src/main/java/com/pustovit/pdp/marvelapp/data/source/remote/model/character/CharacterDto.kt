@@ -20,13 +20,13 @@ data class CharacterDto(
     @Json(name = "resourceURI")
     val resourceURI: String?,
     @Json(name = "comics")
-    val comics: ComicsDto?,
+    val comics: ItemsDto?,
     @Json(name = "series")
-    val series: SeriesDto?,
+    val series: ItemsDto?,
     @Json(name = "stories")
-    val stories: StoriesDto?,
+    val stories: ItemsDto?,
     @Json(name = "events")
-    val events: EventsDto?,
+    val events: ItemsDto?,
     @Json(name = "urls")
     val urls: List<UrlDto>?
 )

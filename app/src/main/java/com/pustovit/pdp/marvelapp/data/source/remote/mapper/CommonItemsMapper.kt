@@ -15,69 +15,17 @@ class CommonItemsMapper {
         } ?: Thumbnail()
     }
 
-    fun map(dto: ComicsDto?): Comics {
+    fun map(dto: ItemsDto?): Items {
         return dto?.let {
-            Comics(
+            Items(
                 available = it.available.orZero(),
                 collectionURI = it.collectionURI.orEmpty(),
                 items = map(it.items),
                 returned = it.returned.orZero()
             )
-        } ?: Comics()
+        } ?: Items()
     }
 
-    fun map(dto: SeriesDto?): Series {
-        return dto?.let {
-            Series(
-                available = it.available.orZero(),
-                collectionURI = it.collectionURI.orEmpty(),
-                items = map(it.items)
-            )
-        } ?: Series()
-    }
-
-    fun map(dto: StoriesDto?): Stories {
-        return dto?.let {
-            Stories(
-                available = it.available.orZero(),
-                collectionURI = it.collectionURI.orEmpty(),
-                items = map(it.items)
-            )
-        } ?: Stories()
-    }
-
-    fun map(dto: EventsDto?): Events {
-        return dto?.let {
-            Events(
-                available = it.available.orZero(),
-                collectionURI = it.collectionURI.orEmpty(),
-                items = map(it.items),
-                returned = it.returned.orZero()
-            )
-        } ?: Events()
-    }
-
-    fun map(dto: CharactersDto?): Characters {
-        return dto?.let {
-            Characters(
-                available = it.available.orZero(),
-                collectionURI = it.collectionURI.orEmpty(),
-                items = map(it.items),
-                returned = it.returned.orZero()
-            )
-        } ?: Characters()
-    }
-
-    fun map(dto: CreatorsDto?): Creators {
-        return dto?.let {
-            Creators(
-                available = it.available.orZero(),
-                collectionURI = it.collectionURI.orEmpty(),
-                items = map(it.items),
-                returned = it.returned.orZero()
-            )
-        } ?: Creators()
-    }
 
     fun map(dto: SummaryDto?): Summary {
         return dto?.let {
@@ -98,17 +46,6 @@ class CommonItemsMapper {
         } ?: emptyList<Summary>()
     }
 
-    @JvmName("mapCharacterSummaryDto")
-    fun map(items: List<CharacterSummaryDto>?): List<CharacterSummary> {
-        return items?.map {
-            CharacterSummary(
-                resourceURI = it.resourceURI.orEmpty(),
-                name = it.name.orEmpty(),
-                role = it.role.orEmpty()
-            )
-        } ?: emptyList<CharacterSummary>()
-    }
-
     @JvmName("mapUrlDto")
     fun map(urls: List<UrlDto>?): List<UrlModel> {
         return urls?.map {
@@ -118,6 +55,5 @@ class CommonItemsMapper {
             )
         } ?: emptyList<UrlModel>()
     }
-
 
 }

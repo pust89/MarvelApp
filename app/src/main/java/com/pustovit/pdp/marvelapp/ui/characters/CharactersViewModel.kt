@@ -2,8 +2,8 @@ package com.pustovit.pdp.marvelapp.ui.characters
 
 import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.domain.repository.CharactersRepository
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersPartialViewState
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import com.pustovit.pdp.characters.ui.mvi.CharactersPartialViewState
+import com.pustovit.pdp.characters.ui.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.BaseViewModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable

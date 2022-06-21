@@ -19,3 +19,7 @@ include ':core-network-api'
 include ':core-network-impl'
 include ':feature-characters-api'
 
+include ':core-ui'
+include ':core-utils'
+include ':feature-characters-impl'
+include ':core-common-models'

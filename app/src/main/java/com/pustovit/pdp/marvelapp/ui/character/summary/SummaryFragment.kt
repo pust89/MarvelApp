@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.marvelapp.app.appComponent
 import com.pustovit.pdp.marvelapp.databinding.FragmentSummaryBinding
-import com.pustovit.pdp.marvelapp.domain.model.common.Comics
-import com.pustovit.pdp.marvelapp.domain.model.common.Series
-import com.pustovit.pdp.marvelapp.domain.model.common.Stories
+import com.pustovit.pdp.marvelapp.domain.model.common.Items
 import com.pustovit.pdp.marvelapp.domain.model.common.Summary
 import com.pustovit.pdp.marvelapp.ui.character.di.DaggerCharacterComponent
 import com.pustovit.pdp.marvelapp.ui.character.di.ViewModelFactory
@@ -81,7 +79,7 @@ class SummaryFragment : Fragment() {
 
         val contentList = when (title) {
             SummaryTitle.Comics -> {
-                arguments?.getParcelable<Comics>(ARG_KEY_CONTENT)?.items
+                arguments?.getParcelable<Items>(ARG_KEY_CONTENT)?.items
             }
             SummaryTitle.Series -> {
                 arguments?.getParcelable<Series>(ARG_KEY_CONTENT)?.items
@@ -146,7 +144,7 @@ class SummaryFragment : Fragment() {
         private const val ARG_KEY_TITLE = "title"
         private const val ARG_KEY_CONTENT = "content"
 
-        fun newInstance(comics: Comics): SummaryFragment {
+        fun newInstance(comics: Items): SummaryFragment {
             return SummaryFragment().apply {
                 arguments = bundleOf(
                     ARG_KEY_TITLE to SummaryTitle.Comics,

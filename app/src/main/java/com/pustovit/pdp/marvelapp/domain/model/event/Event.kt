@@ -6,9 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Event(
-    val characters: Characters = Characters(),
-    val comics: Comics = Comics(),
-    val creators: Creators = Creators(),
+    val characters: Items = Items(),
+    val comics: Items = Items(),
+    val creators: Items = Items(),
     val description: String = "",
     val end: String = "",
     val id: Int = 0,
@@ -16,9 +16,9 @@ data class Event(
     val next: Summary = Summary(),
     val previous: Summary = Summary(),
     val resourceURI: String = "",
-    val series: Series = Series(),
+    val series: Items = Items(),
     val start: String = "",
-    val stories: Stories = Stories(),
+    val stories: Items = Items(),
     val thumbnail: Thumbnail = Thumbnail(),
     val title: String = "",
     val urls: List<UrlModel> = emptyList()

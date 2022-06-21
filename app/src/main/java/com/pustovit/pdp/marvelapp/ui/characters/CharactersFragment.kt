@@ -19,7 +19,7 @@ import com.pustovit.pdp.marvelapp.domain.model.character.Character
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.ui.characters.di.DaggerCharactersComponent
 import com.pustovit.pdp.marvelapp.ui.characters.di.ViewModelFactory
-import com.pustovit.pdp.marvelapp.ui.characters.mvi.CharactersViewState
+import com.pustovit.pdp.characters.ui.mvi.CharactersViewState
 import com.pustovit.pdp.marvelapp.ui.common.baseViewModels
 import com.pustovit.pdp.marvelapp.ui.common.extensions.handleViewStateError
 import com.pustovit.pdp.marvelapp.ui.common.extensions.router

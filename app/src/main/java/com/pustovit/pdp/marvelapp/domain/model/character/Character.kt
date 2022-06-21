@@ -17,10 +17,10 @@ data class Character(
     val modified: String = "",
     val thumbnail: Thumbnail = Thumbnail(),
     val resourceURI: String = "",
-    val comics: Comics = Comics(),
-    val series: Series = Series(),
-    val stories: Stories = Stories(),
-    val events: Events = Events(),
+    val comics: Items = Items(),
+    val series: Items = Items(),
+    val stories: Items = Items(),
+    val events: Items = Items(),
     val urls: List<UrlModel> = emptyList()
 ):Parcelable
 
