@@ -1,19 +1,18 @@
 package com.pustovit.pdp.events.di
 
-import androidx.lifecycle.ViewModel
-import com.pustovit.pdp.di.ViewModelKey
+import com.pustoivt.pdp.events_api.EventsApi
+import com.pustovit.pdp.utils.di.FeatureScope
 import com.pustovit.pdp.events.ui.EventsFragment
-import com.pustovit.pdp.events.ui.EventsViewModel
-import dagger.Binds
 import dagger.Component
-import dagger.Module
-import dagger.multibindings.IntoMap
-import javax.inject.Scope
 
-@EventsScope
-@Component(dependencies = [EventsFeatureDependencies::class],
-modules = [ViewModelModule::class])
-interface EventsComponent {
+@FeatureScope
+@Component(
+    dependencies = [EventsFeatureDependencies::class],
+    modules = [ServiceModule::class,
+        DataModule::class,
+        ViewModelModule::class]
+)
+interface EventsComponent : EventsApi {
 
     fun inject(eventsFragment: EventsFragment)
 
@@ -27,17 +26,5 @@ interface EventsComponent {
 
 }
 
-@Scope
-@Retention(value = AnnotationRetention.RUNTIME)
-annotation class EventsScope
 
-@Module
-interface ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(EventsViewModel::class)
-    fun bindEventsViewModel(viewModel: EventsViewModel): ViewModel
-
-}
 

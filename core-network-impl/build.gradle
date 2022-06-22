@@ -42,8 +42,8 @@ android {
 
 dependencies {
     implementation project (":core-network-api")
+    implementation project (":core-utils")
 
-    implementation "androidx.multidex:multidex:$multidexVersion"
     implementation "androidx.core:core-ktx:$androidCoreKtxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
 

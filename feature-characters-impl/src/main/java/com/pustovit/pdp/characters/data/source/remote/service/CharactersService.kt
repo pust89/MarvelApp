@@ -1,7 +1,7 @@
 package com.pustovit.pdp.characters.data.source.remote.service
 
 import com.pustovit.pdp.characters.data.source.remote.model.CharacterDto
-import com.pustovit.pdp.models.response.MarvelResponse
+import com.pustovit.pdp.common_models.response.MarvelResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

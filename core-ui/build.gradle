@@ -41,7 +41,6 @@ android {
 }
 
 dependencies {
-    api "androidx.multidex:multidex:$multidexVersion"
     api "androidx.core:core-ktx:$androidCoreKtxVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
     api "com.google.android.material:material:$materialVersion"

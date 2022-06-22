@@ -1,9 +1,9 @@
 package com.pustovit.pdp.events.data.source.model
 
-import com.pustovit.pdp.models.dto.ItemsDto
-import com.pustovit.pdp.models.dto.SummaryDto
-import com.pustovit.pdp.models.dto.ThumbnailDto
-import com.pustovit.pdp.models.dto.UrlDto
+import com.pustovit.pdp.common_models.dto.ItemsDto
+import com.pustovit.pdp.common_models.dto.SummaryDto
+import com.pustovit.pdp.common_models.dto.ThumbnailDto
+import com.pustovit.pdp.common_models.dto.UrlDto
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

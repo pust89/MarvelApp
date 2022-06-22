@@ -3,17 +3,17 @@ package com.pustovit.pdp.character.di
 import androidx.lifecycle.ViewModel
 import com.pustovit.pdp.character.CharacterFragment
 import com.pustovit.pdp.character.CharacterViewModel
-import com.pustovit.pdp.di.ViewModelKey
-import com.pustovit.pdp.summary.SummaryFragment
-import com.pustovit.pdp.summary.SummaryViewModel
+import com.pustovit.pdp.utils.di.FeatureScope
+import com.pustovit.pdp.common_ui.di.ViewModelKey
+import com.pustovit.pdp.character.summary.SummaryFragment
+import com.pustovit.pdp.character.summary.SummaryViewModel
 import dagger.Binds
 import dagger.Component
 import dagger.Module
 import dagger.multibindings.IntoMap
-import javax.inject.Scope
 
 
-@CharacterScope
+@FeatureScope
 @Component(
     dependencies = [CharacterFeatureDependencies::class],
     modules = [ViewModelModule::class]
@@ -33,10 +33,6 @@ interface CharacterComponent {
     }
 
 }
-
-@Scope
-@Retention(value = AnnotationRetention.RUNTIME)
-annotation class CharacterScope
 
 @Module
 interface ViewModelModule {

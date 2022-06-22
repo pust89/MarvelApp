@@ -1,9 +1,9 @@
 package com.pustovit.pdp.characters.data.source.remote.mapper
 
-import com.pustovit.pdp.characters.api.model.Character
+import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.characters.data.source.remote.model.CharacterDto
-import com.pustovit.pdp.models.mapper.CommonItemsMapper
-import com.pustovit.pdp.models.response.MarvelResponse
+import com.pustovit.pdp.common_models.mapper.CommonItemsMapper
+import com.pustovit.pdp.common_models.response.MarvelResponse
 import com.pustovit.pdp.utils.orZero
 import javax.inject.Inject
 

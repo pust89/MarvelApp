@@ -3,7 +3,6 @@ package com.pustovit.pdp.marvelapp.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -14,7 +13,7 @@ import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
 import com.pustovit.pdp.marvelapp.databinding.ActivityMainBinding
 import com.pustovit.pdp.marvelapp.navigation.Screens
 import com.pustovit.pdp.marvelapp.navigation.TabNavigation
-import com.pustovit.pdp.ui.RouterProvider
+import com.pustovit.pdp.common_ui.ui.RouterProvider
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {

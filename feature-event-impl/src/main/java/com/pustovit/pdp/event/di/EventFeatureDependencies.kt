@@ -1,9 +1,9 @@
 package com.pustovit.pdp.event.di
 
-import coil.Coil
-import com.pustoivt.pdp.events.api.repository.EventsRepository
-import com.pustovit.pdp.characters.api.CharactersListAdapter
-import com.pustovit.pdp.characters.api.repository.CharactersRepository
+import coil.ImageLoader
+import com.pustoivt.pdp.events_api.repository.EventsRepository
+import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
+import com.pustovit.pdp.characters_api.api.repository.CharactersRepository
 
 interface EventFeatureDependencies {
 
@@ -13,5 +13,6 @@ interface EventFeatureDependencies {
 
     fun charactersListAdapter(): CharactersListAdapter
 
-    fun coil(): Coil
+    fun imageLoader(): ImageLoader
+
 }

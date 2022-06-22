@@ -1,6 +1,6 @@
 package com.pustovit.pdp.characters.data.source.remote
 
-import com.pustovit.pdp.characters.api.model.Character
+import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.characters.data.source.remote.mapper.CharactersMapper
 import com.pustovit.pdp.characters.data.source.remote.service.CharactersService
 import io.reactivex.Single

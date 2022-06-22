@@ -1,12 +1,13 @@
 package com.pustovit.pdp.network
 
+import com.pustovit.pdp.utils.di.FeatureScope
+import com.pustovit.pdp.network_api.CoreNetworkApi
 import dagger.Component
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
-@Singleton
+@FeatureScope
 @Component(modules = [CoreNetworkModule::class])
-interface CoreNetworkComponent : NetworkApi {
+interface CoreNetworkComponent : CoreNetworkApi {
 
     override fun retrofit(): Retrofit
 }

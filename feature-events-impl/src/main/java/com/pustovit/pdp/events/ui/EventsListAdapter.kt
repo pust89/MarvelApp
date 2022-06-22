@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
-import com.pustovit.pdp.marvelapp.databinding.LayoutItemEventBinding
-import com.pustovit.pdp.marvelapp.domain.model.event.Event
-import com.pustovit.pdp.marvelapp.ui.events.di.EventsScope
+import com.pustoivt.pdp.events_api.model.Event
+import com.pustovit.pdp.events.databinding.LayoutItemEventBinding
 import javax.inject.Inject
 
-@EventsScope
 class EventsListAdapter @Inject constructor(
     private val imageLoader: ImageLoader
 ) : ListAdapter<Event, EventsListAdapter.EventItemViewHolder>(

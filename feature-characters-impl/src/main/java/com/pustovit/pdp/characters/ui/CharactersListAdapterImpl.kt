@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.pustovit.pdp.characters.api.CharactersListAdapter
-import com.pustovit.pdp.characters.api.model.Character
 import com.pustovit.pdp.characters.databinding.LayoutItemCharacterBinding
+import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
+import com.pustovit.pdp.characters_api.api.model.Character
 import javax.inject.Inject
 
 class CharactersListAdapterImpl @Inject constructor(
@@ -28,7 +28,7 @@ class CharactersListAdapterImpl @Inject constructor(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val character = getItem(position)
-        (holder as?CharacterItemViewHolder)?.let {
+        (holder as? CharacterItemViewHolder)?.let {
             holder.bind(character)
         }
     }

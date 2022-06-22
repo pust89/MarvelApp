@@ -8,17 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.pustovit.pdp.characters.api.CharactersListAdapter
-import com.pustovit.pdp.characters.api.model.Character
+import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
+import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.event.databinding.FragmentEventBinding
 import com.pustovit.pdp.event.di.ViewModelFactory
 import com.pustovit.pdp.event.mvi.EventViewState
-import com.pustovit.pdp.ui.*
+import com.pustovit.pdp.common_ui.ui.*
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 

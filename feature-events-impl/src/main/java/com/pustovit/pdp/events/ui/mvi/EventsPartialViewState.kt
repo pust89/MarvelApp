@@ -1,7 +1,7 @@
 package com.pustovit.pdp.events.ui.mvi
 
-import com.pustoivt.pdp.events.api.model.Event
-import com.pustovit.pdp.marvelapp.common.mvi.PartialViewState
+import com.pustoivt.pdp.events_api.model.Event
+import com.pustovit.pdp.common_ui.ui.mvi.PartialViewState
 
 object EventsPartialViewState : PartialViewState<EventsViewState>() {
 

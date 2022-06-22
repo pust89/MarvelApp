@@ -1,13 +1,11 @@
 package com.pustovit.pdp.marvelapp.navigation
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.pustovit.pdp.marvelapp.domain.model.common.Items
-import com.pustovit.pdp.marvelapp.ui.character.CharacterFragment
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
-import com.pustovit.pdp.summary.SummaryFragment
-import com.pustovit.pdp.marvelapp.ui.event.EventFragment
-import com.pustovit.pdp.marvelapp.ui.events.EventsFragment
-import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
+import com.pustovit.pdp.character.CharacterFragment
+import com.pustovit.pdp.characters.ui.CharactersFragment
+import com.pustovit.pdp.event.EventFragment
+import com.pustovit.pdp.events.ui.EventsFragment
+import com.pustovit.pdp.marvelapp.app.TabContainerFragment
 
 object Screens {
 
@@ -15,23 +13,12 @@ object Screens {
         CharactersFragment()
     }
 
-    fun characterScreen(characterId: Int) = FragmentScreen {
-        CharacterFragment.newInstance(characterId)
-    }
-
-    fun summaryScreen(comics: Items) = FragmentScreen {
-        SummaryFragment.newInstance(comics)
-    }
-    fun summaryScreen(stories: Items) = FragmentScreen {
-        SummaryFragment.newInstance(stories)
-    }
-
-    fun summaryScreen(series: Items) = FragmentScreen {
-        SummaryFragment.newInstance(series)
-    }
-
     fun eventsScreen() = FragmentScreen {
         EventsFragment()
+    }
+
+    fun characterScreen(characterId: Int) = FragmentScreen {
+        CharacterFragment.newInstance(characterId)
     }
 
     fun eventScreen(eventId: Int) = FragmentScreen {

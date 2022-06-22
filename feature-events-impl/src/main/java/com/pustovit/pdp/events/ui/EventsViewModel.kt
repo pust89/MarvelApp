@@ -1,10 +1,10 @@
 package com.pustovit.pdp.events.ui
 
-import com.pustoivt.pdp.events.api.model.Event
-import com.pustoivt.pdp.events.api.repository.EventsRepository
+import com.pustoivt.pdp.events_api.model.Event
+import com.pustoivt.pdp.events_api.repository.EventsRepository
 import com.pustovit.pdp.events.ui.mvi.EventsPartialViewState
 import com.pustovit.pdp.events.ui.mvi.EventsViewState
-import com.pustovit.pdp.ui.BaseViewModel
+import com.pustovit.pdp.common_ui.ui.BaseViewModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single

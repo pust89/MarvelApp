@@ -1,7 +1,7 @@
 package com.pustovit.pdp.characters.ui
 
 import androidx.recyclerview.widget.DiffUtil
-import com.pustovit.pdp.characters.api.model.Character
+import com.pustovit.pdp.characters_api.api.model.Character
 import javax.inject.Inject
 
 class CharacterDiffUtilItemCallback @Inject constructor() : DiffUtil.ItemCallback<Character>() {

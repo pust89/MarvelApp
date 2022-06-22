@@ -2,11 +2,11 @@ package com.pustovit.pdp.events.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import timber.log.Timber
+import com.pustovit.pdp.utils.di.FeatureScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-@EventsScope
+@FeatureScope
 class ViewModelFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>,
             @JvmSuppressWildcards Provider<ViewModel>>

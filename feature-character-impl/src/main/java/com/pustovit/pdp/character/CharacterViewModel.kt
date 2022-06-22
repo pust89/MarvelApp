@@ -2,9 +2,9 @@ package com.pustovit.pdp.character
 
 import com.pustovit.pdp.character.mvi.CharacterPartialViewState
 import com.pustovit.pdp.character.mvi.CharacterViewState
-import com.pustovit.pdp.characters.api.model.Character
-import com.pustovit.pdp.characters.api.repository.CharactersRepository
-import com.pustovit.pdp.ui.BaseViewModel
+import com.pustovit.pdp.characters_api.api.model.Character
+import com.pustovit.pdp.characters_api.api.repository.CharactersRepository
+import com.pustovit.pdp.common_ui.ui.BaseViewModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single

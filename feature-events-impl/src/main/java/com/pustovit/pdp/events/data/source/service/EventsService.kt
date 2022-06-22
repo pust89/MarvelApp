@@ -1,7 +1,7 @@
 package com.pustovit.pdp.events.data.source.service
 
 import com.pustovit.pdp.events.data.source.model.EventDto
-import com.pustovit.pdp.models.response.MarvelResponse
+import com.pustovit.pdp.common_models.response.MarvelResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

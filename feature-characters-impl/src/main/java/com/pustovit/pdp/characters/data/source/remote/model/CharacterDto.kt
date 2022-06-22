@@ -1,8 +1,8 @@
 package com.pustovit.pdp.characters.data.source.remote.model
 
-import com.pustovit.pdp.models.dto.ItemsDto
-import com.pustovit.pdp.models.dto.ThumbnailDto
-import com.pustovit.pdp.models.dto.UrlDto
+import com.pustovit.pdp.common_models.dto.ItemsDto
+import com.pustovit.pdp.common_models.dto.ThumbnailDto
+import com.pustovit.pdp.common_models.dto.UrlDto
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

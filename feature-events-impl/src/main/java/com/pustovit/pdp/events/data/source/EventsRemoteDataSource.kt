@@ -1,6 +1,6 @@
 package com.pustovit.pdp.events.data.source
 
-import com.pustoivt.pdp.events.api.model.Event
+import com.pustoivt.pdp.events_api.model.Event
 import com.pustovit.pdp.events.data.source.mapper.EventsMapper
 import com.pustovit.pdp.events.data.source.service.EventsService
 import io.reactivex.Single

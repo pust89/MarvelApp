@@ -1,11 +1,12 @@
 package com.pustovit.pdp.events.di
 
-import coil.Coil
+import coil.ImageLoader
 import retrofit2.Retrofit
 
 interface EventsFeatureDependencies {
 
     fun retrofit(): Retrofit
 
-    fun coil(): Coil
+    fun imageLoader(): ImageLoader
+
 }

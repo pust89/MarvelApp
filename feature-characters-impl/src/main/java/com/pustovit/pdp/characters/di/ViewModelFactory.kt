@@ -2,10 +2,11 @@ package com.pustovit.pdp.characters.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.pustovit.pdp.utils.di.FeatureScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-@CharactersScope
+@FeatureScope
 class ViewModelFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>,
             @JvmSuppressWildcards Provider<ViewModel>>

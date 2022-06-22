@@ -1,9 +1,9 @@
 package com.pustovit.pdp.events.data.source.mapper
 
-import com.pustoivt.pdp.events.api.model.Event
+import com.pustoivt.pdp.events_api.model.Event
 import com.pustovit.pdp.events.data.source.model.EventDto
-import com.pustovit.pdp.models.mapper.CommonItemsMapper
-import com.pustovit.pdp.models.response.MarvelResponse
+import com.pustovit.pdp.common_models.mapper.CommonItemsMapper
+import com.pustovit.pdp.common_models.response.MarvelResponse
 import com.pustovit.pdp.utils.orZero
 import javax.inject.Inject
 

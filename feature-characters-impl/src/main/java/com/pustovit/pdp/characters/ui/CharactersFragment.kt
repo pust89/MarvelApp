@@ -10,13 +10,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
-import com.pustovit.pdp.characters.api.CharactersListAdapter
-import com.pustovit.pdp.characters.api.model.Character
 import com.pustovit.pdp.characters.databinding.FragmentCharactersBinding
+import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
+import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.characters.di.ViewModelFactory
 import com.pustovit.pdp.characters.ui.mvi.CharactersViewState
-import com.pustovit.pdp.ui.*
+import com.pustovit.pdp.common_ui.ui.*
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 

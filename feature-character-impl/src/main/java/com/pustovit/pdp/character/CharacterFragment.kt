@@ -13,10 +13,9 @@ import coil.transform.CircleCropTransformation
 import com.pustovit.pdp.character.databinding.FragmentCharacterBinding
 import com.pustovit.pdp.character.di.ViewModelFactory
 import com.pustovit.pdp.character.mvi.CharacterViewState
-import com.pustovit.pdp.navigation.Screens
-import com.pustovit.pdp.summary.SummaryFragment
-import com.pustovit.pdp.summary.SummaryTitle
-import com.pustovit.pdp.ui.*
+import com.pustovit.pdp.character.navigation.Screens
+import com.pustovit.pdp.character.summary.SummaryTitle
+import com.pustovit.pdp.common_ui.ui.*
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject

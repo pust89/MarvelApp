@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.pustoivt.pdp.events.api.model.Event
+import com.pustoivt.pdp.events_api.model.Event
 import com.pustovit.pdp.events.databinding.FragmentEventsBinding
 import com.pustovit.pdp.events.di.ViewModelFactory
 import com.pustovit.pdp.events.ui.mvi.EventsViewState
-import com.pustovit.pdp.ui.CompositeDisposableDelegate
-import com.pustovit.pdp.ui.baseViewModels
-import com.pustovit.pdp.ui.handleViewStateError
+import com.pustovit.pdp.common_ui.ui.CompositeDisposableDelegate
+import com.pustovit.pdp.common_ui.ui.baseViewModels
+import com.pustovit.pdp.common_ui.ui.handleViewStateError
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 

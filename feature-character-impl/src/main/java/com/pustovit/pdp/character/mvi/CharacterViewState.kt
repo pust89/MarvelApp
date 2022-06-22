@@ -1,8 +1,8 @@
 package com.pustovit.pdp.character.mvi
 
-import com.pustovit.pdp.characters.api.model.Character
-import com.pustovit.pdp.marvelapp.common.mvi.ViewState
-import com.pustovit.pdp.marvelapp.common.mvi.ViewStateError
+import com.pustovit.pdp.characters_api.api.model.Character
+import com.pustovit.pdp.common_ui.ui.mvi.ViewState
+import com.pustovit.pdp.common_ui.ui.mvi.ViewStateError
 
 data class CharacterViewState(
     val character: Character = Character(),

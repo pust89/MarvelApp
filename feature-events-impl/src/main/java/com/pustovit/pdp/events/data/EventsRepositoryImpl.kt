@@ -1,7 +1,7 @@
 package com.pustovit.pdp.events.data
 
-import com.pustoivt.pdp.events.api.model.Event
-import com.pustoivt.pdp.events.api.repository.EventsRepository
+import com.pustoivt.pdp.events_api.model.Event
+import com.pustoivt.pdp.events_api.repository.EventsRepository
 import com.pustovit.pdp.events.data.source.EventsRemoteDataSource
 import io.reactivex.Single
 import javax.inject.Inject
