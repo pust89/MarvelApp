@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.characters.databinding.FragmentCharactersBinding
+import com.pustovit.pdp.characters.di.CharactersComponentHolder
 import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
 import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.characters.di.ViewModelFactory
@@ -37,10 +38,7 @@ class CharactersFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // TODO injection point 1
-//        DaggerCharactersComponent.builder()
-//            .appComponent(appComponent())
-//            .build().inject(this)
+        CharactersComponentHolder.getComponent().inject(this)
     }
 
     override fun onCreateView(

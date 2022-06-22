@@ -15,6 +15,7 @@ import com.pustovit.pdp.events.ui.mvi.EventsViewState
 import com.pustovit.pdp.common_ui.ui.CompositeDisposableDelegate
 import com.pustovit.pdp.common_ui.ui.baseViewModels
 import com.pustovit.pdp.common_ui.ui.handleViewStateError
+import com.pustovit.pdp.events.di.EventsComponentHolder
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -33,11 +34,7 @@ class EventsFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // TODO injection point 2
-//        DaggerEventsComponent.builder()
-//            .appComponent(appComponent())
-//            .build()
-//            .inject(this@EventsFragment)
+        EventsComponentHolder.getComponent().inject(this)
     }
 
     override fun onCreateView(

@@ -50,6 +50,7 @@ dependencies {
     implementation project(":core-ui")
     implementation project(":core-utils")
     implementation project(":feature-characters-api")
+    implementation project(":feature-event-api")
     implementation project(":feature-events-api")
 
     /* Dagger2 */

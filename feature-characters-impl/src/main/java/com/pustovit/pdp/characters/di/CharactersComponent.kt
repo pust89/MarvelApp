@@ -23,14 +23,6 @@ interface CharactersComponent : CharactersApi {
 
     fun inject(charactersFragment: CharactersFragment)
 
-    @Component.Builder
-    interface Builder {
-
-        fun dependencies(dependencies: CharactersFeatureDependencies): Builder
-
-        fun build(): CharactersComponent
-    }
-
 }
 
 @Module

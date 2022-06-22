@@ -18,6 +18,7 @@ import com.pustovit.pdp.event.databinding.FragmentEventBinding
 import com.pustovit.pdp.event.di.ViewModelFactory
 import com.pustovit.pdp.event.mvi.EventViewState
 import com.pustovit.pdp.common_ui.ui.*
+import com.pustovit.pdp.event.di.EventComponentHolder
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -42,9 +43,7 @@ class EventFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        DaggerEventComponent.builder()
-//            .appComponent(appComponent())
-//            .build().inject(this)
+        EventComponentHolder.getComponent().inject(this)
     }
 
     override fun onCreateView(

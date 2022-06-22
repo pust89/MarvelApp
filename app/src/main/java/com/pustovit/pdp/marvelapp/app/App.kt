@@ -8,11 +8,6 @@ import com.pustovit.pdp.marvelapp.app.di.AppComponent
 import com.pustovit.pdp.marvelapp.app.di.DaggerAppComponent
 import timber.log.Timber
 
-/**
- * Created by Pustovit V.V.
- * Date: 29.05.2022
- * Time: 13:18
- */
 class App : Application() {
 
     val appComponent: AppComponent by lazy {

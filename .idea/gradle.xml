@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/feature-event-impl" />
             <option value="$PROJECT_DIR$/feature-events-api" />
             <option value="$PROJECT_DIR$/feature-events-impl" />
+            <option value="$PROJECT_DIR$/injector" />
           </set>
         </option>
       </GradleProjectSettings>

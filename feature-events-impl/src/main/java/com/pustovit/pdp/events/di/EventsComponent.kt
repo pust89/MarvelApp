@@ -12,17 +12,9 @@ import dagger.Component
         DataModule::class,
         ViewModelModule::class]
 )
-interface EventsComponent : EventsApi {
+internal interface EventsComponent : EventsApi {
 
     fun inject(eventsFragment: EventsFragment)
-
-    @Component.Builder
-    interface Builder {
-
-        fun dependencies(dependencies: EventsFeatureDependencies): Builder
-
-        fun build(): EventsComponent
-    }
 
 }
 

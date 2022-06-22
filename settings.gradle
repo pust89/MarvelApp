@@ -34,3 +34,4 @@ include ':feature-events-impl'
 
 include ':feature-event-api'
 include ':feature-event-impl'
+include ':injector'

@@ -46,6 +46,7 @@ android {
 }
 
 dependencies {
+    api project(":injector")
     api project(":core-common-models")
     // Rx
     api "io.reactivex.rxjava2:rxjava:$rxJava2Version"
