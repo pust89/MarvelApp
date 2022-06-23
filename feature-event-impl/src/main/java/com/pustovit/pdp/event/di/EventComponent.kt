@@ -1,15 +1,9 @@
 package com.pustovit.pdp.event.di
 
-import androidx.lifecycle.ViewModel
-import com.pustovit.pdp.utils.di.FeatureScope
-import com.pustovit.pdp.common_ui.di.ViewModelKey
 import com.pustovit.pdp.event.EventFragment
-import com.pustovit.pdp.event.EventViewModel
 import com.pustovit.pdp.event_api.EventApi
-import dagger.Binds
+import com.pustovit.pdp.utils.di.FeatureScope
 import dagger.Component
-import dagger.Module
-import dagger.multibindings.IntoMap
 
 @FeatureScope
 @Component(
@@ -22,12 +16,3 @@ interface EventComponent : EventApi {
 
 }
 
-@Module
-interface ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(EventViewModel::class)
-    fun bindEventViewModel(viewModel: EventViewModel): ViewModel
-
-}

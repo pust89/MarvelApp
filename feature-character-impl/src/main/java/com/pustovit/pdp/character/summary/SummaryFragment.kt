@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.pustovit.pdp.character.databinding.FragmentSummaryBinding
+import com.pustovit.pdp.character.di.CharacterComponentHolder
 import com.pustovit.pdp.character.di.ViewModelFactory
 import com.pustovit.pdp.character.summary.mvi.SummaryViewState
 import com.pustovit.pdp.common_models.domain.Items
@@ -48,10 +49,7 @@ class SummaryFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Timber.d("onAttach called SummaryFragment")
-//        DaggerCharacterComponent.builder()
-//            .appComponent(appComponent())
-//            .build().inject(this)
+        CharacterComponentHolder.getComponent().inject(this)
     }
 
     override fun onCreateView(
@@ -125,7 +123,6 @@ class SummaryFragment : Fragment() {
             adapter.submitList(summaries)
         }
     }
-
 
 
     companion object {

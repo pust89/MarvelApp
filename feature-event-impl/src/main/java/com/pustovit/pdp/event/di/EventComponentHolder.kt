@@ -2,6 +2,7 @@ package com.pustovit.pdp.event.di
 
 import com.pustovit.pdp.event_api.EventApi
 import com.pustovit.pdp.injector.ComponentHolder
+import timber.log.Timber
 
 object EventComponentHolder : ComponentHolder<EventApi, EventFeatureDependencies> {
 
@@ -10,6 +11,7 @@ object EventComponentHolder : ComponentHolder<EventApi, EventFeatureDependencies
 
     override fun init(dependencies: EventFeatureDependencies) {
         synchronized(EventComponentHolder::class) {
+            Timber.d("init EventComponent, deps=${dependencies}")
             if (eventComponent == null) {
                 eventComponent =
                     DaggerEventComponent.builder().eventFeatureDependencies(dependencies).build()
@@ -18,6 +20,7 @@ object EventComponentHolder : ComponentHolder<EventApi, EventFeatureDependencies
     }
 
     override fun get(): EventApi {
+        Timber.d("get EventComponent")
         requireNotNull(eventComponent) { "EventComponent was not initialized!" }
         return eventComponent!!
     }

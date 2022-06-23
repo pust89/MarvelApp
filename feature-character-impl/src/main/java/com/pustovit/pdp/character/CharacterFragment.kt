@@ -11,6 +11,7 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.pustovit.pdp.character.databinding.FragmentCharacterBinding
+import com.pustovit.pdp.character.di.CharacterComponentHolder
 import com.pustovit.pdp.character.di.ViewModelFactory
 import com.pustovit.pdp.character.mvi.CharacterViewState
 import com.pustovit.pdp.character.navigation.Screens
@@ -38,10 +39,7 @@ class CharacterFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Timber.d("onAttach called CharacterFragment")
-//        DaggerCharacterComponent.builder()
-//            .appComponent(appComponent())
-//            .build().inject(this)
+        CharacterComponentHolder.getComponent().inject(this)
     }
 
     override fun onCreateView(
