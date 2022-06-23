@@ -8,12 +8,8 @@ import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.pustivut.pdp.core_navigation.*
 import com.pustovit.pdp.marvelapp.R
-import com.pustovit.pdp.marvelapp.navigation.CiceroneHolder
-import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.navigation.TabNavigation
-import com.pustovit.pdp.common_ui.ui.RouterProvider
-import com.pustovit.pdp.common_ui.ui.mainRouter
 import javax.inject.Inject
 
 class TabContainerFragment : Fragment(R.layout.fragment_tab_container),
@@ -41,7 +37,7 @@ class TabContainerFragment : Fragment(R.layout.fragment_tab_container),
             if (fragment != null) {
                 router.exit()
             } else {
-                mainRouter().exit()
+                mainRouter.exit()
             }
         }
     }
@@ -60,8 +56,8 @@ class TabContainerFragment : Fragment(R.layout.fragment_tab_container),
     private fun setFirstScreen() {
         if (childFragmentManager.findFragmentById(R.id.tabContainer) == null) {
             when (tabNavigation) {
-                TabNavigation.CHARACTERS -> router.replaceScreen(Screens.charactersScreen())
-                TabNavigation.EVENTS -> router.replaceScreen(Screens.eventsScreen())
+                TabNavigation.CHARACTERS -> router.replaceScreen(screens.charactersScreen())
+                TabNavigation.EVENTS -> router.replaceScreen(screens.eventsScreen())
             }
         }
     }

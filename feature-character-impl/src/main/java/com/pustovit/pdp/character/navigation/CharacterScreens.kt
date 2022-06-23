@@ -5,7 +5,7 @@ import com.pustovit.pdp.common_models.domain.Items
 import com.pustovit.pdp.character.summary.SummaryFragment
 import com.pustovit.pdp.character.summary.SummaryTitle
 
-object Screens {
+object CharacterScreens {
 
     fun summaryScreen(title: SummaryTitle, series: Items) = FragmentScreen {
         SummaryFragment.newInstance(title, series)

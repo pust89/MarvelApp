@@ -7,18 +7,17 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pustivut.pdp.core_navigation.*
 import com.pustovit.pdp.marvelapp.R
-import com.pustovit.pdp.marvelapp.app.di.module.MainNavigatorHolder
-import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
 import com.pustovit.pdp.marvelapp.databinding.ActivityMainBinding
-import com.pustovit.pdp.marvelapp.navigation.Screens
-import com.pustovit.pdp.marvelapp.navigation.TabNavigation
-import com.pustovit.pdp.common_ui.ui.RouterProvider
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
+class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider, ScreensProvider {
 
     private var binding: ActivityMainBinding? = null
+
+    @Inject
+    override lateinit var screens: Screens
 
     @Inject
     @MainRouter
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), RouterProvider {
         if (newFragment == null) {
             transaction.add(
                 R.id.mainContainerView,
-                Screens.tabScreen(tabNavigation)
+                screens.tabScreen(tabNavigation)
                     .createFragment(supportFragmentManager.fragmentFactory), tag
             )
         }

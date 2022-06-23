@@ -10,15 +10,16 @@ import androidx.fragment.app.Fragment
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
+import com.pustivut.pdp.core_navigation.router
+import com.pustivut.pdp.core_navigation.screens
 import com.pustovit.pdp.character.databinding.FragmentCharacterBinding
 import com.pustovit.pdp.character.di.CharacterComponentHolder
 import com.pustovit.pdp.character.di.ViewModelFactory
 import com.pustovit.pdp.character.mvi.CharacterViewState
-import com.pustovit.pdp.character.navigation.Screens
+import com.pustovit.pdp.character.navigation.CharacterScreens
 import com.pustovit.pdp.character.summary.SummaryTitle
 import com.pustovit.pdp.common_ui.ui.*
 import io.reactivex.rxkotlin.addTo
-import timber.log.Timber
 import javax.inject.Inject
 
 class CharacterFragment : Fragment() {
@@ -109,17 +110,17 @@ class CharacterFragment : Fragment() {
 
     private fun onComicsButtonClick() {
         val comics = viewModel.currentViewState.character.comics
-        router().navigateTo(Screens.summaryScreen(SummaryTitle.Comics, comics))
+        router.navigateTo(CharacterScreens.summaryScreen(SummaryTitle.Comics, comics))
     }
 
     private fun onSeriesButtonClick() {
         val series = viewModel.currentViewState.character.series
-        router().navigateTo(Screens.summaryScreen(SummaryTitle.Series, series))
+        router.navigateTo(CharacterScreens.summaryScreen(SummaryTitle.Series, series))
     }
 
     private fun onStoriesButtonClick() {
         val stories = viewModel.currentViewState.character.stories
-        router().navigateTo(Screens.summaryScreen(SummaryTitle.Stories, stories))
+        router.navigateTo(CharacterScreens.summaryScreen(SummaryTitle.Stories, stories))
     }
 
     companion object {

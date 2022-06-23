@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.pustivut.pdp.core_navigation.router
+import com.pustivut.pdp.core_navigation.screens
 import com.pustoivt.pdp.events_api.model.Event
 import com.pustovit.pdp.events.databinding.FragmentEventsBinding
 import com.pustovit.pdp.events.di.ViewModelFactory
@@ -112,8 +114,7 @@ class EventsFragment : Fragment() {
     }
 
     private fun onEventClick(event: Event) {
-        // TODO navigation point 2
-//        router().navigateTo(Screens.eventScreen(event.id))
+        router.navigateTo(screens.eventScreen(event.id))
     }
 
     companion object {

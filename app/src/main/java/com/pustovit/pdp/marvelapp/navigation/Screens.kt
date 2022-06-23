@@ -1,31 +1,34 @@
 package com.pustovit.pdp.marvelapp.navigation
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import com.pustivut.pdp.core_navigation.Screens
+import com.pustivut.pdp.core_navigation.TabNavigation
 import com.pustovit.pdp.character.CharacterFragment
 import com.pustovit.pdp.characters.ui.CharactersFragment
 import com.pustovit.pdp.event.EventFragment
 import com.pustovit.pdp.events.ui.EventsFragment
 import com.pustovit.pdp.marvelapp.app.TabContainerFragment
+import javax.inject.Inject
 
-object Screens {
+class ScreensImpl @Inject constructor() : Screens {
 
-    fun charactersScreen() = FragmentScreen {
+    override fun charactersScreen() = FragmentScreen {
         CharactersFragment()
     }
 
-    fun eventsScreen() = FragmentScreen {
+    override fun eventsScreen() = FragmentScreen {
         EventsFragment()
     }
 
-    fun characterScreen(characterId: Int) = FragmentScreen {
+    override fun characterScreen(characterId: Int) = FragmentScreen {
         CharacterFragment.newInstance(characterId)
     }
 
-    fun eventScreen(eventId: Int) = FragmentScreen {
+    override fun eventScreen(eventId: Int) = FragmentScreen {
         EventFragment.newInstance(eventId)
     }
 
-    fun tabScreen(tab: TabNavigation) = FragmentScreen {
+    override fun tabScreen(tab: TabNavigation) = FragmentScreen {
         TabContainerFragment.newInstance(tab)
     }
 }

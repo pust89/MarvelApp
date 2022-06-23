@@ -132,7 +132,7 @@ class SummaryFragment : Fragment() {
         fun newInstance(title: SummaryTitle, item: Items): SummaryFragment {
             return SummaryFragment().apply {
                 arguments = bundleOf(
-                    ARG_KEY_TITLE to title.name,
+                    ARG_KEY_TITLE to title,
                     ARG_KEY_CONTENT to item
                 )
             }
@@ -151,4 +151,5 @@ sealed class SummaryTitle(val name: String) : Parcelable {
 
     @Parcelize
     object Series : SummaryTitle("Series")
+
 }

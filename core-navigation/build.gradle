@@ -42,23 +42,8 @@ android {
 }
 
 dependencies {
-    api project(":core-navigation")
-
     api "androidx.core:core-ktx:$androidCoreKtxVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
-    api "com.google.android.material:material:$materialVersion"
-    api "androidx.constraintlayout:constraintlayout:$constraintlayoutVersopn"
-    api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayoutVersion"
-    api "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    api "androidx.recyclerview:recyclerview:$recyclerviewVersopn"
-    api "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
-
-    /* ViewModelScope */
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-    /* LifecycleScope */
-    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-    /* ViewBinding */
-    api "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$viewbindingpropertydelegateVersion"
 
     /* Dagger2 */
     implementation "com.google.dagger:dagger:$daggerVersion"
@@ -67,18 +52,7 @@ dependencies {
     /* Navigation */
     api"com.github.terrakok:cicerone:$ciceroneVersion"
 
-    /* Retrofit */
-    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
-
-    // Rx
-    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    api "io.reactivex.rxjava2:rxjava:$rxJava2Version"
-    api "io.reactivex.rxjava2:rxkotlin:$rxKotlin"
     /* Timber */
     api "com.jakewharton.timber:timber:$timberVersion"
 
-    /* Coil etc */
-    api "io.coil-kt:coil:$coilVersion"
-    api "io.coil-kt:coil-gif:$coilVersion"
-    api "io.coil-kt:coil-svg:$coilVersion"
 }

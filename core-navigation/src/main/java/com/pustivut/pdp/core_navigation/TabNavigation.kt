@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.navigation
+package com.pustivut.pdp.core_navigation
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

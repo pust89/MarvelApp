@@ -13,6 +13,6 @@ import javax.inject.Singleton
 class Features @Inject constructor(
     private val eventsApi: EventsApi,
     private val charactersApi: CharactersApi,
-    private val eventApi: Provider<EventApi>,
-    private val characterApi: Provider<CharacterApi>,
+    private val eventApi: EventApi,
+    private val characterApi: CharacterApi,
 )

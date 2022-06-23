@@ -1,4 +1,4 @@
-package com.pustovit.pdp.common_ui.ui
+package com.pustivut.pdp.core_navigation
 
 import com.github.terrakok.cicerone.Router
 

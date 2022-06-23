@@ -1,4 +1,4 @@
-package com.pustovit.pdp.marvelapp.navigation
+package com.pustivut.pdp.core_navigation
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router

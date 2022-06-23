@@ -7,16 +7,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Router
+import com.pustivut.pdp.core_navigation.RouterProvider
 import com.pustovit.pdp.common_ui.ui.mvi.ViewStateError
-
-fun Fragment.mainRouter(): Router {
-    return (requireActivity() as RouterProvider).router
-}
-
-fun Fragment.router(): Router {
-
-    return (parentFragment as RouterProvider).router
-}
 
 fun Fragment.handleViewStateError(viewStateError: ViewStateError?) {
     viewStateError?.let {

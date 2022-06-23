@@ -3,10 +3,12 @@ package com.pustovit.pdp.marvelapp.app.di
 import android.content.Context
 import coil.ImageLoader
 import com.github.terrakok.cicerone.Router
+import com.pustivut.pdp.core_navigation.LocalNavigationModule
+import com.pustivut.pdp.core_navigation.NavigationModule
+import com.pustivut.pdp.core_navigation.TabNavigationCharacters
+import com.pustivut.pdp.core_navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.app.App
 import com.pustovit.pdp.marvelapp.app.MainActivity
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationCharacters
-import com.pustovit.pdp.marvelapp.navigation.TabNavigationEvents
 import com.pustovit.pdp.marvelapp.app.TabContainerFragment
 import com.pustovit.pdp.marvelapp.app.di.module.*
 import dagger.BindsInstance
@@ -19,6 +21,7 @@ import javax.inject.Singleton
         CoilModule::class,
         NavigationModule::class,
         LocalNavigationModule::class,
+        ScreensModule::class,
         FeatureDependenciesModule::class,
         FeatureApiModule::class
     ]
