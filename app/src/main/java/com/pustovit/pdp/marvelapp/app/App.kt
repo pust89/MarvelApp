@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import com.pustovit.pdp.marvelapp.BuildConfig
 import com.pustovit.pdp.marvelapp.app.di.AppComponent
 import com.pustovit.pdp.marvelapp.app.di.DaggerAppComponent
+import com.pustovit.pdp.marvelapp.app.di.setFeatureDependencies
 import timber.log.Timber
 import javax.inject.Inject
 
 class App : Application() {
 
     @Inject
-    lateinit var features: Features
+    lateinit var featureApi: FeatureApi
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
@@ -24,6 +25,7 @@ class App : Application() {
         super.onCreate()
         initTimber()
         appComponent.inject(this)
+        setFeatureDependencies(featureApi)
     }
 
     private fun initTimber() {

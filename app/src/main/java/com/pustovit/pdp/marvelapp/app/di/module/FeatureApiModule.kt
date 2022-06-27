@@ -16,6 +16,7 @@ import com.pustovit.pdp.network.DaggerCoreNetworkComponent
 import com.pustovit.pdp.network_api.CoreNetworkApi
 import dagger.Module
 import dagger.Provides
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -28,27 +29,23 @@ class FeatureApiModule {
     }
 
     @Provides
-    fun provideCharactersApi(dependencies: CharactersFeatureDependencies): CharactersApi {
-        CharactersComponentHolder.init(dependencies)
+    fun provideCharactersApi(): CharactersApi {
         return CharactersComponentHolder.get()
     }
 
     @Provides
-    fun provideCharacterApi(dependencies: CharacterFeatureDependencies): CharacterApi {
-        CharacterComponentHolder.init(dependencies)
+    fun provideCharacterApi(): CharacterApi {
         return CharacterComponentHolder.get()
     }
 
     @Provides
-    fun provideEventsApi(dependencies: EventsFeatureDependencies): EventsApi {
-        EventsComponentHolder.init(dependencies)
+    fun provideEventsApi(): EventsApi {
         return EventsComponentHolder.get()
     }
 
 
     @Provides
-    fun provideEventApi(dependencies: EventFeatureDependencies): EventApi {
-        EventComponentHolder.init(dependencies)
+    fun provideEventApi(): EventApi {
         return EventComponentHolder.get()
     }
 }

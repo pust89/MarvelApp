@@ -45,7 +45,7 @@ class EventFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        EventComponentHolder.getComponent().inject(this)
+        EventComponentHolder.component.inject(this)
     }
 
     override fun onCreateView(

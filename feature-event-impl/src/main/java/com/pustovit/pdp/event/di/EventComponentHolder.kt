@@ -2,34 +2,20 @@ package com.pustovit.pdp.event.di
 
 import com.pustovit.pdp.event_api.EventApi
 import com.pustovit.pdp.injector.ComponentHolder
+import com.pustovit.pdp.injector.ComponentHolderDelegate
 import timber.log.Timber
 
 object EventComponentHolder : ComponentHolder<EventApi, EventFeatureDependencies> {
 
-    @Volatile
-    private var eventComponent: EventComponent? = null
+    override var dependencyProvider: (() -> EventFeatureDependencies)? = null
 
-    override fun init(dependencies: EventFeatureDependencies) {
-        synchronized(EventComponentHolder::class) {
-            if (eventComponent == null) {
-                eventComponent =
-                    DaggerEventComponent.builder().eventFeatureDependencies(dependencies).build()
-            }
-        }
+    internal val component: EventComponent by
+    ComponentHolderDelegate<EventFeatureDependencies, EventComponent> {
+        DaggerEventComponent.builder().eventFeatureDependencies(it).build()
     }
 
     override fun get(): EventApi {
-        Timber.d("get EventComponent")
-        requireNotNull(eventComponent) { "EventComponent was not initialized!" }
-        return eventComponent!!
+        return component
     }
 
-    internal fun getComponent(): EventComponent {
-        requireNotNull(eventComponent) { "EventComponent was not initialized!" }
-        return eventComponent!!
-    }
-
-    override fun reset() {
-        eventComponent = null
-    }
 }

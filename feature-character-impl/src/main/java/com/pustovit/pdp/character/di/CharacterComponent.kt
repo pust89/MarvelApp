@@ -18,12 +18,4 @@ interface CharacterComponent : CharacterApi {
 
     fun inject(summaryFragment: SummaryFragment)
 
-    @Component.Builder
-    interface Builder {
-
-        fun dependencies(dependencies: CharacterFeatureDependencies): Builder
-
-        fun build(): CharacterComponent
-    }
-
 }

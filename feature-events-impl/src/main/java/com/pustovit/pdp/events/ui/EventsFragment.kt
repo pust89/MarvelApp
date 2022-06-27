@@ -17,6 +17,7 @@ import com.pustovit.pdp.events.ui.mvi.EventsViewState
 import com.pustovit.pdp.common_ui.ui.CompositeDisposableDelegate
 import com.pustovit.pdp.common_ui.ui.baseViewModels
 import com.pustovit.pdp.common_ui.ui.handleViewStateError
+import com.pustovit.pdp.events.di.EventsComponent
 import com.pustovit.pdp.events.di.EventsComponentHolder
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
@@ -28,6 +29,10 @@ class EventsFragment : Fragment() {
     @Inject
     lateinit var adapter: EventsListAdapter
 
+    private val eventsComponent: EventsComponent by lazy {
+        EventsComponentHolder.component
+    }
+
     private val viewModel: EventsViewModel by baseViewModels { viewModelFactory }
 
     private var binding: FragmentEventsBinding? = null
@@ -36,7 +41,7 @@ class EventsFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        EventsComponentHolder.getComponent().inject(this)
+        eventsComponent.inject(this)
     }
 
     override fun onCreateView(

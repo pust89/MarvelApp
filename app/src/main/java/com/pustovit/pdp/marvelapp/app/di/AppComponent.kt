@@ -20,7 +20,7 @@ import javax.inject.Singleton
         NavigationModule::class,
         LocalNavigationModule::class,
         ScreensModule::class,
-        FeatureDependenciesModule::class,
+      //  FeatureDependenciesModule::class,
         FeatureApiModule::class
     ]
 )

@@ -40,7 +40,7 @@ class CharacterFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        CharacterComponentHolder.getComponent().inject(this)
+        CharacterComponentHolder.component.inject(this)
     }
 
     override fun onCreateView(

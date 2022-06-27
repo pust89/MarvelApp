@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pustivut.pdp.core_navigation.router
 import com.pustivut.pdp.core_navigation.screens
 import com.pustovit.pdp.characters.databinding.FragmentCharactersBinding
+import com.pustovit.pdp.characters.di.CharactersComponent
 import com.pustovit.pdp.characters.di.CharactersComponentHolder
 import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
 import com.pustovit.pdp.characters_api.api.model.Character
@@ -34,13 +35,17 @@ class CharactersFragment : Fragment() {
         viewModelFactory
     }
 
+    private val eventsComponent: CharactersComponent by lazy {
+        CharactersComponentHolder.component
+    }
+
     private var binding: FragmentCharactersBinding? = null
 
     private val compositeDisposable by CompositeDisposableDelegate()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        CharactersComponentHolder.getComponent().inject(this)
+        eventsComponent.inject(this)
     }
 
     override fun onCreateView(
