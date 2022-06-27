@@ -1,4 +1,4 @@
-package com.pustivut.pdp.core_navigation
+package com.pustovit.pdp.marvelapp.app.di.module
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder

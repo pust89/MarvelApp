@@ -3,10 +3,8 @@ package com.pustovit.pdp.marvelapp.app.di
 import android.content.Context
 import coil.ImageLoader
 import com.github.terrakok.cicerone.Router
-import com.pustivut.pdp.core_navigation.LocalNavigationModule
-import com.pustivut.pdp.core_navigation.NavigationModule
-import com.pustivut.pdp.core_navigation.TabNavigationCharacters
-import com.pustivut.pdp.core_navigation.TabNavigationEvents
+import com.pustovit.pdp.marvelapp.app.di.module.LocalNavigationModule
+import com.pustovit.pdp.marvelapp.app.di.module.NavigationModule
 import com.pustovit.pdp.marvelapp.app.App
 import com.pustovit.pdp.marvelapp.app.MainActivity
 import com.pustovit.pdp.marvelapp.app.TabContainerFragment

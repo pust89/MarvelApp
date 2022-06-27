@@ -9,6 +9,8 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pustivut.pdp.core_navigation.*
 import com.pustovit.pdp.marvelapp.R
+import com.pustovit.pdp.marvelapp.app.di.module.MainNavigatorHolder
+import com.pustovit.pdp.marvelapp.app.di.module.MainRouter
 import com.pustovit.pdp.marvelapp.databinding.ActivityMainBinding
 import javax.inject.Inject
 

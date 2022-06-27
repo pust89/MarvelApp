@@ -11,7 +11,6 @@ object EventComponentHolder : ComponentHolder<EventApi, EventFeatureDependencies
 
     override fun init(dependencies: EventFeatureDependencies) {
         synchronized(EventComponentHolder::class) {
-            Timber.d("init EventComponent, deps=${dependencies}")
             if (eventComponent == null) {
                 eventComponent =
                     DaggerEventComponent.builder().eventFeatureDependencies(dependencies).build()
