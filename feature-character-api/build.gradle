@@ -12,7 +12,6 @@ android {
         targetSdk rootProject.targetSdkVersion
         versionCode rootProject.versionCode
         versionName rootProject.versionName
-        setProperty("archivesBaseName", "UnSpotWeb" + "_" + versionName)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,4 +46,5 @@ android {
 
 dependencies {
     api project(":injector")
+    api project(":core-common-models")
 }

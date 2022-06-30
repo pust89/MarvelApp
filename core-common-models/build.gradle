@@ -44,10 +44,6 @@ android {
 dependencies {
     implementation project(":core-utils")
     implementation "androidx.core:core-ktx:$androidCoreKtxVersion"
-
-    /* Timber */
-    implementation "com.jakewharton.timber:timber:$timberVersion"
-
     /* Moshi */
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"

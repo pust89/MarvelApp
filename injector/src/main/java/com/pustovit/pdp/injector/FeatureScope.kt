@@ -1,4 +1,4 @@
-package com.pustovit.pdp.utils.di
+package com.pustovit.pdp.injector
 
 import javax.inject.Scope
 

@@ -9,6 +9,8 @@ import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.pustivut.pdp.core_navigation.*
+import com.pustovit.pdp.common_ui.ui.mainRouter
+import com.pustovit.pdp.common_ui.ui.screens
 import com.pustovit.pdp.marvelapp.R
 import javax.inject.Inject
 

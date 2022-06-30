@@ -12,12 +12,12 @@ import kotlin.reflect.KClass
 @MainThread
 inline fun <reified VM : BaseViewModel<*>> Fragment.baseViewModels(
     noinline ownerProducer: () -> ViewModelStoreOwner = { this },
-    noinline factoryProducer: (() -> ViewModelProvider.Factory)? = null,
-
+    noinline factoryProducer: (() -> ViewModelProvider.Factory)? = null
     ): Lazy<VM> {
     val lazyViewModel = createBaseViewModelLazy(
-        VM::class, { ownerProducer().viewModelStore },
-        factoryProducer ?: {
+        viewModelClass = VM::class,
+        storeProducer = { ownerProducer().viewModelStore },
+        factoryProducer = factoryProducer ?: {
             (ownerProducer() as? HasDefaultViewModelProviderFactory)?.defaultViewModelProviderFactory
                 ?: defaultViewModelProviderFactory
         }

@@ -1,10 +1,10 @@
 package com.pustovit.pdp.events.di
 
 import com.pustoivt.pdp.events_api.repository.EventsRepository
-import com.pustovit.pdp.utils.di.FeatureScope
 import com.pustovit.pdp.events.data.EventsRepositoryImpl
 import com.pustovit.pdp.events.data.source.EventsRemoteDataSource
 import com.pustovit.pdp.events.data.source.EventsRemoteDataSourceImpl
+import com.pustovit.pdp.injector.FeatureScope
 import dagger.Binds
 import dagger.Module
 

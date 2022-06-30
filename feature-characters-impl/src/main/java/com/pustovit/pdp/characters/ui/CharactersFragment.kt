@@ -10,8 +10,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pustivut.pdp.core_navigation.router
-import com.pustivut.pdp.core_navigation.screens
 import com.pustovit.pdp.characters.databinding.FragmentCharactersBinding
 import com.pustovit.pdp.characters.di.CharactersComponent
 import com.pustovit.pdp.characters.di.CharactersComponentHolder

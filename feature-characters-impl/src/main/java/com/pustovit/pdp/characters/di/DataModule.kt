@@ -4,7 +4,7 @@ import com.pustovit.pdp.characters_api.api.repository.CharactersRepository
 import com.pustovit.pdp.characters.data.CharactersRepositoryImpl
 import com.pustovit.pdp.characters.data.source.remote.CharactersRemoteDataSource
 import com.pustovit.pdp.characters.data.source.remote.CharactersRemoteDataSourceImpl
-import com.pustovit.pdp.utils.di.FeatureScope
+import com.pustovit.pdp.injector.FeatureScope
 import dagger.Binds
 import dagger.Module
 

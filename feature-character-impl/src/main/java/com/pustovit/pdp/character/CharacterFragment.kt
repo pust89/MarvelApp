@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.pustivut.pdp.core_navigation.router
-import com.pustivut.pdp.core_navigation.screens
 import com.pustovit.pdp.character.databinding.FragmentCharacterBinding
 import com.pustovit.pdp.character.di.CharacterComponentHolder
 import com.pustovit.pdp.character.di.ViewModelFactory

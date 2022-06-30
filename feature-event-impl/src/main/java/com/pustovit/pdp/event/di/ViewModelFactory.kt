@@ -2,7 +2,7 @@ package com.pustovit.pdp.event.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pustovit.pdp.utils.di.FeatureScope
+import com.pustovit.pdp.injector.FeatureScope
 import javax.inject.Inject
 import javax.inject.Provider
 

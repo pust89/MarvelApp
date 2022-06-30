@@ -1,8 +1,8 @@
 package com.pustovit.pdp.events.di
 
 import com.pustoivt.pdp.events_api.EventsApi
-import com.pustovit.pdp.utils.di.FeatureScope
 import com.pustovit.pdp.events.ui.EventsFragment
+import com.pustovit.pdp.injector.FeatureScope
 import dagger.Component
 
 @FeatureScope

@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.pustivut.pdp.core_navigation.router
-import com.pustivut.pdp.core_navigation.screens
 import com.pustovit.pdp.characters_api.api.adapter.CharactersListAdapter
 import com.pustovit.pdp.characters_api.api.model.Character
 import com.pustovit.pdp.event.databinding.FragmentEventBinding

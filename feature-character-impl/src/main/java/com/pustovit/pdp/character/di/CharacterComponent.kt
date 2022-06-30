@@ -3,7 +3,7 @@ package com.pustovit.pdp.character.di
 import com.pustovit.pdp.character.CharacterFragment
 import com.pustovit.pdp.character.summary.SummaryFragment
 import com.pustovit.pdp.character_api.CharacterApi
-import com.pustovit.pdp.utils.di.FeatureScope
+import com.pustovit.pdp.injector.FeatureScope
 import dagger.Component
 
 
