@@ -1,47 +1,34 @@
 package com.pustovit.pdp.marvelapp.navigation
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.pustovit.pdp.marvelapp.domain.model.common.Comics
-import com.pustovit.pdp.marvelapp.domain.model.common.Series
-import com.pustovit.pdp.marvelapp.domain.model.common.Stories
-import com.pustovit.pdp.marvelapp.ui.character.CharacterFragment
-import com.pustovit.pdp.marvelapp.ui.characters.CharactersFragment
-import com.pustovit.pdp.marvelapp.ui.character.summary.SummaryFragment
-import com.pustovit.pdp.marvelapp.ui.event.EventFragment
-import com.pustovit.pdp.marvelapp.ui.events.EventsFragment
-import com.pustovit.pdp.marvelapp.ui.tabcontainer.TabContainerFragment
-import com.pustovit.pdp.marvelapp.domain.model.event.Event
+import com.pustivut.pdp.core_navigation.Screens
+import com.pustivut.pdp.core_navigation.TabNavigation
+import com.pustovit.pdp.character.CharacterFragment
+import com.pustovit.pdp.characters.ui.CharactersFragment
+import com.pustovit.pdp.event.EventFragment
+import com.pustovit.pdp.events.ui.EventsFragment
+import com.pustovit.pdp.marvelapp.app.TabContainerFragment
+import javax.inject.Inject
 
-object Screens {
+class ScreensImpl @Inject constructor() : Screens {
 
-    fun charactersScreen() = FragmentScreen {
+    override fun charactersScreen() = FragmentScreen {
         CharactersFragment()
     }
 
-    fun characterScreen(characterId: Int) = FragmentScreen {
-        CharacterFragment.newInstance(characterId)
-    }
-
-    fun summaryScreen(comics: Comics) = FragmentScreen {
-        SummaryFragment.newInstance(comics)
-    }
-    fun summaryScreen(stories: Stories) = FragmentScreen {
-        SummaryFragment.newInstance(stories)
-    }
-
-    fun summaryScreen(series: Series) = FragmentScreen {
-        SummaryFragment.newInstance(series)
-    }
-
-    fun eventsScreen() = FragmentScreen {
+    override fun eventsScreen() = FragmentScreen {
         EventsFragment()
     }
 
-    fun eventScreen(eventId: Int) = FragmentScreen {
+    override fun characterScreen(characterId: Int) = FragmentScreen {
+        CharacterFragment.newInstance(characterId)
+    }
+
+    override fun eventScreen(eventId: Int) = FragmentScreen {
         EventFragment.newInstance(eventId)
     }
 
-    fun tabScreen(tab: TabNavigation) = FragmentScreen {
+    override fun tabScreen(tab: TabNavigation) = FragmentScreen {
         TabContainerFragment.newInstance(tab)
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dims_8dp"
-    tools:context=".ui.character.summary.SummaryFragment">
+    tools:context="com.pustovit.pdp.character.summary.SummaryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

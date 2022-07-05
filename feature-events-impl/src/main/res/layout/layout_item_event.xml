@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dims_8dp"
+    android:padding="@dimen/dims_16dp"
+    app:cardBackgroundColor="@color/grey1"
+    app:cardCornerRadius="@dimen/dims_8dp"
+    app:cardElevation="@dimen/dims_8dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="@dimen/dims_1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="@dimen/dims_128dp"
+            android:layout_height="@dimen/dims_128dp"
+            android:layout_marginStart="@dimen/dims_8dp"
+            android:layout_marginTop="@dimen/dims_8dp"
+            android:layout_marginBottom="@dimen/dims_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_person_24" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dims_8dp"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/dims_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/photoImageView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/modifiedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_18sp"
+                android:gravity="end"
+                android:textColor="@color/black"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+            <TextView
+                android:id="@+id/descriptionsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_18sp"
+                android:textColor="@color/black"
+                android:maxLines="3"
+                android:ellipsize="end"
+                tools:text="@tools:sample/lorem/random" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
